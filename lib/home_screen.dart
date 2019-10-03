@@ -1,31 +1,74 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget{
+class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return HomeScreenState ();
+    return HomeScreenState();
   }
-
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  @override
+  static const _duration = const Duration(microseconds: 10);
+  static const _curve = Curves.ease;
+
+  int _selectedPageIndex = 0;
+  PageController _pageController = PageController();
+
+  void _onPageSelected(int index) {
+    _pageController.animateToPage(index, duration: _duration, curve: _curve);
+
+    setState(() {
+      _selectedPageIndex = index;
+    });
+  }
+
+  final List<Widget> _pages = <Widget>[
+    Container(color: Colors.green),
+    Container(color: Colors.yellow),
+    Container(color: Colors.red),
+    Container(color: Colors.orange)
+  ];
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Psalmody MVP"),
       ),
-      body: Center(
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            //Text( ),
-          ] ,
+      body: Container(
+        color: Theme.of(context).primaryColor,
+        child: PageView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            return _pages[index];
+          },
+          itemCount: _pages.length,
+          controller: _pageController,
         ),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onPageSelected,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedPageIndex,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text("Home"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            title: Text("Gitsawe"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star_border),
+            title: Text("Favorite"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text("Setting"),
+          ),
+        ],
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
