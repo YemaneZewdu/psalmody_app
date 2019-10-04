@@ -1,26 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomeListItem extends StatelessWidget {
-  final _months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
+class BooksListItem extends StatelessWidget {
+  final _books = ["Book 1", "Book 2", "Book 3"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: new ListView.builder(
-        itemCount: _months.length,
+        itemCount: _books.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: EdgeInsets.only(bottom: 10.0),
@@ -29,7 +16,7 @@ class HomeListItem extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
                 child: Text(
-                  _months[index],
+                  _books[index],
                   style: TextStyle(
                     fontSize: 20.0,
                     height: 1.6,
