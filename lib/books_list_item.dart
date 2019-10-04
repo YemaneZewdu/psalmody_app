@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class BooksListItem extends StatelessWidget {
   final _books = ["Book 1", "Book 2", "Book 3"];
+  final _booksDescription = ["description 1", "description 2", "description 3"];
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +16,16 @@ class BooksListItem extends StatelessWidget {
               color: Colors.white,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
-                child: Text(
-                  _books[index],
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    height: 1.6,
+                child: ListTile(
+                  title: Text(
+                    _books[index],
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      height: 1.6,
+                    ),
+                  ),
+                  subtitle: Text(
+                    _booksDescription[index],
                   ),
                 ),
               ),

@@ -50,6 +50,7 @@ class HomeScreenState extends State<HomeScreen> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white30,
         onTap: _onPageSelected,
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedPageIndex,
