@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BooksListItem extends StatelessWidget {
-  final _books = ["Book 1", "Book 2", "Book 3"];
-  final _booksDescription = ["description 1", "description 2", "description 3"];
+  final _books = [{'title':'Book 1', 'description':"description 1"} , {'title':'Book 2', 'description':"description 2"}, {'title':'Book 3', 'description':"description 3"}];
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,14 @@ class BooksListItem extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
                 child: ListTile(
                   title: Text(
-                    _books[index],
+                    _books[index]['title'],
                     style: TextStyle(
                       fontSize: 20.0,
                       height: 1.6,
                     ),
                   ),
                   subtitle: Text(
-                    _booksDescription[index],
+                    _books[index]['description'],
                   ),
                 ),
               ),
