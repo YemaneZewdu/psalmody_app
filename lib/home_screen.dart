@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
+import './home_list_item.dart';
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+
     return HomeScreenState();
   }
 }
@@ -24,7 +24,7 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   final List<Widget> _pages = <Widget>[
-    Container(color: Colors.green),
+    HomeListItem(),
     Container(color: Colors.yellow),
     Container(color: Colors.red),
     Container(color: Colors.orange)
@@ -58,7 +58,7 @@ class HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            title: Text("Gitsawe"),
+            title: Text("Books"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.star_border),
