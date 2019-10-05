@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './home_list_item.dart';
 import './books_list_item.dart';
+import './favorites_list_item.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = <Widget>[
     HomeListItem(),
     BooksListItem(),
-    Container(color: Colors.red),
+    FavoritesListItem(),
     Container(color: Colors.orange)
   ];
 
