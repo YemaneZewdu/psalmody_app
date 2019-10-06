@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './home_list_item.dart';
 import './books_list_item.dart';
 import './favorites_list_item.dart';
+import './more_list_item.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class HomeScreenState extends State<HomeScreen> {
     HomeListItem(),
     BooksListItem(),
     FavoritesListItem(),
-    Container(color: Colors.orange)
+    MoreListItem()
   ];
 
   @override
@@ -69,8 +70,8 @@ class HomeScreenState extends State<HomeScreen> {
             title: Text("Favorite"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text("Setting"),
+            icon: Icon(Icons.more_horiz),
+            title: Text("More"),
           ),
         ],
       ),
