@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import './home_list_item.dart';
-import './books_list_item.dart';
-import './favorites_list_item.dart';
-import './more_list_item.dart';
+import './home_list_screen.dart';
+import './books_list_screen.dart';
+import './favorites_list_screen.dart';
+import './more_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
