@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class FavoritesListItem extends StatefulWidget {
+class FavoritesListScreen extends StatefulWidget {
   @override
-  _FavoritesListItemState createState() => _FavoritesListItemState();
+  _FavoritesListScreenState createState() => _FavoritesListScreenState();
 }
 
-class _FavoritesListItemState extends State<FavoritesListItem> {
+class _FavoritesListScreenState extends State<FavoritesListScreen> {
   List<String> _favorites = [
     "Favorites 1",
     "Favorites 2",

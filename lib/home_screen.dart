@@ -29,9 +29,9 @@ class HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = <Widget>[
     HomeListScreen(),
-    BooksListItem(),
-    FavoritesListItem(),
-    MoreListItem()
+    BooksListScreen(),
+    FavoritesListScreen(),
+    MoreListScreen()
   ];
 
   @override

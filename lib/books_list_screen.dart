@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BooksListItem extends StatelessWidget {
+class BooksListScreen extends StatelessWidget {
   final _books = [{'title':'Book 1', 'description':"description 1"} , {'title':'Book 2', 'description':"description 2"}, {'title':'Book 3', 'description':"description 3"}];
 
 

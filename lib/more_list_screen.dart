@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MoreListItem extends StatelessWidget {
+class MoreListScreen extends StatelessWidget {
   final _moreOptions = [
     "Learn Geez",
     "How to use the App",
