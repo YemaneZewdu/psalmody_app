@@ -21,7 +21,7 @@ class MoreListScreen extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios),
             ),
             ListTile(
-              leading: Icon(Icons.question_answer),
+              leading: Icon(Icons.help),
               title: Text(_moreOptions[1]),
               trailing: Icon(Icons.arrow_forward_ios),
             ),
