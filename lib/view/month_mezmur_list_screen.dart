@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:psalmody/model/mezmur.dart';
+import 'package:psalmody/view/audio_player_screen.dart';
+import 'package:psalmody/view/home_list_screen.dart';
 
 class MonthMezmurListScreen extends StatelessWidget {
   final String monthName;
-  Mezmur mezmurData;
+  final Mezmur mezmurData;
 
   MonthMezmurListScreen(
       {Key key, @required this.monthName, @required this.mezmurData})
@@ -13,14 +15,18 @@ class MonthMezmurListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(centerTitle: true,
+        appBar: AppBar(
+          centerTitle: true,
           title: Text(monthName),
         ),
         body: new ListView.builder(
           itemCount: 5,
           itemBuilder: (BuildContext context, int index) {
             return new GestureDetector(
-              onTap: () => print("Clicked"),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AudioPlayerScreen(mezmurData: getFakeData())),
+              ),
               child: new Padding(
                 padding: EdgeInsets.only(bottom: 10.0),
                 child: Card(
