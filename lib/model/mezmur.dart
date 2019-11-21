@@ -9,6 +9,7 @@ class Mezmur{
   String misbakLine1;
   String misbakLine2;
   String misbakLine3;
+  String misbakPictureUrl;
 
 
 

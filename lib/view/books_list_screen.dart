@@ -11,6 +11,7 @@ class BooksListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffEBEFF2),
       body: new ListView.builder(
         itemCount: _books.length,
         itemBuilder: (BuildContext context, int index) {

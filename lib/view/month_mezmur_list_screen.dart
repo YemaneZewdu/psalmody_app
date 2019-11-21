@@ -19,6 +19,7 @@ class MonthMezmurListScreen extends StatelessWidget {
           centerTitle: true,
           title: Text(monthName),
         ),
+      backgroundColor: Color(0xffEBEFF2),
         body: new ListView.builder(
           itemCount: 5,
           itemBuilder: (BuildContext context, int index) {

@@ -20,7 +20,7 @@ class HomeListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Color(0xffEBEFF2),
       body: new ListView.builder(
         itemCount: _months.length,
         itemBuilder: (BuildContext context, int index) {
@@ -62,6 +62,7 @@ Mezmur getFakeData() {
   obj.misbakLine1 = 'Misbak line 1';
   obj.misbakLine2 = 'Misbak line 2';
   obj.misbakLine3='Misbak line 3';
-
+  obj.misbakPictureUrl =  "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjC_IGdq6zlAhWEiOAKHSWWChAQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.nashvillepublicradio.org%2Fpost%2Fafter-years-division-nashville-s-ethiopian-churches-gather-mark-reconciliation&psig=AOvVaw25lto_-NkZ_uxqM75qZ6Kz&ust=1571712398796114";
+  //"https://drive.google.com/open?id=1bvHAMhbS4Rns9h-9X6HvKHyh_xMXKgFl";
   return obj;
 }

@@ -17,6 +17,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffEBEFF2),
         body: new ListView.builder(
       itemCount: _favorites.length,
       itemBuilder: (BuildContext context, int index) {
