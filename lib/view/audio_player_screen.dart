@@ -61,7 +61,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           Container(
             height: 450,
             margin: EdgeInsets.all(5),
-            width: 450,
+            width: MediaQuery.of(context).size.width,
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
 //            errorWidget: (context, url, error) => Icon(Icons.error),
