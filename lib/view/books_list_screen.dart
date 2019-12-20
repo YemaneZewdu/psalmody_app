@@ -8,19 +8,19 @@ class BooksListScreen extends StatelessWidget {
       'title': 'Yezewtir Gitsawe PDF',
       'description': 'Yezewetir kidase mawcha',
       'url':
-      'https://drive.google.com/file/d/14FKmgnUe7jMHcZZMsswvuXiZHP-ZEP6Y/view?usp=sharing'
+          'https://drive.google.com/file/d/14FKmgnUe7jMHcZZMsswvuXiZHP-ZEP6Y/view?usp=sharing'
     },
     {
       'title': 'Yetewsak Gitsawe PDF',
       'description': 'Letewsak bealat kidase mawcha',
       'url':
-      'https://drive.google.com/file/d/1b4i7DAVmF7ncGHL0G7Cd53cU6mtSPJjp/view?usp=sharing'
+          'https://drive.google.com/file/d/1b4i7DAVmF7ncGHL0G7Cd53cU6mtSPJjp/view?usp=sharing'
     },
     {
       'title': 'Yesenbet Gitsawe PDF',
       'description': 'Yesenbet kidase mawcha',
       'url':
-      'https://drive.google.com/file/d/1-IwFZKu3tvmoOb34HCZ8BPnnigQl3sLn/view?usp=sharing'
+          'https://drive.google.com/file/d/1-IwFZKu3tvmoOb34HCZ8BPnnigQl3sLn/view?usp=sharing'
     }
   ];
 
@@ -44,8 +44,7 @@ class BooksListScreen extends StatelessWidget {
                     },
                   ),
                 );
-              }
-              else {
+              } else {
                 _showDialog(context, "Internet Acess",
                     "Please connect to the internet!");
               }
@@ -56,7 +55,7 @@ class BooksListScreen extends StatelessWidget {
                 color: Colors.white,
                 child: Padding(
                   padding:
-                  EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
+                      EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
                   child: ListTile(
                     title: Text(
                       _books[index]['title'],
@@ -77,7 +76,6 @@ class BooksListScreen extends StatelessWidget {
       ),
     );
   }
-
 
   _showDialog(context, title, content) {
     showDialog(

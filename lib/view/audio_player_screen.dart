@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:psalmody/model/mezmur.dart';
+
 //import 'package:cached_network_image/cached_network_image.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -19,6 +20,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   _AudioPlayerScreenState(this.mezmurData);
 
+  // favorite icon button controller
   void _favButtonPressed() {
     bool newVal = true;
     if (isFavoriteButtonPressed) {
@@ -31,7 +33,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     });
   }
 
-
+  // slider controller
   void onSliderChanged(double value) {
     setState(() {
       sliderValue = value;
@@ -40,15 +42,21 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
 
+    // variables for getting custom screen height and width
+    var customScreenWidth = MediaQuery.of(context).size.width / 100;
+    var customScreenHeight = MediaQuery.of(context).size.height / 100;
+
+    //TODO: *********************Download image to phone or share it***************************
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(mezmurData.mezmurName),
         actions: <Widget>[
+          // favorites icon button
           IconButton(
-            icon: Icon(isFavoriteButtonPressed ? Icons.star : Icons.star_border),
+            icon:
+                Icon(isFavoriteButtonPressed ? Icons.star : Icons.star_border),
             onPressed: () => _favButtonPressed(),
             iconSize: 35.0,
             color: Colors.black,
@@ -57,20 +65,29 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       ),
       body: Stack(
         children: <Widget>[
+
+          // progress indicator
           Center(child: CircularProgressIndicator()),
+
+          // network image container
           Container(
-            height: 450,
+            height: customScreenHeight * 65,
             margin: EdgeInsets.all(5),
             width: MediaQuery.of(context).size.width,
-            child: FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
+            child: GestureDetector(
+              onTap: null,
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
 //            errorWidget: (context, url, error) => Icon(Icons.error),
-              image: 'https://picsum.photos/250?image=9',
-              fadeInDuration: Duration(seconds: 1),
-              fadeOutDuration: Duration(seconds: 1),
-              fit: BoxFit.fill,
+                image: 'https://picsum.photos/250?image=9',
+                fadeInDuration: Duration(seconds: 1),
+                fadeOutDuration: Duration(seconds: 1),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
+
+          // Playing buttons container
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -131,11 +148,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                           ),
                           IconButton(
                             icon: Icon(
-                             Icons.play_circle_filled,
+                              Icons.play_circle_filled,
                               color: Colors.black,
                             ),
                             iconSize: 40,
-                              onPressed: null,
+                            onPressed: null,
                           ),
                           IconButton(
                             icon: Icon(
