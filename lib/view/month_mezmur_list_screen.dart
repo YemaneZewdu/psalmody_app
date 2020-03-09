@@ -1,130 +1,120 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:psalmody/model/mezmur.dart';
+import 'package:psalmody/models/mezmur.dart';
 import 'package:psalmody/view/audio_player_screen.dart';
-import 'package:psalmody/view/home_list_screen.dart';
+import 'dart:convert';
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show rootBundle;
 
 class MonthMezmurListScreen extends StatelessWidget {
   final String monthName;
-  final Mezmur mezmurData;
+  Mezmur mezmurData;
+  int monthIndex;
 
   MonthMezmurListScreen(
-      {Key key, @required this.monthName, @required this.mezmurData})
+      {Key key,
+      @required this.monthName,
+      this.mezmurData,
+      @required this.monthIndex})
       : super(key: key);
+
+  //load JSON
+  Future<String> loadJson() async {
+    return await rootBundle.loadString('assets/mezmurs.json');
+  }
+
+  // load mezmur by the given month index
+  Future<Mezmur> loadMezmur({int monthIndex}) async {
+    String jsonString = await loadJson();
+    final jsonResponse = json.decode(jsonString);
+    mezmurData = new Mezmur.fromJson(jsonResponse, monthIndex);
+
+    return mezmurData;
+  }
+
+  // custom future widget returning list view
+  Widget futureWidget(BuildContext context) {
+    return new FutureBuilder<Mezmur>(
+      future: loadMezmur(monthIndex: monthIndex),
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+
+          if (snapshot.hasData) {
+//            for(var i = 0; i < mezmurData.weekMezmurList.length; i++) {
+//              print("****" + mezmurData.toString() + "\n");
+//              print(mezmurData.month + "\n");
+//             print(mezmurData.weekMezmurList);
+//            }
+            return ListView.builder(
+              itemCount: mezmurData.weekMezmurList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return new GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AudioPlayerScreen(
+                        imageLink: snapshot.data.weekMezmurList[index].misbakPictureUrl,
+                        audioLink: snapshot.data.weekMezmurList[index].misbakAudioUrl,
+                      ),
+                    ),
+                  ),
+                  child: new Padding(
+                    padding: EdgeInsets.only(bottom: 10.0),
+                    child: Card(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 20.0, horizontal: 15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Text(snapshot
+                                .data.weekMezmurList[index].mezmurName),
+                            // check if not null
+                            Text(snapshot.data.weekMezmurList[index]
+                                        .mezmurDescription !=
+                                    null
+                                ? snapshot.data.weekMezmurList[index]
+                                    .mezmurDescription
+                                : ""),
+                            Text(snapshot
+                                .data.weekMezmurList[index].misbakLine1)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        }
+        else if (snapshot.hasError) {
+          print("Error!!" + snapshot.error.toString());
+          return Container(
+            child: Center(
+              child: Text("Please try again!"),
+            ),
+          );
+        }
+        return Container(
+          child: Center(
+            child: Text("Loading..."),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(monthName),
-        ),
-        backgroundColor: Color(0xffEBEFF2),
-        body: new ListView.builder(
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            return new GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        AudioPlayerScreen(mezmurData: getFakeData())),
-              ),
-              child: new Padding(
-                padding: EdgeInsets.only(bottom: 10.0),
-                child: Card(
-                  color: Colors.white,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
-                    child: Column(
-                      children: <Widget>[
-                        new Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                mezmurData.mezmurName,
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  height: 1.0,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        new Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                mezmurData.mezmurDescription,
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  height: 1.5,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        new Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                'Chapter: ${mezmurData.misbakChapter} - ' +
-                                    mezmurData.misbakNumber2,
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  height: 1.6,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        new Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                mezmurData.misbakLine1,
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  height: 1.6,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        new Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                mezmurData.misbakLine2,
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  height: 1.6,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        new Row(
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                mezmurData.misbakLine3,
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  height: 1.6,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ));
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(monthName),
+      ),
+      backgroundColor: Color(0xffEBEFF2),
+      body: futureWidget(context),
+    );
   }
 }

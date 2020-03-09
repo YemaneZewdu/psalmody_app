@@ -1,24 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:psalmody/model/mezmur.dart';
-
-//import 'package:cached_network_image/cached_network_image.dart';
+import 'package:psalmody/models/mezmur.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:transparent_image/transparent_image.dart';
-
 class AudioPlayerScreen extends StatefulWidget {
   @override
-  _AudioPlayerScreenState createState() => _AudioPlayerScreenState(mezmurData);
-  final Mezmur mezmurData;
+  _AudioPlayerScreenState createState() => _AudioPlayerScreenState(audioLink, imageLink);
 
-  AudioPlayerScreen({Key key, @required this.mezmurData}) : super(key: key);
+  final String audioLink;
+  final String imageLink;
+  AudioPlayerScreen({Key key, @required this.audioLink, @required this.imageLink}) : super(key: key);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
-  final Mezmur mezmurData;
+   Mezmur mezmurData;
+  final String audioLink;
+  final String imageLink;
   bool isFavoriteButtonPressed = false;
   double sliderValue = 0.0;
 
-  _AudioPlayerScreenState(this.mezmurData);
+  _AudioPlayerScreenState(this.audioLink, this.imageLink);
 
   // favorite icon button controller
   void _favButtonPressed() {
@@ -42,16 +43,22 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     // variables for getting custom screen height and width
     var customScreenWidth = MediaQuery.of(context).size.width / 100;
     var customScreenHeight = MediaQuery.of(context).size.height / 100;
+
+    // custom placeholder widget
+    Widget customPlaceHolder() {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
 
     //TODO: *********************Download image to phone or share it***************************
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(mezmurData.mezmurName),
+        title: Text("FIX ME!!"),
         actions: <Widget>[
           // favorites icon button
           IconButton(
@@ -65,25 +72,32 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       ),
       body: Stack(
         children: <Widget>[
-
-          // progress indicator
-          Center(child: CircularProgressIndicator()),
-
           // network image container
+
           Container(
-            height: customScreenHeight * 65,
-            margin: EdgeInsets.all(5),
+            height: customScreenHeight * 60,
+            //margin: EdgeInsets.only(top: 35),
             width: MediaQuery.of(context).size.width,
             child: GestureDetector(
               onTap: null,
-              child: FadeInImage.memoryNetwork(
-                placeholder: kTransparentImage,
-//            errorWidget: (context, url, error) => Icon(Icons.error),
-                image: 'https://picsum.photos/250?image=9',
-                fadeInDuration: Duration(seconds: 1),
-                fadeOutDuration: Duration(seconds: 1),
-                fit: BoxFit.fill,
+              child: CachedNetworkImage(alignment: Alignment.center,
+                imageUrl: 'https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek1%2FCapture.JPG?alt=media&token=fe33cab9-6a29-49e0-b9df-fdba46ecc493',//'https://picsum.photos/250?image=9',
+                //fit: BoxFit.fill,
+                placeholder: (context, url) => customPlaceHolder(),
+                errorWidget: (context, url, error) => Icon(
+                  Icons.replay,
+                  size: 50,
+                ),
               ),
+
+//              FadeInImage.memoryNetwork(
+//                placeholder: kTransparentImage,
+////            errorWidget: (context, url, error) => Icon(Icons.error),
+//                image: 'https://picsum.photos/250?image=9',
+//                fadeInDuration: Duration(seconds: 1),
+//                fadeOutDuration: Duration(seconds: 1),
+//                fit: BoxFit.fill,
+//              ),
             ),
           ),
 

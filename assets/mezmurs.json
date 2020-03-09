@@ -1,0 +1,360 @@
+[
+  {
+    "month": "Meskerem",
+    "weekMezmurList": [
+      {
+        "mezmurId":"1",
+        "mezmurName" : "መዝሙር ዮሐንስ አኅድዐ።",
+        "mezmurDescription" : "ከመስከረም 1 እስከ 8 ዮሐንስ ይባላል።",
+        "firstReadingChapters" :"1 ቆሮ 1÷17፡25",
+        "secondReadingChapters": "ያዕ 2÷1፡14",
+        "misbakChapters":"መዝ፡ 84 ቍ 10 ፡ 14",
+        "misbakLine1":"ሣህል ወርትዕ ተራከባ።",
+        "misbakLine2" : "ጽድቅ ወሰላም ተሰዓማ።",
+        "misbakLine3" : "ርትዕሰ እምድር ሠረጸት።",
+        "misbakPictureUrl":"URLPictre",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"2",
+        "mezmurName" : "በቀዳሚ ገብረ እግዚአብሔር።",
+        "mezmurDescription" : "መስከረም 8 ቀን ዘካርያስ ይባላል ፤ እሑድ ቢሆን",
+        "firstReadingChapters" :"1 ዕብራው 11÷32፡ፍ:ም",
+        "secondReadingChapters": "ራእ ዮሐንስ 6÷9፡12",
+        "misbakChapters":"መዝ፡ 9 ቍ 11 ፡ 12",
+        "misbakLine1":"ወንግርዎሙ ለአሕዛብ ምግባሮ።",
+        "misbakLine2" : "እስመ ተዘከረ ዘይትኀሠሥ ደሞሙ።",
+        "misbakLine3" : "ወኢረስዐ አውያቶሙ ለነዳያን።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      }
+
+    ]
+  },
+  {
+    "month": "Tikimt",
+    "weekMezmurList": [
+      {
+        "mezmurId":"1",
+        "mezmurName" : "፩ኛ መዝሙር ዘጽጌ በጊዜሁ ሐለፈ ክረምት።",
+        "mezmurDescription" : "ከመስከረም 26 - ኅዳር 5 ዘውእቱ አባ ዮሐኒ ጽጌ ይባላል።",
+        "firstReadingChapters" :"ሮሜ 7÷1፡14",
+        "secondReadingChapters": "ጴጥ 1÷24፡ፍ:ም",
+        "misbakChapters":"መዝ፡ 73 ቍ 17 ፡ 18",
+        "misbakLine1":"አንተ ፈጠርከ ፀሐየ ወወርኀ።",
+        "misbakLine2" : "ወአንተ ገበርከ አድባረ ምድር ኲሎ።",
+        "misbakLine3" : "ክረምተ ወሐጋየ ዘአንተ ፈጠርከ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1****",
+        "mezmurName" : "፩ኛ መዝሙር ዘጽጌ በጊዜሁ ሐለፈ ክረምት።***",
+        "mezmurDescription" : "ከመስከረም 26 - ኅዳር 5 ዘውእቱ አባ ዮሐኒ ጽጌ ይባላል።",
+        "firstReadingChapters" :"ሮሜ 7÷1፡14",
+        "secondReadingChapters": "ጴጥ 1÷24፡ፍ:ም",
+        "misbakChapters":"መዝ፡ 73 ቍ 17 ፡ 18",
+        "misbakLine1":"አንተ ፈጠርከ ፀሐየ ወወርኀ።",
+        "misbakLine2" : "ወአንተ ገበርከ አድባረ ምድር ኲሎ።",
+        "misbakLine3" : "ክረምተ ወሐጋየ ዘአንተ ፈጠርከ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      }
+
+
+    ]
+  },
+  {
+    "month": "Hidar",
+    "weekMezmurList": [
+      {
+        "mezmurId":"1",
+        "mezmurName" : "መዝሙር በሰንበት አጋንንተ አውፅአ።",
+        "mezmurDescription" : "ለእመ ኮነ በዓለ እንባቆም በእሑድ  ጥቅምት ወይም ኅዳር 3 እሑድ ሲውል።",
+        "firstReadingChapters" :"ሮሜ 1÷8፡18",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡8",
+        "misbakChapters":"መዝ፡ 104 ቍ 15 ፡ 16",
+        "misbakLine1":"ወገሠጸ ነገሥተ በእንቲአሆሙ።",
+        "misbakLine2" : "ኢትግሥሡ መሢሐንየ። ",
+        "misbakLine3" : "ወኢታሕስሙ ዲበ ነቢያትየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1****",
+        "mezmurName" : "መዝሙር በሰንበት አጋንንተ አውፅአ።***",
+        "mezmurDescription" : "ለእመ ኮነ በዓለ እንባቆም በእሑድ  ጥቅምት ወይም ኅዳር 3 እሑድ ሲውል።",
+        "firstReadingChapters" :"ሮሜ 1÷8፡18",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡8",
+        "misbakChapters":"መዝ፡ 104 ቍ 15 ፡ 16",
+        "misbakLine1":"ወገሠጸ ነገሥተ በእንቲአሆሙ።",
+        "misbakLine2" : "ኢትግሥሡ መሢሐንየ። ",
+        "misbakLine3" : "ወኢታሕስሙ ዲበ ነቢያትየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1****",
+        "mezmurName" : "መዝሙር በሰንበት አጋንንተ አውፅአ።****",
+        "mezmurDescription" : "ለእመ ኮነ በዓለ እንባቆም በእሑድ  ጥቅምት ወይም ኅዳር 3 እሑድ ሲውል።",
+        "firstReadingChapters" :"ሮሜ 1÷8፡18",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡8",
+        "misbakChapters":"መዝ፡ 104 ቍ 15 ፡ 16",
+        "misbakLine1":"ወገሠጸ ነገሥተ በእንቲአሆሙ።",
+        "misbakLine2" : "ኢትግሥሡ መሢሐንየ። ",
+        "misbakLine3" : "ወኢታሕስሙ ዲበ ነቢያትየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1****",
+        "mezmurName" : "መዝሙር በሰንበት አጋንንተ አውፅአ።*****",
+        "mezmurDescription" : "ለእመ ኮነ በዓለ እንባቆም በእሑድ  ጥቅምት ወይም ኅዳር 3 እሑድ ሲውል።",
+        "firstReadingChapters" :"ሮሜ 1÷8፡18",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡8",
+        "misbakChapters":"መዝ፡ 104 ቍ 15 ፡ 16",
+        "misbakLine1":"ወገሠጸ ነገሥተ በእንቲአሆሙ።",
+        "misbakLine2" : "ኢትግሥሡ መሢሐንየ። ",
+        "misbakLine3" : "ወኢታሕስሙ ዲበ ነቢያትየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1******",
+        "mezmurName" : "መዝሙር በሰንበት አጋንንተ አውፅአ።",
+        "mezmurDescription" : "ለእመ ኮነ በዓለ እንባቆም በእሑድ  ጥቅምት ወይም ኅዳር 3 እሑድ ሲውል።",
+        "firstReadingChapters" :"ሮሜ 1÷8፡18",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡8",
+        "misbakChapters":"መዝ፡ 104 ቍ 15 ፡ 16",
+        "misbakLine1":"ወገሠጸ ነገሥተ በእንቲአሆሙ።",
+        "misbakLine2" : "ኢትግሥሡ መሢሐንየ። ",
+        "misbakLine3" : "ወኢታሕስሙ ዲበ ነቢያትየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      }
+
+    ]
+  },
+  {
+    "month": "Tahisas",
+    "weekMezmurList": [
+      {
+        "mezmurId":"1",
+        "mezmurName" : "1ኛ ዘስብከት መዝሙር ወልዶ መድኅነ ንሰብክ።",
+        "mezmurDescription" : "እምስብከት እስከ ብርሃን ስብከት ርደት ምጽአት ይትበሀል።",
+        "firstReadingChapters" :"ዕብራው 1÷1፡ፍ:ም",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡10",
+        "misbakChapters":"መዝ፡ 145 ቍ 7 ፡ 8",
+        "misbakLine1":"ፈኑ እዴከ እምአርያም።",
+        "misbakLine2" : "አድኅነኒ ወባልሐኒ እማይ ብዙኅ።",
+        "misbakLine3" : "ወእምእዴሆሙ ለደቂቀ ነኪር።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1***",
+        "mezmurName" : "1ኛ ዘስብከት መዝሙር ወልዶ መድኅነ ንሰብክ።",
+        "mezmurDescription" : "እምስብከት እስከ ብርሃን ስብከት ርደት ምጽአት ይትበሀል።",
+        "firstReadingChapters" :"ዕብራው 1÷1፡ፍ:ም",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡10",
+        "misbakChapters":"መዝ፡ 145 ቍ 7 ፡ 8",
+        "misbakLine1":"ፈኑ እዴከ እምአርያም።",
+        "misbakLine2" : "አድኅነኒ ወባልሐኒ እማይ ብዙኅ።",
+        "misbakLine3" : "ወእምእዴሆሙ ለደቂቀ ነኪር።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1***",
+        "mezmurName" : "1ኛ ዘስብከት መዝሙር ወልዶ መድኅነ ንሰብክ።",
+        "mezmurDescription" : "እምስብከት እስከ ብርሃን ስብከት ርደት ምጽአት ይትበሀል።",
+        "firstReadingChapters" :"ዕብራው 1÷1፡ፍ:ም",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡10",
+        "misbakChapters":"መዝ፡ 145 ቍ 7 ፡ 8",
+        "misbakLine1":"ፈኑ እዴከ እምአርያም።",
+        "misbakLine2" : "አድኅነኒ ወባልሐኒ እማይ ብዙኅ።",
+        "misbakLine3" : "ወእምእዴሆሙ ለደቂቀ ነኪር።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1+++",
+        "mezmurName" : "1ኛ ዘስብከት መዝሙር ወልዶ መድኅነ ንሰብክ።",
+        "mezmurDescription" : "እምስብከት እስከ ብርሃን ስብከት ርደት ምጽአት ይትበሀል።",
+        "firstReadingChapters" :"ዕብራው 1÷1፡ፍ:ም",
+        "secondReadingChapters": "2ኛ ጴጥ 3÷1፡10",
+        "misbakChapters":"መዝ፡ 145 ቍ 7 ፡ 8",
+        "misbakLine1":"ፈኑ እዴከ እምአርያም።",
+        "misbakLine2" : "አድኅነኒ ወባልሐኒ እማይ ብዙኅ።",
+        "misbakLine3" : "ወእምእዴሆሙ ለደቂቀ ነኪር።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      }
+
+    ]
+  },
+  {
+    "month": "Tir",
+    "weekMezmurList": [
+      {
+        "mezmurId":"1",
+        "mezmurName" : "1ኛ መዝሙር ዘልደት ይሠርቅ ኮከብ።",
+        "mezmurDescription" : "",
+        "firstReadingChapters" :"ሮሜ 11÷25፡ፍ:ም",
+        "secondReadingChapters": "1ኛ ዮሐ 2÷1፡9",
+        "misbakChapters":"መዝ፡ 8 ቍ 27 ፡ 28",
+        "misbakLine1":"ወአነሂ በኲርየ እሬስዮ።",
+        "misbakLine2" : "ወልዑል ውእቱ እምነገሥተ ምድር።",
+        "misbakLine3" : "ወለዓለም አዐቅብ ሎቱ ሣህልየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1****",
+        "mezmurName" : "1ኛ መዝሙር ዘልደት ይሠርቅ ኮከብ።",
+        "mezmurDescription" : "",
+        "firstReadingChapters" :"ሮሜ 11÷25፡ፍ:ም",
+        "secondReadingChapters": "1ኛ ዮሐ 2÷1፡9",
+        "misbakChapters":"መዝ፡ 8 ቍ 27 ፡ 28",
+        "misbakLine1":"ወአነሂ በኲርየ እሬስዮ።",
+        "misbakLine2" : "ወልዑል ውእቱ እምነገሥተ ምድር።",
+        "misbakLine3" : "ወለዓለም አዐቅብ ሎቱ ሣህልየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1****",
+        "mezmurName" : "1ኛ መዝሙር ዘልደት ይሠርቅ ኮከብ።",
+        "mezmurDescription" : "",
+        "firstReadingChapters" :"ሮሜ 11÷25፡ፍ:ም",
+        "secondReadingChapters": "1ኛ ዮሐ 2÷1፡9",
+        "misbakChapters":"መዝ፡ 8 ቍ 27 ፡ 28",
+        "misbakLine1":"ወአነሂ በኲርየ እሬስዮ።",
+        "misbakLine2" : "ወልዑል ውእቱ እምነገሥተ ምድር።",
+        "misbakLine3" : "ወለዓለም አዐቅብ ሎቱ ሣህልየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1***",
+        "mezmurName" : "1ኛ መዝሙር ዘልደት ይሠርቅ ኮከብ።",
+        "mezmurDescription" : "",
+        "firstReadingChapters" :"ሮሜ 11÷25፡ፍ:ም",
+        "secondReadingChapters": "1ኛ ዮሐ 2÷1፡9",
+        "misbakChapters":"መዝ፡ 8 ቍ 27 ፡ 28",
+        "misbakLine1":"ወአነሂ በኲርየ እሬስዮ።",
+        "misbakLine2" : "ወልዑል ውእቱ እምነገሥተ ምድር።",
+        "misbakLine3" : "ወለዓለም አዐቅብ ሎቱ ሣህልየ።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      }
+
+    ]
+  },
+  {
+    "month": "Yekatit",
+    "weekMezmurList": [
+      {
+        "mezmurId":"1",
+        "mezmurName" : "5ተኛ መዝሙር ዘልደት ተወልደ ኢየሱስ።",
+        "mezmurDescription" : "",
+        "firstReadingChapters" :"ሮሜ 1÷1፡12",
+        "secondReadingChapters": "1ኛ ጴጥ 1÷13፡22",
+        "misbakChapters":"መዝ፡ 47 ቍ 8 ፡ 9",
+        "misbakLine1":"በከመ ሰማዕነ ከማሁ ርኢነ።",
+        "misbakLine2" : "በሀገረ እግዚአ ኃያላን በሀገረ አምላክነ።",
+        "misbakLine3" : "እግዚአብሔር ሣረራ ለዓለም።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1***",
+        "mezmurName" : "5ተኛ መዝሙር ዘልደት ተወልደ ኢየሱስ።",
+        "mezmurDescription" : "",
+        "firstReadingChapters" :"ሮሜ 1÷1፡12",
+        "secondReadingChapters": "1ኛ ጴጥ 1÷13፡22",
+        "misbakChapters":"መዝ፡ 47 ቍ 8 ፡ 9",
+        "misbakLine1":"በከመ ሰማዕነ ከማሁ ርኢነ።",
+        "misbakLine2" : "በሀገረ እግዚአ ኃያላን በሀገረ አምላክነ።",
+        "misbakLine3" : "እግዚአብሔር ሣረራ ለዓለም።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1****",
+        "mezmurName" : "5ተኛ መዝሙር ዘልደት ተወልደ ኢየሱስ።",
+        "mezmurDescription" : "",
+        "firstReadingChapters" :"ሮሜ 1÷1፡12",
+        "secondReadingChapters": "1ኛ ጴጥ 1÷13፡22",
+        "misbakChapters":"መዝ፡ 47 ቍ 8 ፡ 9",
+        "misbakLine1":"በከመ ሰማዕነ ከማሁ ርኢነ።",
+        "misbakLine2" : "በሀገረ እግዚአ ኃያላን በሀገረ አምላክነ።",
+        "misbakLine3" : "እግዚአብሔር ሣረራ ለዓለም።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      }
+
+    ]
+  },
+  {
+    "month": "Megabit",
+    "weekMezmurList": [
+      {
+        "mezmurId":"1",
+        "mezmurName" : "መዝሙር ተቀነዩ ለእግዚአብሔር።",
+        "mezmurDescription" : "1ኛ መዝሙር ዘዐቢይ ጾም ዘዘወረደ። ",
+        "firstReadingChapters" :"ዕብራው 13÷7፡17",
+        "secondReadingChapters": "ያዕቆብ 4÷6፡ፍ:ም",
+        "misbakChapters":"መዝ፡ 2 ቍ 11 ፡ 12",
+        "misbakLine1":"ተቀነዩ ለእግዚአብሔር በፍርሃት።",
+        "misbakLine2" : "ወተሐሠዩ ሎቱ ረዓድ።",
+        "misbakLine3" : "አጽንዕዋ ለጥበብ ከመ ኢይትመዐዕ እግዚአብሔር።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1***",
+        "mezmurName" : "መዝሙር ተቀነዩ ለእግዚአብሔር።",
+        "mezmurDescription" : "1ኛ መዝሙር ዘዐቢይ ጾም ዘዘወረደ። ",
+        "firstReadingChapters" :"ዕብራው 13÷7፡17",
+        "secondReadingChapters": "ያዕቆብ 4÷6፡ፍ:ም",
+        "misbakChapters":"መዝ፡ 2 ቍ 11 ፡ 12",
+        "misbakLine1":"ተቀነዩ ለእግዚአብሔር በፍርሃት።",
+        "misbakLine2" : "ወተሐሠዩ ሎቱ ረዓድ።",
+        "misbakLine3" : "አጽንዕዋ ለጥበብ ከመ ኢይትመዐዕ እግዚአብሔር።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1***",
+        "mezmurName" : "መዝሙር ተቀነዩ ለእግዚአብሔር።",
+        "mezmurDescription" : "1ኛ መዝሙር ዘዐቢይ ጾም ዘዘወረደ። ",
+        "firstReadingChapters" :"ዕብራው 13÷7፡17",
+        "secondReadingChapters": "ያዕቆብ 4÷6፡ፍ:ም",
+        "misbakChapters":"መዝ፡ 2 ቍ 11 ፡ 12",
+        "misbakLine1":"ተቀነዩ ለእግዚአብሔር በፍርሃት።",
+        "misbakLine2" : "ወተሐሠዩ ሎቱ ረዓድ።",
+        "misbakLine3" : "አጽንዕዋ ለጥበብ ከመ ኢይትመዐዕ እግዚአብሔር።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      },
+      {
+        "mezmurId":"1***",
+        "mezmurName" : "መዝሙር ተቀነዩ ለእግዚአብሔር።",
+        "mezmurDescription" : "1ኛ መዝሙር ዘዐቢይ ጾም ዘዘወረደ። ",
+        "firstReadingChapters" :"ዕብራው 13÷7፡17",
+        "secondReadingChapters": "ያዕቆብ 4÷6፡ፍ:ም",
+        "misbakChapters":"መዝ፡ 2 ቍ 11 ፡ 12",
+        "misbakLine1":"ተቀነዩ ለእግዚአብሔር በፍርሃት።",
+        "misbakLine2" : "ወተሐሠዩ ሎቱ ረዓድ።",
+        "misbakLine3" : "አጽንዕዋ ለጥበብ ከመ ኢይትመዐዕ እግዚአብሔር።",
+        "misbakPictureUrl":"",
+        "misbakAudioUrl":""
+      }
+
+    ]
+  }
+]
+
+
+
