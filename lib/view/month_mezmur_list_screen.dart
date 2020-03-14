@@ -9,7 +9,7 @@ import 'package:flutter/services.dart' show rootBundle;
 class MonthMezmurListScreen extends StatelessWidget {
   final String monthName;
   Mezmur mezmurData;
-  int monthIndex;
+  final int monthIndex;
 
   MonthMezmurListScreen(
       {Key key,
@@ -38,7 +38,6 @@ class MonthMezmurListScreen extends StatelessWidget {
       future: loadMezmur(monthIndex: monthIndex),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-
           if (snapshot.hasData) {
 //            for(var i = 0; i < mezmurData.weekMezmurList.length; i++) {
 //              print("****" + mezmurData.toString() + "\n");
@@ -53,8 +52,11 @@ class MonthMezmurListScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => AudioPlayerScreen(
-                        imageLink: snapshot.data.weekMezmurList[index].misbakPictureUrl,
-                        audioLink: snapshot.data.weekMezmurList[index].misbakAudioUrl,
+                        imageLink: snapshot
+                            .data.weekMezmurList[index].misbakPictureUrl,
+                        audioLink:
+                            snapshot.data.weekMezmurList[index].misbakAudioUrl,
+                        mezmurName : snapshot.data.weekMezmurList[index].mezmurName
                       ),
                     ),
                   ),
@@ -68,17 +70,52 @@ class MonthMezmurListScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
-                            Text(snapshot
-                                .data.weekMezmurList[index].mezmurName),
-                            // check if not null
-                            Text(snapshot.data.weekMezmurList[index]
-                                        .mezmurDescription !=
-                                    null
-                                ? snapshot.data.weekMezmurList[index]
-                                    .mezmurDescription
-                                : ""),
-                            Text(snapshot
-                                .data.weekMezmurList[index].misbakLine1)
+//                            Text(snapshot
+//                                .data.weekMezmurList[index].mezmurName),
+                            // check if not null, else return only mezmur name only
+                            Text(
+                              snapshot.data.weekMezmurList[index]
+                                          .mezmurDescription !=
+                                      null
+                                  ? snapshot.data.weekMezmurList[index]
+                                          .mezmurDescription +
+                                      "\n" +
+                                      snapshot
+                                          .data.weekMezmurList[index].mezmurName
+                                  : snapshot
+                                      .data.weekMezmurList[index].mezmurName,
+                              textAlign: TextAlign.center,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  "ምስባክ፥",
+                                ),
+                                SizedBox(
+                                  width: 35.0,
+                                ),
+                                Text(snapshot
+                                    .data.weekMezmurList[index].misbakLine1),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 78.0,
+                                ),
+                                Text(snapshot
+                                    .data.weekMezmurList[index].misbakLine2),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 78.0,
+                                ),
+                                Text(snapshot
+                                    .data.weekMezmurList[index].misbakLine3),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -88,8 +125,7 @@ class MonthMezmurListScreen extends StatelessWidget {
               },
             );
           }
-        }
-        else if (snapshot.hasError) {
+        } else if (snapshot.hasError) {
           print("Error!!" + snapshot.error.toString());
           return Container(
             child: Center(

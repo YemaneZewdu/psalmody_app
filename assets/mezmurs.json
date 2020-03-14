@@ -12,23 +12,22 @@
         "misbakLine1":"ሣህል ወርትዕ ተራከባ።",
         "misbakLine2" : "ጽድቅ ወሰላም ተሰዓማ።",
         "misbakLine3" : "ርትዕሰ እምድር ሠረጸት።",
-        "misbakPictureUrl":"URLPictre",
+        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek1%2F1.JPG?alt=media&token=9822ad03-b396-420e-89eb-d7b646a0d368",
         "misbakAudioUrl":""
       },
       {
         "mezmurId":"2",
         "mezmurName" : "መዝሙር  በቀዳሚ ገብረ እግዚአብሔር።",
-        "mezmurDescription" : "መስከረም ፰ ቀን ብቻ ዘካርያስ ይባላል። መስከረም ፰ ቀን በእሑድ ቢሆን መዝሙር",
+        "mezmurDescription" : "መስከረም ፰ ቀን ብቻ ዘካርያስ ይባላል። መስከረም ፰ ቀን በእሑድ ቢሆን",
         "firstReadingChapters" :"ዕብራው ም ፲፩ ፴፪-ፍ፡ም",
         "secondReadingChapters": "ራእ ዮሐንስ ም ፮ ቊ.፱ - ፲፪",
         "misbakChapters":"መዝ ም. ፱ ቊ. ፲፩ - ፲፪",
         "misbakLine1":"ወንግርዎሙ ለአሕዛብ ምግባሮ።",
         "misbakLine2" : "እስመ ተዘከረ ዘይትኀሠሥ ደሞሙ።",
         "misbakLine3" : "ወኢረስዐ አውያቶሙ ለነዳያን።",
-        "misbakPictureUrl":"",
+        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek2%2F2.JPG?alt=media&token=90ca08b1-c29a-4598-a7c8-ca7caee411e9",
         "misbakAudioUrl":""
       },
-
       {
         "mezmurId":"3",
         "mezmurName" : "መዝሙር እኩት አንተ ።",
@@ -39,7 +38,7 @@
         "misbakLine1":"ምድርኒ ትሁብ ፍሬሃ ።",
         "misbakLine2" : "ወይባርከነ እግዚአብሔር አምላክነ ።",
         "misbakLine3" : "ወይባርከነ እግዚአብሔር።",
-        "misbakPictureUrl":"",
+        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek3%2Fweek3.JPG?alt=media&token=3a791326-7ee1-4541-bc45-be677e55fa96",
         "misbakAudioUrl":""
       },
       {
@@ -52,7 +51,7 @@
         "misbakLine1":"ደብረ ጽዮን ዘአፍቀረ ።",
         "misbakLine2" : "ሐነጸ መቅደሶ በዓርያም ።",
         "misbakLine3" : "ወሣረራ ውስተ ምድር ዘለዓለም ።",
-        "misbakPictureUrl":"",
+        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek4%2Fweek4.JPG?alt=media&token=930b29b9-29c2-43e5-904c-27f79d893548",
         "misbakAudioUrl":""
       },
       {
@@ -65,7 +64,7 @@
         "misbakLine1":"ወወሀብኮሙ ትእምርተ ለእለ ይፈርሁከ ።",
         "misbakLine2" : "ከመ ያመስጡ እምገጸ ቅስት ።",
         "misbakLine3" : "ወይድኀኑ ፍቁራኒከ ።",
-        "misbakPictureUrl":"",
+        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek5%2Fweek5.JPG?alt=media&token=8a2d8a1b-df2a-4942-a2e5-0e9a6e314dd9",
         "misbakAudioUrl":""
       },
       {
@@ -78,7 +77,7 @@
         "misbakLine1":"ወአጽንዖ እግዚኦ ለዝንቱ ዘሠራዕከ ለከ ።",
         "misbakLine2" : "ውስተ ጽርሕከ ዘኢየሩሳሌም ።",
         "misbakLine3" : "ለከ ያምጽኡ ነገሥት አምኃ ።",
-        "misbakPictureUrl":"",
+        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek6%2Fweek6.JPG?alt=media&token=924b4e88-b60a-42b4-b440-75618c3bdf52",
         "misbakAudioUrl":""
       },
       {
@@ -109,7 +108,7 @@
         "misbakLine1": "አንተ ፈጠርከ ፀሐየ ወወርኀ ።",
         "misbakLine2": "ወአንተ ገበርከ አድባረ ምድር ኵሎ ።",
         "misbakLine3": "ክረምተ ወሐጋየ ዘአንተ ፈጠርከ ።",
-        "misbakPictureUrl": "URLPictre",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek1%2Fweek1.JPG?alt=media&token=87f63bf6-e111-4c2f-81d4-17fccf34d522",
         "misbakAudioUrl": ""
       },
       {
@@ -122,7 +121,7 @@
         "misbakLine1": "ፍሬ ፃማከ ተሴሰይ ።",
         "misbakLine2": "ብፁዕ አንተ ወሠናይ ለከ ።",
         "misbakLine3": "ብእሲትከ ከመ ወይን ሥሙር ውስተ ጽርሐ ቤትከ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek2%2Fweek2.JPG?alt=media&token=615a8158-50f4-47e4-9355-25277c9c8b3a",
         "misbakAudioUrl": ""
       },
       {
@@ -135,7 +134,7 @@
         "misbakLine1": "ተዘከር እግዚኦ ከመ መሬት ንሕነ ።",
         "misbakLine2": "ሰብእሰ ከመ ሣዕር መዋዕሊሁ ።",
         "misbakLine3": "ወከመ ጽጌ ገዳም ከማሁ ይፈሪ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek3%2Fweek3.JPG?alt=media&token=49c27c74-38b5-417a-b144-1b472dc07684",
         "misbakAudioUrl": ""
       },
       {
@@ -148,7 +147,7 @@
         "misbakLine1": "ጸድቅሰ ከመ በቀልት ይፈሪ ።",
         "misbakLine2": "ወይበዝኅ ከመ ዘግባ ዘሊባኖስ ።",
         "misbakLine3": "ትኩላን እሙንቱ ውስተ ቤተ እግዚአብሔር ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek4%2Fweek4.JPG?alt=media&token=85624149-30e3-40aa-8de2-9ae1389022e3",
         "misbakAudioUrl": ""
       },
       {
@@ -161,7 +160,7 @@
         "misbakLine1": " ወይከውን ከመ ዕፅ እንተ ትክልት ኀበ ሙሐዘ ማይ ።",
         "misbakLine2": "እንተ ትሁብ ፍሬሃ በበጊዜሃ ።",
         "misbakLine3": "ወቈጽላኒ ኢይትነገፍ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek5%2Fweek5.JPG?alt=media&token=6b78d3bc-db8f-44ba-83a5-3e9156cf66e0",
         "misbakAudioUrl": ""
       },
       {
@@ -174,7 +173,7 @@
         "misbakLine1": "ዐጸደ ወይን አፍልስከ እምግብጽ ።",
         "misbakLine2": "ሰደድከ አሕዛብ ወተከልከ ኪያሃ ።",
         "misbakLine3": "ወጼሕከ ፍኖተ ቅድሜሃ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek6%2Fweek6.JPG?alt=media&token=91bc4a3a-b941-4eed-b07d-e1ee1b5d82c1",
         "misbakAudioUrl": ""
       },
       {
@@ -187,7 +186,7 @@
         "misbakLine1": "ኢትመጥወኒ ለነፍሰ እለ ይሣቅዩኒ ።",
         "misbakLine2": "እስመ ቆሙ ላዕሌየ ሰማዕተ ዓመፃ ።",
         "misbakLine3": "ወሐሰት ርእሰ ዐመፃ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek7%2Fweek7.JPG?alt=media&token=c4c66bc3-b300-42ba-87d5-8866a4c46f06",
         "misbakAudioUrl": ""
       },
       {
@@ -200,7 +199,7 @@
         "misbakLine1": "እስመ ውእቱ ይቤ ወኮኑ ።",
         "misbakLine2": "ወውእቱ ኣዘዘ ወተፈጥሩ ።",
         "misbakLine3": "ወአቀሞሙ ለዓለም ወለዓለመ ዓለም  ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek8%2Fweek8.JPG?alt=media&token=3ce812a6-83be-4424-be21-059032e3023b",
         "misbakAudioUrl": ""
       },
       {
@@ -213,7 +212,7 @@
         "misbakLine1": "ወገሠጸ ነገሥተ በእንቲአሆሙ ።",
         "misbakLine2": "ኢትግሥሡ መሲሓንየ ።",
         "misbakLine3": "ወኢታሕሥሙ ዲበ ነቢያትየ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek9%2Fweek9.JPG?alt=media&token=cb6d7157-3425-48a0-9a37-e9ba6ede9676",
         "misbakAudioUrl": ""
       }
     ]
@@ -223,6 +222,19 @@
     "weekMezmurList": [
       {
         "mezmurId": "1",
+        "mezmurName": "መዝሙር በሰንበት አጋንንተ አውፅአ ።",
+        "mezmurDescription": "ለእመ ኮነ በዓለ ዕንባቆም በእሑድ ጥቅምት ወይም ኅዳር ፫ እሑድ ሲውል ።",
+        "firstReadingChapters": " ሮሜ ም ፩ ቊ. ፰ - ፲፰",
+        "secondReadingChapters": "ጴጥ ፪ ም ፫ ቊ. ፩ - ፰",
+        "misbakChapters": "መዝ. ፻፬ ቊ. ፲፭ - ፲፮",
+        "misbakLine1": "ወገሠጸ ነገሥተ በእንቲአሆሙ ።",
+        "misbakLine2": "ኢትግሥሡ መሲሐንየ ።",
+        "misbakLine3": "ወኢታሕሥሙ ዲበ ነቢያትየ ።",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Hidar%2Fweek1%2Fweek1.JPG?alt=media&token=ddcafc5d-0268-42e5-89f4-8ce3dc31f1c2",
+        "misbakAudioUrl": ""
+      },
+      {
+        "mezmurId": "2",
         "mezmurName": "፩ኛ መዝሙር ዘአስተምህሮ ኢተዘኪሮ ።",
         "mezmurDescription": "ከኅዳር ፮ እስከ ታኅሣሥ ፯ ወይም ፲፫ ኣስተምህሮ ይትበሃል ።",
         "firstReadingChapters": "ሮሜ ም. ፭ ቊ. ፲ - ፍ፡ም",
@@ -231,11 +243,11 @@
         "misbakLine1": "ኢትዝክር ለነ ኣበሳነ ዘትካት ።",
         "misbakLine2": "ፍጡነ ይርከበነ ሣህልከ እግዚኦ ።",
         "misbakLine3": "እስመ ተመንደብነ ፈድፋደ ።",
-        "misbakPictureUrl": "URLPictre",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Hidar%2Fweek2%2Fweek2.JPG?alt=media&token=c0d69368-e8b9-4d9a-a6a5-3c12a4f7ea76",
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "2",
+        "mezmurId": "3",
         "mezmurName": "፪ተኛ መዝሙር ዘአስተምህሮ ሎቱ ስብሐት ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ቈላስይስ ም. ፩ ቊ ፲፪ - ፍ፡ም",
@@ -244,11 +256,11 @@
         "misbakLine1": " ኵሎ ዘፈቀደ ገብረ እግዚአብሔር ።",
         "misbakLine2": "በሰማይኒ ወበምድርኒ ።",
         "misbakLine3": "በባሕርኒ ወበኩሉ ቀላያት ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Hidar%2Fweek3%2Fweek3.JPG?alt=media&token=279c5cb6-6ad3-4685-868a-fccea0f37a84",
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "3",
+        "mezmurId": "4",
         "mezmurName": "፫ተኛ መዝሙር ዘአስተምህሮ አምላክ ፍጹም በህላዌሁ ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ዕብራው ም. ፲፪ ቊ. ፳፭ - ፍ፡ም",
@@ -257,11 +269,11 @@
         "misbakLine1": "ቅረቡ ኀቤሁ ወያበርህ ለክሙ ።",
         "misbakLine2": "ወኢይትኀፈር ገጽክሙ ።",
         "misbakLine3": "ዝንቱ ነዳይ ጸርሕ ወእግዚአብሔር ሰምዖ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Hidar%2Fweek4%2Fweek4.JPG?alt=media&token=6f1b54ff-6e25-40e8-bfc4-d5371ff268b5",
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "4",
+        "mezmurId": "5",
         "mezmurName": "፬ተኛ መዝሙር ይቤሉ እስራኤል ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ቆሮ ፩ ም. ፪ ቊ. ፩ - ፍ፡ም",
@@ -270,11 +282,11 @@
         "misbakLine1": "ደቀቀ እጓለ እመሕያው እስከ ማዕዜኑ ታከብዱ ልበክሙ ።",
         "misbakLine2": "ለምንት ታፈቅሩ ከንቱ ወተሐሱ ሐሰተ ።",
         "misbakLine3": "አእምሩ ከመ ተሰብሐ እግዚአብሔር በጻድቁ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Hidar%2Fweek5%2Fweek5.JPG?alt=media&token=413d92ab-1e40-46dc-8f58-1d2178dfd90e",
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "5",
+        "mezmurId": "6",
         "mezmurName": "፭ተኛ እሑድ መዝሙር ክርስቶስ ሠርዐ ሰንበተ ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ቆሮ ፩ ም. ፲፭ ቍ. ፲፪ - ፴፫",
@@ -283,7 +295,7 @@
         "misbakLine1": " ወለነዳያኒሃኒ አጸግቦሙ እክለ ።",
         "misbakLine2": "ወለካህናቲሃኒ አለብሶሙ ሕይወተ።",
         "misbakLine3": "ወጻድቃኒሃኒ ትፍሥሕተ ይትፌሥሑ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Hidar%2Fweek6%2Fweek6.JPG?alt=media&token=d5a7c5c9-210d-4dfd-a8a2-5a860b2decb0",
         "misbakAudioUrl": ""
       }
     ]
@@ -301,7 +313,7 @@
         "misbakLine1": "ፈኑ እዴከ እምአርያም ።",
         "misbakLine2": "አድኅነኒ ወባልሐኒ እማይ ብዙኅ ።",
         "misbakLine3": "ወእምእዴሆሙ ለደቂቀ ነኪር ።",
-        "misbakPictureUrl": "URLPictre",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tahisas%2Fweek1%2Fweek1.JPG?alt=media&token=fb72146e-3101-4f6a-80bc-f877d936e9fc",
         "misbakAudioUrl": ""
       },
       {
@@ -314,7 +326,7 @@
         "misbakLine1": "ፈኑ ብርሃነከ ወጽድቀከ ።",
         "misbakLine2": "እማንቱ ይምርሓኒ ወይሰዳኒ ደብረ መቅደከ ።",
         "misbakLine3": "ወውስተ አብያቲከ እግዚኦ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tahisas%2Fweek2%2Fweek2.JPG?alt=media&token=8cc60aad-a01d-41e1-a1e7-90f6c2c5742f",
         "misbakAudioUrl": ""
       },
       {
@@ -327,7 +339,7 @@
         "misbakLine1": "ኖላዊሆሙ ለእስራኤል አጽምዕ ።",
         "misbakLine2": "ዘይርዕዮሙ ከመ አባግዐ ዮሴፍ ።",
         "misbakLine3": "ዘይነብር ላዕለ ኪሩቤል አስተርአየ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tahisas%2Fweek3%2Fweek3.JPG?alt=media&token=3826f79b-2e17-4cfd-9a17-de491aa82eda",
         "misbakAudioUrl": ""
       },
       {
@@ -340,7 +352,7 @@
         "misbakLine1": "የሐዩ ወይሁብዎ እምወርቀ ዐረብ ።",
         "misbakLine2": "ወዘልፈ ይጼልዩ በእንቲአሁ ።",
         "misbakLine3": "ወኲሎ አሚረ ይድኅርዎ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tahisas%2Fweek4%2Fweek4.JPG?alt=media&token=bc7fcfba-644a-42bf-8d82-96acef134829",
         "misbakAudioUrl": ""
       },
       {
@@ -353,7 +365,7 @@
         "misbakLine1": "የሐዩ ወይሁብዎ እምወርቀ ዐረብ ።",
         "misbakLine2": "ወዘልፈ ይጼልዩ በእንቲአሁ ።",
         "misbakLine3": "ወኲሎ አሚረ ይድኅርዎ ።",
-        "misbakPictureUrl": "",
+        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tahisas%2Fweek5%2Fweek5.JPG?alt=media&token=191c48e8-b3a5-4a91-a99f-051e3410f540",
         "misbakAudioUrl": ""
       }
     ]

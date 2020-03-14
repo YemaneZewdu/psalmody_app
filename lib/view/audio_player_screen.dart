@@ -1,25 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:psalmody/models/mezmur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:transparent_image/transparent_image.dart';
 class AudioPlayerScreen extends StatefulWidget {
+
+
   @override
-  _AudioPlayerScreenState createState() => _AudioPlayerScreenState(audioLink, imageLink);
+  _AudioPlayerScreenState createState() => _AudioPlayerScreenState();
 
   final String audioLink;
   final String imageLink;
-  AudioPlayerScreen({Key key, @required this.audioLink, @required this.imageLink}) : super(key: key);
+  final String  mezmurName;
+  AudioPlayerScreen({Key key, @required this.audioLink, @required this.imageLink, this.mezmurName}) : super(key: key);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
-   Mezmur mezmurData;
-  final String audioLink;
-  final String imageLink;
+
   bool isFavoriteButtonPressed = false;
   double sliderValue = 0.0;
 
-  _AudioPlayerScreenState(this.audioLink, this.imageLink);
+
 
   // favorite icon button controller
   void _favButtonPressed() {
@@ -58,7 +58,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("FIX ME!!"),
+        title: Text(widget.mezmurName),
         actions: <Widget>[
           // favorites icon button
           IconButton(
@@ -81,7 +81,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             child: GestureDetector(
               onTap: null,
               child: CachedNetworkImage(alignment: Alignment.center,
-                imageUrl: 'https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek1%2FCapture.JPG?alt=media&token=fe33cab9-6a29-49e0-b9df-fdba46ecc493',//'https://picsum.photos/250?image=9',
+                imageUrl: widget.imageLink,
                 //fit: BoxFit.fill,
                 placeholder: (context, url) => customPlaceHolder(),
                 errorWidget: (context, url, error) => Icon(
