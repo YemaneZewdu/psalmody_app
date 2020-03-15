@@ -2,24 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:transparent_image/transparent_image.dart';
+
 class AudioPlayerScreen extends StatefulWidget {
-
-
   @override
   _AudioPlayerScreenState createState() => _AudioPlayerScreenState();
 
   final String audioLink;
   final String imageLink;
-  final String  mezmurName;
-  AudioPlayerScreen({Key key, @required this.audioLink, @required this.imageLink, this.mezmurName}) : super(key: key);
+  final String mezmurName;
+
+  AudioPlayerScreen(
+      {Key key,
+      @required this.audioLink,
+      @required this.imageLink,
+      this.mezmurName})
+      : super(key: key);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
-
   bool isFavoriteButtonPressed = false;
   double sliderValue = 0.0;
-
-
 
   // favorite icon button controller
   void _favButtonPressed() {
@@ -58,7 +60,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.mezmurName),
+        title: Text(
+          widget.mezmurName,
+          overflow: TextOverflow.fade,
+        ),
         actions: <Widget>[
           // favorites icon button
           IconButton(
@@ -80,7 +85,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             width: MediaQuery.of(context).size.width,
             child: GestureDetector(
               onTap: null,
-              child: CachedNetworkImage(alignment: Alignment.center,
+              child: CachedNetworkImage(
+                alignment: Alignment.center,
                 imageUrl: widget.imageLink,
                 //fit: BoxFit.fill,
                 placeholder: (context, url) => customPlaceHolder(),

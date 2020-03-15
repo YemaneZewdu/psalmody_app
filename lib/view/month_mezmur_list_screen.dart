@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
+
 class MonthMezmurListScreen extends StatelessWidget {
   final String monthName;
   Mezmur mezmurData;
@@ -32,6 +33,53 @@ class MonthMezmurListScreen extends StatelessWidget {
     return mezmurData;
   }
 
+  Widget mezmurNameDescription(snapshot, index) => Text(
+        snapshot.data.weekMezmurList[index].mezmurDescription != null
+            ? snapshot.data.weekMezmurList[index].mezmurDescription +
+                "\n" +
+                snapshot.data.weekMezmurList[index].mezmurName
+            : snapshot.data.weekMezmurList[index].mezmurName,
+        textAlign: TextAlign.center,
+      );
+
+  Widget misbakLines(snapshot, index) => Flexible(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            //  SizedBox(height: 5.0),
+            // check if not null, else return only mezmur name only
+            Text(
+              snapshot.data.weekMezmurList[index].misbakLine1 +
+                  "\n" +
+                  snapshot.data.weekMezmurList[index].misbakLine2 +
+                  "\n" +
+                  snapshot.data.weekMezmurList[index].misbakLine3,
+              overflow: TextOverflow.fade,
+            ),
+          ],
+        ),
+      );
+
+  Widget misbakChapter(snapshot, index) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              SizedBox(width: 25.0),
+              Text(
+                "ምስባክ፥",
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Text(snapshot.data.weekMezmurList[index].misbakChapters),
+            ],
+          )
+        ],
+      );
+
   // custom future widget returning list view
   Widget futureWidget(BuildContext context) {
     return new FutureBuilder<Mezmur>(
@@ -52,12 +100,12 @@ class MonthMezmurListScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => AudioPlayerScreen(
-                        imageLink: snapshot
-                            .data.weekMezmurList[index].misbakPictureUrl,
-                        audioLink:
-                            snapshot.data.weekMezmurList[index].misbakAudioUrl,
-                        mezmurName : snapshot.data.weekMezmurList[index].mezmurName
-                      ),
+                          imageLink: snapshot
+                              .data.weekMezmurList[index].misbakPictureUrl,
+                          audioLink: snapshot
+                              .data.weekMezmurList[index].misbakAudioUrl,
+                          mezmurName:
+                              snapshot.data.weekMezmurList[index].mezmurName),
                     ),
                   ),
                   child: new Padding(
@@ -66,54 +114,19 @@ class MonthMezmurListScreen extends StatelessWidget {
                       color: Colors.white,
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: 20.0, horizontal: 15.0),
+                          vertical: 20.0,
+                          horizontal: 15.0,
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
-//                            Text(snapshot
-//                                .data.weekMezmurList[index].mezmurName),
-                            // check if not null, else return only mezmur name only
-                            Text(
-                              snapshot.data.weekMezmurList[index]
-                                          .mezmurDescription !=
-                                      null
-                                  ? snapshot.data.weekMezmurList[index]
-                                          .mezmurDescription +
-                                      "\n" +
-                                      snapshot
-                                          .data.weekMezmurList[index].mezmurName
-                                  : snapshot
-                                      .data.weekMezmurList[index].mezmurName,
-                              textAlign: TextAlign.center,
-                            ),
+                            mezmurNameDescription(snapshot, index),
+                            SizedBox(height: 5.0),
                             Row(
                               children: <Widget>[
-                                Text(
-                                  "ምስባክ፥",
-                                ),
-                                SizedBox(
-                                  width: 35.0,
-                                ),
-                                Text(snapshot
-                                    .data.weekMezmurList[index].misbakLine1),
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 78.0,
-                                ),
-                                Text(snapshot
-                                    .data.weekMezmurList[index].misbakLine2),
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 78.0,
-                                ),
-                                Text(snapshot
-                                    .data.weekMezmurList[index].misbakLine3),
+                                misbakChapter(snapshot, index),
+                                SizedBox(width: 15),
+                                misbakLines(snapshot, index),
                               ],
                             ),
                           ],
@@ -149,7 +162,7 @@ class MonthMezmurListScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(monthName),
       ),
-      backgroundColor: Color(0xffEBEFF2),
+      backgroundColor: Colors.grey[400],
       body: futureWidget(context),
     );
   }
