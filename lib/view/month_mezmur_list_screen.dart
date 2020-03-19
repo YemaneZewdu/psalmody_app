@@ -34,7 +34,7 @@ class MonthMezmurListScreen extends StatelessWidget {
   }
 
   Widget mezmurNameDescription(snapshot, index) => Text(
-        snapshot.data.weekMezmurList[index].mezmurDescription != null
+        snapshot.data.weekMezmurList[index].mezmurDescription != ""
             ? snapshot.data.weekMezmurList[index].mezmurDescription +
                 "\n" +
                 snapshot.data.weekMezmurList[index].mezmurName
@@ -47,7 +47,7 @@ class MonthMezmurListScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            //  SizedBox(height: 5.0),
+
             // check if not null, else return only mezmur name only
             Text(
               snapshot.data.weekMezmurList[index].misbakLine1 +
@@ -93,6 +93,8 @@ class MonthMezmurListScreen extends StatelessWidget {
 //             print(mezmurData.weekMezmurList);
 //            }
             return ListView.builder(
+              physics: BouncingScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(5.0,10.0,5.0,10.0),
               itemCount: mezmurData.weekMezmurList.length,
               itemBuilder: (BuildContext context, int index) {
                 return new GestureDetector(
@@ -108,29 +110,30 @@ class MonthMezmurListScreen extends StatelessWidget {
                               snapshot.data.weekMezmurList[index].mezmurName),
                     ),
                   ),
-                  child: new Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: Card(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20.0,
-                          horizontal: 15.0,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            mezmurNameDescription(snapshot, index),
-                            SizedBox(height: 5.0),
-                            Row(
-                              children: <Widget>[
-                                misbakChapter(snapshot, index),
-                                SizedBox(width: 15),
-                                misbakLines(snapshot, index),
-                              ],
-                            ),
-                          ],
-                        ),
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        // text padding
+                        vertical:  15.0,
+                        horizontal: 10.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          mezmurNameDescription(snapshot, index),
+                          SizedBox(height: 5.0),
+                          Divider(
+                            color: Colors.black,
+                          ),
+                          Row(
+                            children: <Widget>[
+                              misbakChapter(snapshot, index),
+                              SizedBox(width: 15),
+                              misbakLines(snapshot, index),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -162,7 +165,7 @@ class MonthMezmurListScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(monthName),
       ),
-      backgroundColor: Colors.grey[400],
+      backgroundColor: Colors.grey[300],
       body: futureWidget(context),
     );
   }

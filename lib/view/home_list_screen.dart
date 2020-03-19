@@ -17,40 +17,40 @@ class HomeListScreen extends StatelessWidget {
     "December"
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[400],
+      backgroundColor: Colors.grey[300],
       body: new ListView.builder(
+        physics: BouncingScrollPhysics(),
+        padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
         itemCount: _months.length,
         itemBuilder: (BuildContext context, int index) {
-
           return new GestureDetector(
             onTap: () {
-                Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MonthMezmurListScreen(
-                  monthName: _months[index],
-                  monthIndex: index,
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MonthMezmurListScreen(
+                    monthName: _months[index],
+                    monthIndex: index,
+                  ),
                 ),
-              ),
-            );},
-            child: new Padding(
-              padding: EdgeInsets.only(bottom: 10.0),
-              child: Card(
-                color: Colors.white,
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
-                  child: Text(
-                    _months[index],
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      height: 1.6,
-                    ),
+              );
+            },
+            child: Card(
+              color: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  // text padding
+                  vertical: 20.0,
+                  horizontal: 10.0,
+                ),
+                child: Text(
+                  _months[index],
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    height: 1.6,
                   ),
                 ),
               ),
@@ -61,4 +61,3 @@ class HomeListScreen extends StatelessWidget {
     );
   }
 }
-

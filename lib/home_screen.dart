@@ -7,13 +7,12 @@ import './view/more_list_screen.dart';
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-
     return HomeScreenState();
   }
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  static const _duration = const Duration(microseconds: 10);
+  static const _duration = const Duration(milliseconds: 10);
   static const _curve = Curves.ease;
 
   int _selectedPageIndex = 0;
@@ -22,9 +21,19 @@ class HomeScreenState extends State<HomeScreen> {
   void _onPageSelected(int index) {
     _pageController.animateToPage(index, duration: _duration, curve: _curve);
 
-    setState(() {
-      _selectedPageIndex = index;
-    });
+    setState(
+      () {
+        _selectedPageIndex = index;
+      },
+    );
+  }
+
+  void pageChanged(int index) {
+    setState(
+      () {
+        _selectedPageIndex = index;
+      },
+    );
   }
 
   final List<Widget> _pages = <Widget>[
@@ -43,6 +52,9 @@ class HomeScreenState extends State<HomeScreen> {
       body: Container(
         color: Theme.of(context).primaryColor,
         child: PageView.builder(
+          onPageChanged: (index) {
+            pageChanged(index);
+          },
           itemBuilder: (BuildContext context, int index) {
             return _pages[index];
           },
@@ -52,7 +64,8 @@ class HomeScreenState extends State<HomeScreen> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white30,
+        selectedItemColor: Colors.blue[700],
+        backgroundColor: Colors.white,
         onTap: _onPageSelected,
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedPageIndex,

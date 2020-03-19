@@ -9,28 +9,29 @@ class BooksListScreen extends StatelessWidget {
       'title': 'Yezewtir Gitsawe PDF',
       'description': 'Yezewetir kidase mawcha',
       'url':
-      'https://drive.google.com/file/d/14FKmgnUe7jMHcZZMsswvuXiZHP-ZEP6Y/view?usp=sharing'
+          'https://drive.google.com/file/d/14FKmgnUe7jMHcZZMsswvuXiZHP-ZEP6Y/view?usp=sharing'
     },
     {
       'title': 'Yetewsak Gitsawe PDF',
       'description': 'Letewsak bealat kidase mawcha',
       'url':
-      'https://drive.google.com/file/d/1b4i7DAVmF7ncGHL0G7Cd53cU6mtSPJjp/view?usp=sharing'
+          'https://drive.google.com/file/d/1b4i7DAVmF7ncGHL0G7Cd53cU6mtSPJjp/view?usp=sharing'
     },
     {
       'title': 'Yesenbet Gitsawe PDF',
       'description': 'Yesenbet kidase mawcha',
       'url':
-      'https://drive.google.com/file/d/1-IwFZKu3tvmoOb34HCZ8BPnnigQl3sLn/view?usp=sharing'
+          'https://drive.google.com/file/d/1-IwFZKu3tvmoOb34HCZ8BPnnigQl3sLn/view?usp=sharing'
     }
   ];
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEFF2),
+      backgroundColor: Colors.grey[300],
       body: new ListView.builder(
+        physics: BouncingScrollPhysics(),
+        padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
         itemCount: _books.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
@@ -41,35 +42,34 @@ class BooksListScreen extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (BuildContext context) {
                       return LaunchUrl(
-                          title: _books[index]['title'],
-                          url: _books[index]['url']);
+                        title: _books[index]['title'],
+                        url: _books[index]['url'],
+                      );
                     },
                   ),
                 );
-
               } else {
                 _showDialog(context, "Internet Acess",
                     "Please connect to the internet!");
               }
             },
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 10.0),
-              child: Card(
-                color: Colors.white,
-                child: Padding(
-                  padding:
-                  EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
-                  child: ListTile(
-                    title: Text(
-                      _books[index]['title'],
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        height: 1.6,
-                      ),
+            child: Card(
+              color: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 20.0,
+                  horizontal: 15.0,
+                ),
+                child: ListTile(
+                  title: Text(
+                    _books[index]['title'],
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      height: 1.6,
                     ),
-                    subtitle: Text(
-                      _books[index]['description'],
-                    ),
+                  ),
+                  subtitle: Text(
+                    _books[index]['description'],
                   ),
                 ),
               ),
