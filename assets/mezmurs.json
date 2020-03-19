@@ -90,8 +90,8 @@
         "misbakLine1":"ለምንት አንገለጉ አሕዛብ።",
         "misbakLine2" : "ወሕዝብኒ ነበቡ ከንቶ።",
         "misbakLine3" : "ወተንሥኡ ነገሥተ ምድር።",
-        "misbakPictureUrl":"",
-        "misbakAudioUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek7%2Fweek7.JPG?alt=media&token=1a00d952-2a78-473c-85f6-5d448006413d"
+        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Meskerem%2Fweek7%2Fweek7.JPG?alt=media&token=1a00d952-2a78-473c-85f6-5d448006413d",
+        "misbakAudioUrl":""
       }
     ]
   },

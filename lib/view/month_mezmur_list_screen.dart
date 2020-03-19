@@ -6,18 +6,17 @@ import 'dart:convert';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
-
 class MonthMezmurListScreen extends StatelessWidget {
   final String monthName;
   Mezmur mezmurData;
   final int monthIndex;
 
-  MonthMezmurListScreen(
-      {Key key,
-      @required this.monthName,
-      this.mezmurData,
-      @required this.monthIndex})
-      : super(key: key);
+  MonthMezmurListScreen({
+    Key key,
+    @required this.monthName,
+    this.mezmurData,
+    @required this.monthIndex,
+  }) : super(key: key);
 
   //load JSON
   Future<String> loadJson() async {
@@ -47,7 +46,6 @@ class MonthMezmurListScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
             // check if not null, else return only mezmur name only
             Text(
               snapshot.data.weekMezmurList[index].misbakLine1 +
@@ -94,7 +92,7 @@ class MonthMezmurListScreen extends StatelessWidget {
 //            }
             return ListView.builder(
               physics: BouncingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(5.0,10.0,5.0,10.0),
+              padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
               itemCount: mezmurData.weekMezmurList.length,
               itemBuilder: (BuildContext context, int index) {
                 return new GestureDetector(
@@ -102,12 +100,9 @@ class MonthMezmurListScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => AudioPlayerScreen(
-                          imageLink: snapshot
-                              .data.weekMezmurList[index].misbakPictureUrl,
-                          audioLink: snapshot
-                              .data.weekMezmurList[index].misbakAudioUrl,
-                          mezmurName:
-                              snapshot.data.weekMezmurList[index].mezmurName),
+                        mezmurData: mezmurData,
+                        weekIndex: index,
+                      ),
                     ),
                   ),
                   child: Card(
@@ -115,7 +110,7 @@ class MonthMezmurListScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                         // text padding
-                        vertical:  15.0,
+                        vertical: 15.0,
                         horizontal: 10.0,
                       ),
                       child: Column(

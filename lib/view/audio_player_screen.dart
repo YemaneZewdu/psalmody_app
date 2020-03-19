@@ -1,27 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:psalmody/models/mezmur.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   @override
   _AudioPlayerScreenState createState() => _AudioPlayerScreenState();
 
-  final String audioLink;
-  final String imageLink;
-  final String mezmurName;
+  final int weekIndex;
+  final Mezmur mezmurData;
 
-  AudioPlayerScreen(
-      {Key key,
-      @required this.audioLink,
-      @required this.imageLink,
-      this.mezmurName})
-      : super(key: key);
+  AudioPlayerScreen({
+    Key key,
+    this.weekIndex,
+    this.mezmurData,
+  }) : super(key: key);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   bool isFavoriteButtonPressed = false;
   double sliderValue = 0.0;
+  List<Mezmur> favorites;
+
+  // used for setting up a snack bar
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final SnackBar mezmurAddedToFavorites =
+      SnackBar(content: Text("Added to Favorites"));
+
+  final SnackBar mezmurAddedRemovedFromFavorites =
+      SnackBar(content: Text("Removed from Favorites"));
 
   // favorite icon button controller
   void _favButtonPressed() {
@@ -43,6 +51,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     });
   }
 
+  // if the favorite button is tapped, show the appropriate snack bar
+  void showSnackBar() => isFavoriteButtonPressed
+      ? scaffoldKey.currentState.showSnackBar(mezmurAddedToFavorites)
+      : scaffoldKey.currentState.showSnackBar(mezmurAddedRemovedFromFavorites);
+
+
   @override
   Widget build(BuildContext context) {
     // variables for getting custom screen height and width
@@ -58,10 +72,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
     //TODO: *********************Download image to phone or share it***************************
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          widget.mezmurName,
+          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
           overflow: TextOverflow.fade,
         ),
         actions: <Widget>[
@@ -69,7 +84,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           IconButton(
             icon:
                 Icon(isFavoriteButtonPressed ? Icons.star : Icons.star_border),
-            onPressed: () => _favButtonPressed(),
+            onPressed: () {
+              _favButtonPressed();
+              showSnackBar();
+            },
             iconSize: 35.0,
             color: Colors.black,
           ),
@@ -87,7 +105,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               onTap: null,
               child: CachedNetworkImage(
                 alignment: Alignment.center,
-                imageUrl: widget.imageLink,
+                imageUrl: widget.mezmurData.weekMezmurList[widget.weekIndex]
+                    .misbakPictureUrl,
                 //fit: BoxFit.fill,
                 placeholder: (context, url) => customPlaceHolder(),
                 errorWidget: (context, url, error) => Icon(

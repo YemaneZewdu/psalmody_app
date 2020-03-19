@@ -50,7 +50,7 @@ class HomeScreenState extends State<HomeScreen> {
         title: Text("Psalmody MVP"),
       ),
       body: Container(
-        color: Theme.of(context).primaryColor,
+
         child: PageView.builder(
           onPageChanged: (index) {
             pageChanged(index);
