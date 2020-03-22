@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:psalmody/models/mezmur.dart';
+import 'package:psalmody/models/week_mezmur_list.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class AudioPlayerScreen extends StatefulWidget {
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   bool isFavoriteButtonPressed = false;
   double sliderValue = 0.0;
-  List<Mezmur> favorites;
+  List<WeekMezmurList> favoritesList = new List<WeekMezmurList>();
 
   // used for setting up a snack bar
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -56,6 +57,18 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       ? scaffoldKey.currentState.showSnackBar(mezmurAddedToFavorites)
       : scaffoldKey.currentState.showSnackBar(mezmurAddedRemovedFromFavorites);
 
+  void manageFavorites() {
+    if (isFavoriteButtonPressed) {
+      favoritesList.add(widget.mezmurData.weekMezmurList[widget.weekIndex]);
+    }
+    if (!isFavoriteButtonPressed && favoritesList.isNotEmpty) {
+      favoritesList.remove(widget.mezmurData.weekMezmurList[widget.weekIndex]);
+    }
+
+    for (var i = 0; i < favoritesList.length; i++) {
+      favoritesList.isNotEmpty ? print(favoritesList[i]) : print("no data");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +99,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 Icon(isFavoriteButtonPressed ? Icons.star : Icons.star_border),
             onPressed: () {
               _favButtonPressed();
+              manageFavorites();
               showSnackBar();
             },
             iconSize: 35.0,
@@ -107,22 +121,21 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 alignment: Alignment.center,
                 imageUrl: widget.mezmurData.weekMezmurList[widget.weekIndex]
                     .misbakPictureUrl,
-                //fit: BoxFit.fill,
                 placeholder: (context, url) => customPlaceHolder(),
-                errorWidget: (context, url, error) => Icon(
-                  Icons.replay,
-                  size: 50,
+                errorWidget: (context, url, error) => FlatButton(
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    color: Colors.red,
+                    child: Text(
+                      "Error! Click to reload",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  onPressed: () => setState(() {}),
                 ),
               ),
-
-//              FadeInImage.memoryNetwork(
-//                placeholder: kTransparentImage,
-////            errorWidget: (context, url, error) => Icon(Icons.error),
-//                image: 'https://picsum.photos/250?image=9',
-//                fadeInDuration: Duration(seconds: 1),
-//                fadeOutDuration: Duration(seconds: 1),
-//                fit: BoxFit.fill,
-//              ),
             ),
           ),
 
