@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:psalmody/models/mezmur.dart';
 import 'package:psalmody/models/week_mezmur_list.dart';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class AudioPlayerScreen extends StatefulWidget {
   @override
@@ -22,6 +23,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   bool isFavoriteButtonPressed = false;
   double sliderValue = 0.0;
   List<WeekMezmurList> favoritesList = new List<WeekMezmurList>();
+  double scale = 1.0;
+  double previousScale = 1.0;
 
   // used for setting up a snack bar
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -75,7 +78,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     // variables for getting custom screen height and width
     var customScreenWidth = MediaQuery.of(context).size.width / 100;
     var customScreenHeight = MediaQuery.of(context).size.height / 100;
-
+    String errorMessage = "Error! Click Here to relod";
     // custom placeholder widget
     Widget customPlaceHolder() {
       return Center(
@@ -116,28 +119,50 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             //margin: EdgeInsets.only(top: 35),
             width: MediaQuery.of(context).size.width,
             child: GestureDetector(
-              onTap: null,
-              child: CachedNetworkImage(
-                alignment: Alignment.center,
-                imageUrl: widget.mezmurData.weekMezmurList[widget.weekIndex]
-                    .misbakPictureUrl,
-                placeholder: (context, url) => customPlaceHolder(),
-                errorWidget: (context, url, error) => FlatButton(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    color: Colors.red,
-                    child: Text(
-                      "Error! Click to reload",
-                      style: TextStyle(
-                        fontSize: 20,
+//              onScaleStart: (ScaleStartDetails details) {
+//                previousScale = scale;
+//                setState(() {});
+//              },
+//              onScaleUpdate: (ScaleUpdateDetails details) {
+//                scale = previousScale * details.scale;
+//                setState(() {});
+//              },
+//              onScaleEnd: (ScaleEndDetails details) {
+//                // assigning it back to 1.0 to leave the image zoomed
+//                previousScale = 1.0;
+//              },
+              // allows the image to be move when zoomed
+//              child: Transform(
+                // this alignment makes it zoomed from the center
+//                alignment: FractionalOffset.,
+//                transform: Matrix4.diagonal3(
+//                  Vector3(scale, scale, scale),
+//                ),
+
+
+                child: CachedNetworkImage(
+                  alignment: Alignment.center,
+                  imageUrl: widget.mezmurData.weekMezmurList[widget.weekIndex]
+                      .misbakPictureUrl,
+                  placeholder: (context, url) => customPlaceHolder(),
+                  errorWidget: (context, url, error) => FlatButton(
+                    // used a container because the flat button is sized as the image size
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      color: Colors.red,
+                      child: Text(
+                        "Error! Click to reload",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
+                    // makes a network call again
+                    onPressed: () => setState(() {}),
                   ),
-                  onPressed: () => setState(() {}),
                 ),
               ),
             ),
-          ),
 
           // Playing buttons container
           Align(
