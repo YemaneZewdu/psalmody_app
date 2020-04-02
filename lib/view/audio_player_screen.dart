@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:psalmody/models/mezmur.dart';
 import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   @override
@@ -21,6 +24,7 @@ class AudioPlayerScreen extends StatefulWidget {
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   bool isFavoriteButtonPressed = false;
+  bool isInFavoritesList = false;
   double sliderValue = 0.0;
   List<WeekMezmurList> favoritesList = new List<WeekMezmurList>();
   double scale = 1.0;
@@ -35,6 +39,40 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   final SnackBar mezmurAddedRemovedFromFavorites =
       SnackBar(content: Text("Removed from Favorites"));
 
+  @override
+  void initState() {
+    super.initState();
+    checkFavoritesList(
+        mezmurName:
+            widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+  }
+
+  void checkFavoritesList({String mezmurName}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    bool newVal = true;
+    // check if mezmur is in favorites list with mezmurName as a key
+    if (!preferences.containsKey(mezmurName)) {
+      newVal = false;
+    } else {
+      newVal = true;
+    }
+    setState(() {
+      isInFavoritesList = newVal;
+    });
+  }
+
+  // slider controller
+  void onSliderChanged(double value) {
+    setState(() {
+      sliderValue = value;
+    });
+  }
+
+  // if the favorite button is tapped, show the appropriate snack bar
+  void showSnackBar() => isFavoriteButtonPressed && !isInFavoritesList
+      ? scaffoldKey.currentState.showSnackBar(mezmurAddedToFavorites)
+      : scaffoldKey.currentState.showSnackBar(mezmurAddedRemovedFromFavorites);
+
   // favorite icon button controller
   void _favButtonPressed() {
     bool newVal = true;
@@ -48,28 +86,23 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     });
   }
 
-  // slider controller
-  void onSliderChanged(double value) {
-    setState(() {
-      sliderValue = value;
-    });
-  }
-
-  // if the favorite button is tapped, show the appropriate snack bar
-  void showSnackBar() => isFavoriteButtonPressed
-      ? scaffoldKey.currentState.showSnackBar(mezmurAddedToFavorites)
-      : scaffoldKey.currentState.showSnackBar(mezmurAddedRemovedFromFavorites);
-
-  void manageFavorites() {
-    if (isFavoriteButtonPressed) {
-      favoritesList.add(widget.mezmurData.weekMezmurList[widget.weekIndex]);
-    }
-    if (!isFavoriteButtonPressed && favoritesList.isNotEmpty) {
-      favoritesList.remove(widget.mezmurData.weekMezmurList[widget.weekIndex]);
-    }
-
-    for (var i = 0; i < favoritesList.length; i++) {
-      favoritesList.isNotEmpty ? print(favoritesList[i]) : print("no data");
+  void manageFavorites() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    if (isInFavoritesList) {
+      // if true, the mezmur is already in favorites list
+      preferences.remove(
+          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+      checkFavoritesList(
+          mezmurName:
+              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+    } else {
+      // if false, add it to favorites list
+      preferences.setString(
+          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
+          jsonEncode(widget.mezmurData.weekMezmurList[widget.weekIndex]));
+      checkFavoritesList(
+          mezmurName:
+              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
     }
   }
 
@@ -98,8 +131,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         actions: <Widget>[
           // favorites icon button
           IconButton(
-            icon:
-                Icon(isFavoriteButtonPressed ? Icons.star : Icons.star_border),
+            icon: Icon(isInFavoritesList ? Icons.star : Icons.star_border),
             onPressed: () {
               _favButtonPressed();
               manageFavorites();
@@ -133,36 +165,35 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 //              },
               // allows the image to be move when zoomed
 //              child: Transform(
-                // this alignment makes it zoomed from the center
+              // this alignment makes it zoomed from the center
 //                alignment: FractionalOffset.,
 //                transform: Matrix4.diagonal3(
 //                  Vector3(scale, scale, scale),
 //                ),
 
-
-                child: CachedNetworkImage(
-                  alignment: Alignment.center,
-                  imageUrl: widget.mezmurData.weekMezmurList[widget.weekIndex]
-                      .misbakPictureUrl,
-                  placeholder: (context, url) => customPlaceHolder(),
-                  errorWidget: (context, url, error) => FlatButton(
-                    // used a container because the flat button is sized as the image size
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      color: Colors.red,
-                      child: Text(
-                        "Error! Click to reload",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
+              child: CachedNetworkImage(
+                alignment: Alignment.center,
+                imageUrl: widget.mezmurData.weekMezmurList[widget.weekIndex]
+                    .misbakPictureUrl,
+                placeholder: (context, url) => customPlaceHolder(),
+                errorWidget: (context, url, error) => FlatButton(
+                  // used a container because the flat button is sized as the image size
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    color: Colors.red,
+                    child: Text(
+                      "Error! Click to reload",
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
                     ),
-                    // makes a network call again
-                    onPressed: () => setState(() {}),
                   ),
+                  // makes a network call again
+                  onPressed: () => setState(() {}),
                 ),
               ),
             ),
+          ),
 
           // Playing buttons container
           Align(

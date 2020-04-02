@@ -3,18 +3,15 @@ import 'package:psalmody/view/month_mezmur_list_screen.dart';
 
 class HomeListScreen extends StatelessWidget {
   final _months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "Meskerem",
+    "Tikimt",
+    "Hidar",
+    "Tahisas",
+    "Tir",
+    "Yekatit",
+    "Abiy Tsom",
+    "Tinsae",
+    "Kiremt"
   ];
 
   @override

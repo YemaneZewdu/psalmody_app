@@ -740,67 +740,8 @@
 
     ]
   },
-
   {
-    "month": "Yekatit",
-    "weekMezmurList": [
-      {
-        "mezmurId":"1",
-        "mezmurName" : "፭ተኛ መዝሙር ዘልደት ተወልደ ኢየሱስ።",
-        "mezmurDescription" : "",
-        "firstReadingChapters" :"",
-        "secondReadingChapters": "",
-        "misbakChapters":"መዝ. ፵፯ ቍ ፰ - ፱",
-        "misbakLine1":"በከመ ሰማዕነ ከማሁ ርኢነ።",
-        "misbakLine2" : "በሀገረ እግዚአ ኃያላን በሀገረ አምላክነ።",
-        "misbakLine3" : "እግዚአብሔር ሣረራ ለዓለም።",
-        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Yekatit%2Fweek1%2F1.JPG?alt=media&token=e4782129-8d35-4168-9dda-a6e7b8a0fee7",
-        "misbakAudioUrl":""
-      },
-      {
-        "mezmurId":"2",
-        "mezmurName" : "፯ተኛ መዝሙር ተባሃሉ ጻድቃን።",
-        "mezmurDescription" : "፮ተኛ ለእመ ኮነ ስምዖን በእሑድ መዝሙር መሀሩነ እለ ቀደሙነ ምንባብ የዘወትር በል።",
-        "firstReadingChapters" :"",
-        "secondReadingChapters": "",
-        "misbakChapters":"መዝ፡ ፹፰ ቍ  ፯ - ፰",
-        "misbakLine1":"እግዚአብሔር ስቡሕ በምክረ ቅዱሳን።",
-        "misbakLine2" : "ዐቢይ ወግሩም ዲበ ኵሎሙ እለ ዐውዱ።",
-        "misbakLine3" : "እግዚኦ አምላከ ኃያላን መኑ ከማከ።",
-        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Yekatit%2Fweek2%2F2.JPG?alt=media&token=be8ddbdd-9093-4139-9d0b-ce55220b6e8f",
-        "misbakAudioUrl":""
-      },
-      {
-        "mezmurId":"3",
-        "mezmurName" : "፰ተኛ መዝሙር ኢየሩሳሌም ትቤ።",
-        "mezmurDescription" : "",
-        "firstReadingChapters" :"",
-        "secondReadingChapters": "",
-        "misbakChapters":"መዝ. ፻፵፯ ቍ ፩ - ፪",
-        "misbakLine1":"ትሴብሖ ኢየሩሳሌም ለእግዚአብሔር።",
-        "misbakLine2" : "ወሰብሒዮ ለአምላክኪ ጽዮን።",
-        "misbakLine3" : "እስመ አጽንዐ መናስግተ ኖኃትኪ።",
-        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Yekatit%2Fweek3%2F3.JPG?alt=media&token=cc39caab-d979-477e-929c-94e5c0cd8a9a",
-        "misbakAudioUrl":""
-      },
-      {
-        "mezmurId":"4",
-        "mezmurName" : "፱ኛ መዝሙር ወብዙኃን ኖሎት መጽኡ ።",
-        "mezmurDescription" : "",
-        "firstReadingChapters" :"",
-        "secondReadingChapters": "",
-        "misbakChapters":"መዝ. ፵፮ ቍ ፰ - ፱",
-        "misbakLine1":"አግረረ ለነ አሕዛበ ወሕዝበ ታሕተ እገሪነ።",
-        "misbakLine2" : "ወኀረየነ ሎቱ ለርስቱ።",
-        "misbakLine3" : "ሥኖ ለያዕቆብ ዘአፍቀረ።",
-        "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Yekatit%2Fweek4%2F4.JPG?alt=media&token=7ad6fae2-97e3-4a25-8dc5-7aad0aba6b02",
-        "misbakAudioUrl":""
-      }
-
-    ]
-  },
-  {
-    "month": "Abiy Tsom",
+    "month": "Tinsae",
     "weekMezmurList": [
       {
         "mezmurId":"1",
