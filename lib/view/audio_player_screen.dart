@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:psalmody/models/mezmur.dart';
-import 'package:psalmody/models/week_mezmur_list.dart';
-import 'package:vector_math/vector_math_64.dart' show Vector3;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:psalmody/models/favorites.dart';
+import 'package:psalmody/sqflite/database_helper.dart';
+//import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class AudioPlayerScreen extends StatefulWidget {
   @override
@@ -26,9 +26,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   bool isFavoriteButtonPressed = false;
   bool isInFavoritesList = false;
   double sliderValue = 0.0;
-  List<WeekMezmurList> favoritesList = new List<WeekMezmurList>();
-  double scale = 1.0;
-  double previousScale = 1.0;
+  // reference to our single class that manages the database
+  final databaseHelper = DatabaseHelper.instance;
+  Favorites favoritesObj;
+
+  //double scale = 1.0;
+  // double previousScale = 1.0;
 
   // used for setting up a snack bar
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -42,20 +45,34 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   @override
   void initState() {
     super.initState();
+    // calling the function so that 'isInFavoritesList' will get its value
     checkFavoritesList(
         mezmurName:
             widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+    initFavoritesObject();
+  }
+
+  // initializes fav object with the current data, used for adding or deleting in the db
+  void initFavoritesObject() {
+    setState(() {
+      favoritesObj = Favorites(
+          mezmurName:
+              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
+          weekIndex: widget.weekIndex,
+          misbakChapters:
+              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakChapters,
+          misbakLine1:
+              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine1,
+          misbakLine2:
+              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine2,
+          misbakLine3:
+              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine3);
+    });
   }
 
   void checkFavoritesList({String mezmurName}) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    bool newVal = true;
     // check if mezmur is in favorites list with mezmurName as a key
-    if (!preferences.containsKey(mezmurName)) {
-      newVal = false;
-    } else {
-      newVal = true;
-    }
+    bool newVal = await databaseHelper.inFavorites(mezmurName: mezmurName);
     setState(() {
       isInFavoritesList = newVal;
     });
@@ -69,47 +86,39 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   }
 
   // if the favorite button is tapped, show the appropriate snack bar
-  void showSnackBar() => isFavoriteButtonPressed && !isInFavoritesList
+  void showSnackBar() =>  !isInFavoritesList
       ? scaffoldKey.currentState.showSnackBar(mezmurAddedToFavorites)
       : scaffoldKey.currentState.showSnackBar(mezmurAddedRemovedFromFavorites);
 
-  // favorite icon button controller
-  void _favButtonPressed() {
-    bool newVal = true;
-    if (isFavoriteButtonPressed) {
-      newVal = false;
-    } else {
-      newVal = true;
-    }
-    setState(() {
-      isFavoriteButtonPressed = newVal;
-    });
-  }
 
   void manageFavorites() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
     if (isInFavoritesList) {
-      // if true, the mezmur is already in favorites list
-      preferences.remove(
-          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+      // if true, the mezmur is already in favorites list. i.e remove it
+      databaseHelper.delete(
+          mezmurName:
+              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
       checkFavoritesList(
           mezmurName:
               widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
     } else {
       // if false, add it to favorites list
-      preferences.setString(
-          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
-          jsonEncode(widget.mezmurData.weekMezmurList[widget.weekIndex]));
+      databaseHelper.insertToDb(favoritesObj);
+      // calling the function so that it will set  'isInFavoritesList' to true
       checkFavoritesList(
           mezmurName:
               widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
     }
   }
-
+  counter () async {
+    int length = await databaseHelper.queryRowCount();
+    print("******");
+    print(length);
+    print("******");
+  }
   @override
   Widget build(BuildContext context) {
     // variables for getting custom screen height and width
-    var customScreenWidth = MediaQuery.of(context).size.width / 100;
+    //var customScreenWidth = MediaQuery.of(context).size.width / 100;
     var customScreenHeight = MediaQuery.of(context).size.height / 100;
     String errorMessage = "Error! Click Here to relod";
     // custom placeholder widget
@@ -118,6 +127,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         child: CircularProgressIndicator(),
       );
     }
+
 
     //TODO: *********************Download image to phone or share it***************************
     return Scaffold(
@@ -133,9 +143,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           IconButton(
             icon: Icon(isInFavoritesList ? Icons.star : Icons.star_border),
             onPressed: () {
-              _favButtonPressed();
               manageFavorites();
               showSnackBar();
+              counter();
             },
             iconSize: 35.0,
             color: Colors.black,
@@ -145,7 +155,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       body: Stack(
         children: <Widget>[
           // network image container
-
           Container(
             height: customScreenHeight * 60,
             //margin: EdgeInsets.only(top: 35),
@@ -182,7 +191,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                     padding: EdgeInsets.all(10),
                     color: Colors.red,
                     child: Text(
-                      "Error! Click to reload",
+                      errorMessage,
                       style: TextStyle(
                         fontSize: 20,
                       ),

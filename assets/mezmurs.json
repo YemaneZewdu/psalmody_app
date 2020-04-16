@@ -201,19 +201,6 @@
         "misbakLine3": "ወአቀሞሙ ለዓለም ወለዓለመ ዓለም።",
         "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek8%2Fweek8.JPG?alt=media&token=3ce812a6-83be-4424-be21-059032e3023b",
         "misbakAudioUrl": ""
-      },
-      {
-        "mezmurId": "9",
-        "mezmurName": "መዝሙር በሰንበት አጋንንተ አውፅአ።",
-        "mezmurDescription": "ለእመ ኮነ በዓለ ዕንባቆም በእሑድ ጥቅምት ወይም ኅዳር ፫ እሑድ ሲውል።",
-        "firstReadingChapters": "ሮሜ ም. ፩ ቊ. ፰  - ፲፰ ",
-        "secondReadingChapters": "ጴጥ ፪  ም. ፫  ቊ. ፩ - ፰",
-        "misbakChapters": "መዝ. ፻፬ ቍ ፲፭ - ፲፮",
-        "misbakLine1": "ወገሠጸ ነገሥተ በእንቲአሆሙ።",
-        "misbakLine2": "ኢትግሥሡ መሲሓንየ።",
-        "misbakLine3": "ወኢታሕሥሙ ዲበ ነቢያትየ።",
-        "misbakPictureUrl": "https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tikimt%2Fweek9%2Fweek9.JPG?alt=media&token=cb6d7157-3425-48a0-9a37-e9ba6ede9676",
-        "misbakAudioUrl": ""
       }
     ]
   },
@@ -548,8 +535,8 @@
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
         "misbakChapters":"መዝ. ፵ ቍ ፫ – ፬",
-        "misbakLine1":"እግዚአብሔር ይረድኦ ውስተ ዐራተ ሕማሙ ።",
-        "misbakLine2" : "ወይመይጥ ሎቱ ኵሎ ምስካቢሁ እምደዌሁ ።",
+        "misbakLine1":"እግዚአብሔር ይረድኦ ውስተ ዐራተ ሕማሙ",
+        "misbakLine2" : "ወይመይጥ ሎቱ ኵሎ ምስካቢሁ እምደዌሁ",
         "misbakLine3" : "አንሰ እቤ እግዚኦ ተሣሃለኒ ።",
         "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2Fweek4%2F4.JPG?alt=media&token=8bee0ab0-d61e-4e63-a513-3fb59459205f",
         "misbakAudioUrl":""
@@ -600,8 +587,8 @@
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
         "misbakChapters":"መዝ. ፹ ቍ ፫ – ፬",
-        "misbakLine1":"ንፍሑ ቀርነ በዕለት ሠርቀ ።።",
-        "misbakLine2" : "በእምርት ዕለት በዓልነ ።።",
+        "misbakLine1":"ንፍሑ ቀርነ በዕለት ሠርቀ።",
+        "misbakLine2" : "በእምርት ዕለት በዓልነ።",
         "misbakLine3" : "እስመ ሥርዓቱ ለእስራኤል ውእቱ።",
         "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2FHosaena%2F8.JPG?alt=media&token=a5feb090-92d2-4806-adbf-dcc7d3db6124",
         "misbakAudioUrl":""
@@ -613,7 +600,7 @@
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
         "misbakChapters":"መዝ.  ፻፲፯ ቍ ፩ – ፪",
-        "misbakLine1":"ቡሩክ ዘይመጽእ በስመ እግዚአብሔር ።።",
+        "misbakLine1":"ቡሩክ ዘይመጽእ በስመ እግዚአብሔር።",
         "misbakLine2" : "ባረክናክሙ እምቤተ እግዚአብሔር።",
         "misbakLine3" : "እግዚአብሔር እግዚእ አስተርአየ ለነ።",
         "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2FHosaena%2F9.JPG?alt=media&token=f6d1113b-a864-450b-a292-284660bd21ae",
@@ -621,7 +608,7 @@
       },
       {
         "mezmurId":"10",
-        "mezmurName" : "ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ።",
+        "mezmurName" : "፩ ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
@@ -634,7 +621,7 @@
       },
       {
         "mezmurId":"11",
-        "mezmurName" : "ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
+        "mezmurName" : "፪ ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
@@ -647,7 +634,7 @@
       },
       {
         "mezmurId":"12",
-        "mezmurName" : "ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
+        "mezmurName" : "፫ ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
@@ -660,7 +647,7 @@
       },
       {
         "mezmurId":"13",
-        "mezmurName" : "ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
+        "mezmurName" : "፬ ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
@@ -745,7 +732,7 @@
     "weekMezmurList": [
       {
         "mezmurId":"1",
-        "mezmurName" : "መዝሙር ይትፌሣሕ",
+        "mezmurName" : "፩ መዝሙር ይትፌሣሕ",
         "mezmurDescription" : "እምትንሣኤ እስከ ዕርገት በትንሣኤ እሑድ ።",
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
@@ -758,7 +745,7 @@
       },
       {
         "mezmurId":"2",
-        "mezmurName" : "መዝሙር ይትፌሣሕ።",
+        "mezmurName" : "፪ መዝሙር ይትፌሣሕ።",
         "mezmurDescription" : "ዘእሑድ እምድኅረ ትንሣኤ አብጽሕ ኵሎ ከመ ሥርዓተ ትንሣኤ።",
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
@@ -790,7 +777,7 @@
         "secondReadingChapters": "",
         "misbakChapters":"መዝ. ፫ ቍ ፭ - ፮",
         "misbakLine1":"አንሰ ሰከብኩ ወኖምኩ ።",
-        "misbakLine2" : "ወይመይጥ ሎቱ ኵሎ ምስካቢሁ እምደዌሁ ።",
+        "misbakLine2" : "ወይመይጥ ሎቱ ኵሎ ምስካቢሁ እምደዌሁ",
         "misbakLine3" : "ወተንሣእኩ እስመ እግዚአብሔር አንሥአኒ።",
         "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tinsae%2F4.JPG?alt=media&token=a8b3a74a-9018-4da6-8901-848cd29645ae",
         "misbakAudioUrl":""
@@ -810,7 +797,7 @@
       },
       {
         "mezmurId":"6",
-        "mezmurName" : "፮ተኛ እሑድ ኣርአየ ሥልጣኖ ላዕለ ሞት ።",
+        "mezmurName" : "፮ተኛ እሑድ አርአየ ሥልጣኖ ላዕለ ሞት ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
@@ -880,7 +867,7 @@
         "firstReadingChapters" :"",
         "secondReadingChapters": "",
         "misbakChapters":"መዝ. ፶ ቍ ፲፩ - ፲፪",
-        "misbakLine1":"ኢትግድፈኒ እምቅድመ ገጽከ ።።",
+        "misbakLine1":"ኢትግድፈኒ እምቅድመ ገጽከ ።",
         "misbakLine2" : "ወመንፈሰከ ቅዱሰ ኢታውፅእ እምላዕሌየ።",
         "misbakLine3" : "ዕሥየኒ ፍሥሓ ወአድኅኖተከ ።",
         "misbakPictureUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Tinsae%2F11.JPG?alt=media&token=cb06ca4f-93da-4195-94b3-df137945626a",

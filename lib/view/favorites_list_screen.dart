@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:psalmody/models/mezmur.dart';
+import 'package:psalmody/sqflite/database_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:psalmody/models/favorites.dart';
+
+import 'audio_player_screen.dart';
 
 class FavoritesListScreen extends StatefulWidget {
   @override
@@ -6,42 +12,101 @@ class FavoritesListScreen extends StatefulWidget {
 }
 
 class _FavoritesListScreenState extends State<FavoritesListScreen> {
-  List<String> _favorites = [
-    "Favorites 1",
-    "Favorites 2",
-    "Favorites 3",
-    "Favorites 4",
-    "Favorites 5"
-  ];
+  // set for storing keys
+  Set<String> favs = new Set<String>();
+  Mezmur mezmurData;
+  Map<String, String> favList = new Map<String, String>();
+  Future<List<Favorites>> favoritesList;
+  int currentFavId;
+  final databaseHelper = DatabaseHelper.instance;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // get the favorites list
+  getFavListFromDatabase() {
+    setState(() {
+      favoritesList = databaseHelper.getFavorites();
+    });
+  }
+
+  Future<void> loadPrefs({int index}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    favs = preferences.getKeys();
+    favList = preferences.get(favs.elementAt(index));
+  }
+
+  int getFavKeysLength() => favs.length;
+
+  futureWidget(BuildContext context) =>
+      FutureBuilder(
+        future: favoritesList,
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+             // getDataFromSnapshot(snapshot.data);
+              return ListView.builder(
+                physics: BouncingScrollPhysics(),
+                padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return new GestureDetector(
+                      onTap: () =>
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  AudioPlayerScreen(
+                                    mezmurData: mezmurData,
+                                    weekIndex: index,
+                                  ),
+                            ),
+                          ),
+                      child: displayFavorites(snapshot.data)
+                  );
+                },
+              );
+            }
+          }
+          if (null == snapshot.data || snapshot.data.length == 0) {
+            return Container(
+              child: Center(
+                child: Text("No Favorites yet!"),
+              ),
+            );
+          }
+          return Container(
+            child: Center(
+              child: Text("Loading Favorites..."),
+            ),
+          );
+        },
+      );
+
+  Widget displayFavorites(AsyncSnapshot snapshot) {
+    return Card(
+      color: Colors.white,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          // text padding
+          vertical: 15.0,
+          horizontal: 10.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[Text(snapshot.data.toString())],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffEBEFF2),
-        body: new ListView.builder(
-          itemCount: _favorites.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: EdgeInsets.only(bottom: 10.0),
-              child: Card(
-                color: Colors.white,
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 20.0, horizontal: 15.0),
-                  child: ListTile(
-                    title: Text(
-                      _favorites[index],
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        height: 1.6,
-                      ),
-                    ),
-                    trailing: Icon(Icons.star),
-                  ),
-                ),
-              ),
-            );
-          },
-        ));
+      backgroundColor: Colors.grey[300],
+      body: futureWidget(context)
+    );
   }
 }
