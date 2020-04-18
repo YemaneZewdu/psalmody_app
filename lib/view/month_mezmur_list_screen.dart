@@ -46,7 +46,7 @@ class MonthMezmurListScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            // check if not null, else return only mezmur name only
+            // check if not null, else return mezmur name only
             Text(
               snapshot.data.weekMezmurList[index].misbakLine1 +
                   "\n" +
@@ -146,7 +146,10 @@ class MonthMezmurListScreen extends StatelessWidget {
         }
         return Container(
           child: Center(
-            child: Text("Loading..."),
+            child: Text(
+              "Loading $monthName list...",
+              style: TextStyle(fontSize: 20),
+            ),
           ),
         );
       },

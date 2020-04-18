@@ -8,8 +8,9 @@ import 'package:psalmody/models/favorites.dart';
 class DatabaseHelper {
   // column names and a db name
   static Database _database;
-  static const String ID = 'id';
-  static const String TABLE = 'FavotiresList';
+
+  // static const String ID = 'id';
+  static const String TABLE = 'Favotires';
   static const String DB_NAME = 'favorites.db';
   static const String MEZMUR_NAME = 'mezmurName';
   static const String WEEK_INDEX = 'weekIndex';
@@ -20,6 +21,7 @@ class DatabaseHelper {
 
   // make this a singleton class
   DatabaseHelper._privateConstructor();
+
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
   // get the database
@@ -43,20 +45,17 @@ class DatabaseHelper {
   }
 
   // create the db
- Future _onCreate(Database db, int version) async {
+  Future _onCreate(Database db, int version) async {
+    //$ID INTGER NOT NULL,
     await db.execute('''
-      CREATE TABLE $TABLE ($ID INTGER AUTOINCREMENT NOT NULL, $MEZMUR_NAME TEXT PRIMARY KEY, "
-          "$WEEK_INDEX TEXT, $MISBAK_CHAPTERS TEXT, $MISBAK_LINE1 TEXT, "
-          "$MISBAK_LINE2 TEXT, $MISBAK_LINE3 TEXT)'''
-    );
+      CREATE TABLE IF NOT EXISTS $TABLE ($MEZMUR_NAME TEXT PRIMARY KEY, $WEEK_INDEX INTEGER, $MISBAK_CHAPTERS TEXT, $MISBAK_LINE1 TEXT, $MISBAK_LINE2 TEXT, $MISBAK_LINE3 TEXT)''');
   }
 
   // insert to the db
   Future<int> insertToDb(Favorites favorites) async {
-
-      // get the db
-      var dbClient = await getDb;
-      try {
+    // get the db
+    var dbClient = await getDb;
+    try {
       // convert to a map and insert to db
       // favorites.favoriteId = await dbClient.insert(TABLE, favorites.toMap());
 
@@ -67,10 +66,9 @@ class DatabaseHelper {
       return await txn.rawInsert(query);
     });*/
 
-      return await dbClient.insert(TABLE, favorites.toMap(),conflictAlgorithm: ConflictAlgorithm.replace);
-    }
-    catch ( e )
-    {
+      return await dbClient.insert(TABLE, favorites.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace);
+    } catch (e) {
       print("DatabaseHelper Insert method" + e.toString());
     }
   }
@@ -79,8 +77,14 @@ class DatabaseHelper {
     // get the db
     var dbClient = await getDb;
     //getting the column data
-    List<Map> maps = await dbClient
-        .query(TABLE, columns: [ID, MEZMUR_NAME, WEEK_INDEX, MISBAK_CHAPTERS, MISBAK_LINE1, MISBAK_LINE2, MISBAK_LINE3]);
+    List<Map> maps = await dbClient.query(TABLE, columns: [
+      MEZMUR_NAME,
+      WEEK_INDEX,
+      MISBAK_CHAPTERS,
+      MISBAK_LINE1,
+      MISBAK_LINE2,
+      MISBAK_LINE3
+    ]);
     // raw query
     //  List<Map> maps = await dbClient.rawQuery("SELECT * FROM $TABLE");
     List<Favorites> favoriteList = [];
@@ -89,24 +93,26 @@ class DatabaseHelper {
       for (int i = 0; i < maps.length; i++) {
         favoriteList.add(Favorites.fromMap(maps[i]));
       }
+      return favoriteList;
     }
-    return favoriteList;
+    return null;
+
   }
 
   // raw SQL commands. This method uses a raw query to give the row count.
   Future<int> queryRowCount() async {
     Database db = await getDb;
-    return Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM $TABLE'));
+    return Sqflite.firstIntValue(
+        await db.rawQuery('SELECT COUNT(*) FROM $TABLE'));
   }
 
   // deleting a value from the db
-  Future<int> delete({String mezmurName}) async  {
+  Future<int> delete({String mezmurName}) async {
     var dbClient = await getDb;
     try {
-
-      return await dbClient.delete(
-          TABLE, where: '$MEZMUR_NAME = ?', whereArgs: [mezmurName]);
-    } catch (e){
+      return await dbClient
+          .delete(TABLE, where: '$MEZMUR_NAME = ?', whereArgs: [mezmurName]);
+    } catch (e) {
       print("DatabaseHelper Delete method" + e.toString());
     }
   }
@@ -114,19 +120,19 @@ class DatabaseHelper {
   // check if in favorites
   Future<bool> inFavorites({String mezmurName}) async {
     var dbClient = await getDb;
-    int tableLength = await queryRowCount();
-   try {
+    try {
       List<Map> maps = await dbClient
           .query(TABLE, where: '$MEZMUR_NAME = ?', whereArgs: [mezmurName]);
       return maps.length == 1 ? true : false;
+    } catch (e) {
+      print("DatabaseHelper Infavorites" + e.toString());
     }
-   catch ( e )
-   {
-     print("DatabaseHelper Infavorites" + e.toString());
-   }
     return false;
   }
-
+//Future drop () async {
+//    var db = await getDb;
+//    db.execute("DROP TABLE IF EXISTS $TABLE");
+//}
   // close the db
   Future closeDb() async {
     var dbClient = await getDb;

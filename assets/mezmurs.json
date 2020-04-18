@@ -3,7 +3,7 @@
     "month": "Meskerem",
     "weekMezmurList": [
       {
-        "mezmurId":"1",
+        "weekId":1,
         "mezmurName" : "መዝሙር ዮሐንስ አኅድዐ።",
         "mezmurDescription" : "ከመስከረም 1 እስከ ፰ ዮሐንስ ይባላል።",
         "firstReadingChapters" :"ቆሮ ፩ ም ፲፩ ቊ.፲፯ - ፍ፡ም",
@@ -16,7 +16,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"2",
+        "weekId":2,
         "mezmurName" : "መዝሙር  በቀዳሚ ገብረ እግዚአብሔር።",
         "mezmurDescription" : "መስከረም ፰ ቀን ብቻ ዘካርያስ ይባላል። መስከረም ፰ ቀን በእሑድ ቢሆን",
         "firstReadingChapters" :"ዕብራው ም ፲፩ ፴፪-ፍ፡ም",
@@ -29,7 +29,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"3",
+        "weekId":3,
         "mezmurName" : "መዝሙር እኩት አንተ ።",
         "mezmurDescription" : "ከመስከረም ፩ እስከ ፲፭ ፍሬ ይትበሀል ።",
         "firstReadingChapters" :"ቆሮ ፪ ም. ፬ ቊ. ፩ – ፍ፡ም",
@@ -42,7 +42,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"4",
+        "weekId":4,
         "mezmurName" : "መዝሙር ሐነጽዋ ።",
         "mezmurDescription" : "መስከረም ፲፮ ቀን ብቻ ሕንጸተ ቤተ መቅደስ ይባላል ።",
         "firstReadingChapters" :"ቆሮ ፩ ም. ፫ ቊ. ፩ - ፲፰",
@@ -55,7 +55,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"5",
+        "weekId":5,
         "mezmurName" : "መዝሙር ዝንቱ ውእቱ መስቀል።",
         "mezmurDescription" : "ከመስከረም ፲፯ እስከ ፳፭ መስቀል ይባላል።",
         "firstReadingChapters" :"ቆሮ ፩ ም. ፩ ቊ. ፲– ፍ፡ም",
@@ -68,7 +68,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"6",
+        "weekId":6,
         "mezmurName" : "፪ኛ መዝሙር ዘመስቀል መስቀልከ እግዚኦ ተሰብሐ።",
         "mezmurDescription" : "መስከረም ፳፬ በእሑድ ቢሆን መዝሙር።",
         "firstReadingChapters" :"ቆሮ ፩ ም. ፪ ቊ. ፩-፲፪",
@@ -81,7 +81,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"7",
+        "weekId":7,
         "mezmurName" : "፫ተኛ መዝሙር ትብሎ መርዓት።",
         "mezmurDescription" : "ለእመ ኮነ መስከረም ፳፭ በሰንበት ዘፀአተ ክረምት።",
         "firstReadingChapters" :"ዕብ ም. ፬ ቊ. ፩ - ፲፩ ",
@@ -99,7 +99,7 @@
     "month": "Tikimt",
     "weekMezmurList": [
       {
-        "mezmurId": "1",
+        "weekId": 1,
         "mezmurName": "፩ኛ መዝሙር ዘጽጌ በጊዜሁ ሐለፈ ክረምት።",
         "mezmurDescription": "ከመስከረም ፳፮ እስከ ኅዳር ፭ ዘውእቱ አባ ዮሐኒ ጽጌ ይትበሀል።",
         "firstReadingChapters": "ሮሜ ም. ፯ ቊ. ፩ - ፲፬",
@@ -112,7 +112,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "2",
+        "weekId": 2,
         "mezmurName": "፪ተኛ መዝሙር ትዌድሶ መርዓት።",
         "mezmurDescription": "",
         "firstReadingChapters": "ኤፌሶን ም ፭ ቊ. ፳፩  - ፍ፡ም",
@@ -125,7 +125,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "3",
+        "weekId": 3,
         "mezmurName": "፫ተኛ መዝሙር ኪነ ጥበቡ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ኤፌሶን ም. ፮ ቀን, ፩ - ፲",
@@ -138,7 +138,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "4",
+        "weekId": 4,
         "mezmurName": "፬ተኛ መዝሙር ወመኑ መሐሪ ዘከማከ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ቆሮ ፩ ም. ፲ ቊ. ፩ - ፲፬",
@@ -151,7 +151,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "5",
+        "weekId": 5,
         "mezmurName": "፭ተኛ እሑድ መዝሙር ክርስቶስ ሠርዐ ሰንበተ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ቁላስይስ ም. ፩ ቊ. ፩ - ፲፪",
@@ -164,7 +164,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "6",
+        "weekId": 6,
         "mezmurName": "ለእመ ኮነት ጽጌ ፮ተ ፮ተኛ መዝሙር ጸገየ ወይን",
         "mezmurDescription": "",
         "firstReadingChapters": "ሮሜ ም ፲፩ ቊ. ፲፫ – ፳፭",
@@ -177,7 +177,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "7",
+        "weekId": 7,
         "mezmurName": "መዝሙር ጳጳሳት።",
         "mezmurDescription": "ለእመ ኮነ በዓለ እስጢፋኖስ በእሑድ ጥቅምት ፲፯ እሑድ ሲውል",
         "firstReadingChapters": "፩ ጢሞ ም. ፫ ቊ. ፩ - ፲፩ ",
@@ -190,7 +190,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "8",
+        "weekId": 8,
         "mezmurName": "ለእመ ኮነ በዓለ መላእክት በእሑድ መዝሙር ሠርዐ ሰንበተ።",
         "mezmurDescription": "ጥቅምት ፲፱ እሑድ ሲውል ።",
         "firstReadingChapters": "ዕብ ም ፪ ቊ. ፩ - ፲፩",
@@ -208,7 +208,7 @@
     "month": "Hidar",
     "weekMezmurList": [
       {
-        "mezmurId": "1",
+        "weekId": 1,
         "mezmurName": "መዝሙር በሰንበት አጋንንተ አውፅአ።",
         "mezmurDescription": "ለእመ ኮነ በዓለ ዕንባቆም በእሑድ ጥቅምት ወይም ኅዳር ፫ እሑድ ሲውል።",
         "firstReadingChapters": " ሮሜ ም ፩ ቊ. ፰ - ፲፰",
@@ -221,7 +221,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "2",
+        "weekId": 2,
         "mezmurName": "፩ኛ መዝሙር ዘአስተምህሮ ኢተዘኪሮ።",
         "mezmurDescription": "ከኅዳር ፮ እስከ ታኅሣሥ ፯ ወይም ፲፫ ኣስተምህሮ ይትበሃል።",
         "firstReadingChapters": "ሮሜ ም. ፭ ቊ. ፲ - ፍ፡ም",
@@ -234,7 +234,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "3",
+        "weekId": 3,
         "mezmurName": "፪ተኛ መዝሙር ዘአስተምህሮ ሎቱ ስብሐት።",
         "mezmurDescription": "",
         "firstReadingChapters": "ቈላስይስ ም. ፩ ቊ ፲፪ - ፍ፡ም",
@@ -247,7 +247,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "4",
+        "weekId": 4,
         "mezmurName": "፫ተኛ መዝሙር ዘአስተምህሮ አምላክ ፍጹም በህላዌሁ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ዕብራው ም. ፲፪ ቊ. ፳፭ - ፍ፡ም",
@@ -260,7 +260,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "5",
+        "weekId": 5,
         "mezmurName": "፬ተኛ መዝሙር ይቤሉ እስራኤል ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ቆሮ ፩ ም. ፪ ቊ. ፩ - ፍ፡ም",
@@ -273,7 +273,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "6",
+        "weekId": 6,
         "mezmurName": "፭ተኛ እሑድ መዝሙር ክርስቶስ ሠርዐ ሰንበተ።",
         "mezmurDescription": "",
         "firstReadingChapters": "ቆሮ ፩ ም. ፲፭ ቍ. ፲፪ - ፴፫",
@@ -291,7 +291,7 @@
     "month": "Tahisas",
     "weekMezmurList": [
       {
-        "mezmurId": "1",
+        "weekId": 1,
         "mezmurName": "፩ ዘስብከት መዝሙር ወልዶ መድኅነ ንሰብክ።",
         "mezmurDescription": "እምስብከት እስከ ብርሃን ስብከት ርደት ምጽአት ይትበሀል።",
         "firstReadingChapters": "ዕብራው ም ፩ ቊ.፩ - ፍ፡ም",
@@ -304,7 +304,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "2",
+        "weekId": 2,
         "mezmurName": "መዝሙር ዘብርሃን አቅዲሙ ነገረ በኦሪት።",
         "mezmurDescription": "እምብርሃን እስከ ኖላዊ ብርሃን ይትበሀል።",
         "firstReadingChapters": " ሮሜ ም ፲፫ ቍ. ፲፩ - ፍ፡ም",
@@ -317,7 +317,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "3",
+        "weekId": 3,
         "mezmurName": "መዝሙር ዘኖላዊ ኖላዊ ዘመጽአ።",
         "mezmurDescription": "እምኖላዊ እስከ ፳ወ፯ ለታኅሣሥ ኖላዊ ይትበሀል።",
         "firstReadingChapters": "ዕብራው ም. ፲፫ ቍ. ፲፮ - ፍ፡ም",
@@ -330,7 +330,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "4",
+        "weekId": 4,
         "mezmurName": "ለእመ ኮነ አማኑኤል በእሑድ መዝሙር ወእንዘ ሀለዉ ህየ።",
         "mezmurDescription": "ለታኅሣሥ ፳፰ ቀን መርዓዊ ይትበሀል",
         "firstReadingChapters": "ሮሜ ም ፰ ቊ. ፫ - ፲፰",
@@ -343,7 +343,7 @@
         "misbakAudioUrl": ""
       },
       {
-        "mezmurId": "5",
+        "weekId": 5,
         "mezmurName": "ለእመ ኮነ ለእመ ኮነ ልደት በእሑድ።",
         "mezmurDescription": "እምልደት እስከ ገሃድ ልደት ይትበሃል።",
         "firstReadingChapters": "ገላት ም ፬  ቍ. ፩ - ፲፪",
@@ -361,7 +361,7 @@
     "month": "Tir",
     "weekMezmurList": [
       {
-        "mezmurId":"1",
+        "weekId":1,
         "mezmurName" : "፩ኛ መዝሙር ዘልደት ይሠርቅ ኮከብ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"ሮሜ ም ፲፩ ቊ. ፳፭ - ፍ፡ም",
@@ -374,7 +374,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"2",
+        "weekId":2,
         "mezmurName" : "፪ኛ መዝሙር ዘልደት ንጉሥኪ ጽዮን።",
         "mezmurDescription" : "እምድኅረ አሐቲ ሰንበት ዘልደት በካልእት ሰንበት ናዝሬት ሕፅነት ይትበሀል",
         "firstReadingChapters" :"ሮሜ ም ፲፭ ቊ. ፩ - ፲፬",
@@ -387,7 +387,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"3",
+        "weekId":3,
         "mezmurName" : "ለእመ ኮነ ጥምቀት በእሑድ ምንባብ የዘወትሩን በል።",
         "mezmurDescription" : "እምዕለተ ገሃድ እስከ ቀበላ ጾም ኣንሶሰወ ፣ ተወልደ ፣ ተጠምቀ አውየኖ ለማይ ይትበሀል",
         "firstReadingChapters" :"",
@@ -400,7 +400,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"4",
+        "weekId":4,
         "mezmurName" : "፫ተኛ መዝሙር ሖረ ኢየሱስ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -413,7 +413,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"5",
+        "weekId":5,
         "mezmurName" : "፬ተኛ መዝሙር እሙነ ኮነ ልደቱ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -432,7 +432,7 @@
     "month": "Yekatit",
     "weekMezmurList": [
       {
-        "mezmurId":"1",
+        "weekId":1,
         "mezmurName" : "፭ተኛ መዝሙር ዘልደት ተወልደ ኢየሱስ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -445,7 +445,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"2",
+        "weekId":2,
         "mezmurName" : "፯ተኛ መዝሙር ተባሃሉ ጻድቃን።",
         "mezmurDescription" : "፮ተኛ ለእመ ኮነ ስምዖን በእሑድ መዝሙር መሀሩነ እለ ቀደሙነ ምንባብ የዘወትር በል።",
         "firstReadingChapters" :"",
@@ -458,7 +458,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"3",
+        "weekId":3,
         "mezmurName" : "፰ተኛ መዝሙር ኢየሩሳሌም ትቤ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -471,7 +471,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"4",
+        "weekId":4,
         "mezmurName" : "፱ኛ መዝሙር ወብዙኃን ኖሎት መጽኡ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -490,7 +490,7 @@
     "month": "Abiy Tsom",
     "weekMezmurList": [
       {
-        "mezmurId":"1",
+        "weekId":1,
         "mezmurName" : "፩ኛ መዝሙር ተቀነዩ ለእግዚአብሔር።",
         "mezmurDescription" : "መዝሙር ዘዐቢይ ጾም ዘዘወረደ ።",
         "firstReadingChapters" :"",
@@ -503,7 +503,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"2",
+        "weekId":2,
         "mezmurName" : "ግነዩ ለእግዚአብሔር።",
         "mezmurDescription" : "፪ተኛ መዝሙር ዘቅድስት።",
         "firstReadingChapters" :"",
@@ -516,7 +516,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"3",
+        "weekId":3,
         "mezmurName" : "ቦአ ኢየሱስ ምኩራበ ይሁዳ።",
         "mezmurDescription" : "፫ተኛ መዝሙር ዘምኵራብ።",
         "firstReadingChapters" :"",
@@ -529,7 +529,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"4",
+        "weekId":4,
         "mezmurName" : "አምላኩሰ ለአዳም ።",
         "mezmurDescription" : "፬ተኛ መዝሙር ዘመፃጕዕ",
         "firstReadingChapters" :"",
@@ -542,7 +542,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"5",
+        "weekId":5,
         "mezmurName" : "እንዘ ይነብር እግዚእነ ።",
         "mezmurDescription" : "፭ተኛ መዝሙር ዘደብረ ዘይት",
         "firstReadingChapters" :"",
@@ -555,7 +555,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"6",
+        "weekId":6,
         "mezmurName" : "መኑ ውእቱ ገብር ኄር ።",
         "mezmurDescription" : "፮ተኛ መዝሙር ዘገብረ ኄር",
         "firstReadingChapters" :"",
@@ -568,7 +568,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"7",
+        "weekId":7,
         "mezmurName" : "ሖረ ኀቤሁ።",
         "mezmurDescription" : "፯ተኛ መዝሙር ዘኒቆዲሞስ",
         "firstReadingChapters" :"",
@@ -581,7 +581,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"8",
+        "weekId":8,
         "mezmurName" : "በሆሣዕና ዋዜማ ቅዳሜ ማታ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -594,7 +594,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"9",
+        "weekId":9,
         "mezmurName" : "ዘሌሊት እምድኅረ ንበተ ተአምር ።",
         "mezmurDescription" : "በሌሊተ ሆሣዕና መዝሙር ወእንዘ ሰሙን ፡፡",
         "firstReadingChapters" :"",
@@ -607,7 +607,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"10",
+        "weekId":10,
         "mezmurName" : "፩ ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -620,7 +620,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"11",
+        "weekId":11,
         "mezmurName" : "፪ ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -633,7 +633,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"12",
+        "weekId":12,
         "mezmurName" : "፫ ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -646,7 +646,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"13",
+        "weekId":13,
         "mezmurName" : "፬ ዘነግህ በጊዜ ዑደት ውስተ ቤተ መቅደስ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -659,7 +659,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"14",
+        "weekId":14,
         "mezmurName" : "አርእዩነ ፍኖቶ።",
         "mezmurDescription" : "መዝሙር ዘምዕዋድ",
         "firstReadingChapters" :"",
@@ -672,7 +672,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"15",
+        "weekId":15,
         "mezmurName" : "መዝሙር ሰመያ አብርሃም።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -685,7 +685,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"16",
+        "weekId":16,
         "mezmurName" : "መዝሙር ወትቤ ጽዮን ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -698,7 +698,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"17",
+        "weekId":17,
         "mezmurName" : "መዝሙር ባረኮ ያዕቆብ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -711,7 +711,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"18",
+        "weekId":18,
         "mezmurName" : "ዘሆሣዕና ቅዳሴ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -731,7 +731,7 @@
     "month": "Tinsae",
     "weekMezmurList": [
       {
-        "mezmurId":"1",
+        "weekId":1,
         "mezmurName" : "፩ መዝሙር ይትፌሣሕ",
         "mezmurDescription" : "እምትንሣኤ እስከ ዕርገት በትንሣኤ እሑድ ።",
         "firstReadingChapters" :"",
@@ -744,7 +744,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"2",
+        "weekId":2,
         "mezmurName" : "፪ መዝሙር ይትፌሣሕ።",
         "mezmurDescription" : "ዘእሑድ እምድኅረ ትንሣኤ አብጽሕ ኵሎ ከመ ሥርዓተ ትንሣኤ።",
         "firstReadingChapters" :"",
@@ -757,7 +757,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"3",
+        "weekId":3,
         "mezmurName" : "መዝሙር ወበእሑድ ሰንበት ።",
         "mezmurDescription" : "በ፫ተኛ እሑድ ከትንሣኤ በኋላ",
         "firstReadingChapters" :"",
@@ -770,7 +770,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"4",
+        "weekId":4,
         "mezmurName" : "መዝሙር ተንሥአ ወአንሥአ ኵሎሙ ።",
         "mezmurDescription" : "በ፬ተኛ እሑድ መዝሙር ተንሥአ ወአንሥአ ኵሎሙ",
         "firstReadingChapters" :"",
@@ -783,7 +783,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"5",
+        "weekId":5,
         "mezmurName" : "፭ተኛ እሑድ መዝሙር ፋሲካ ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -796,7 +796,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"6",
+        "weekId":6,
         "mezmurName" : "፮ተኛ እሑድ አርአየ ሥልጣኖ ላዕለ ሞት ።",
         "mezmurDescription" : "",
         "firstReadingChapters" :"",
@@ -809,7 +809,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"7",
+        "weekId":7,
         "mezmurName" : "መዝሙር በሰንበት ዐርገ ሐመረ ።",
         "mezmurDescription" : "እምዕርገት እስከ ጰራቅሊጦስ። ፯ተኛ እሑድ እምድኅረ ዕርገት",
         "firstReadingChapters" :"",
@@ -822,7 +822,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"8",
+        "weekId":8,
         "mezmurName" : "አብጽሕ ከመ ሥርዓተ ትንሣኤ።",
         "mezmurDescription" : "እምጰራቅሊጦስ እስከ ፲ወ፯ ለሰኔ ። ፰ተኛ እሑድ ጰራቅሊጦስ",
         "firstReadingChapters" :"",
@@ -835,7 +835,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"9",
+        "weekId":9,
         "mezmurName" : "መዝሙር ዐርገ እምኀቤሆሙ ።",
         "mezmurDescription" : "፱ነኛ እሑድ ከጰራቅሊጦስ በኋላ፡፡",
         "firstReadingChapters" :"",
@@ -848,7 +848,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"10",
+        "weekId":10,
         "mezmurName" : "መዝሙር ወረደ መንፈስ ቅዱስ ።",
         "mezmurDescription" : "፲ኛ እሑድ ከጰራቅሊጦስ በኋላ",
         "firstReadingChapters" :"",
@@ -861,7 +861,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"11",
+        "weekId":11,
         "mezmurName" : "መዝሙር ዐርገ እግዚአብሔር።",
         "mezmurDescription" : "፲፩ኛ እሑድ ከጰራቅሊጦስ በኋላ ",
         "firstReadingChapters" :"",
@@ -874,7 +874,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"12",
+        "weekId":12,
         "mezmurName" : "መዝሙር ዘምሩ ለእግዚአብሔር ።",
         "mezmurDescription" : "፲፪ተኛ እሑድ ከጰራቅሊጦስ በኋላ",
         "firstReadingChapters" :"",
@@ -887,7 +887,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"13",
+        "weekId":13,
         "mezmurName" : "መዝሙር ወረደ እግዚእነ ።",
         "mezmurDescription" : "አመ ፲ወ፪ ለሰኔ ለእመ ኮነ በእሑድ",
         "firstReadingChapters" :"",
@@ -900,7 +900,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"14",
+        "weekId":14,
         "mezmurName" : "መዝሙር አባ ገሪማ ።",
         "mezmurDescription" : "አመ ፲ወ፯ ለሰኔ ለእመ ኮነ በእሑድ",
         "firstReadingChapters" :"",
@@ -913,7 +913,7 @@
         "misbakAudioUrl":""
       },
       {
-        "mezmurId":"15",
+        "weekId":15,
         "mezmurName" : "፩ኛ መዝሙር ናክብር ሰንበቶ ።",
         "mezmurDescription" : "እም፲ወ፯ ለሰኔ እስከ ፳ወ፭ አስተምህሮ ይትበሀል ። ",
         "firstReadingChapters" :"",

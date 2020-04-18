@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:psalmody/models/mezmur.dart';
 import 'package:psalmody/models/favorites.dart';
+import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
 //import 'package:vector_math/vector_math_64.dart' show Vector3;
 
@@ -14,19 +13,20 @@ class AudioPlayerScreen extends StatefulWidget {
 
   final int weekIndex;
   final Mezmur mezmurData;
+  WeekMezmurList weekMezmurList;
 
   AudioPlayerScreen({
     Key key,
     this.weekIndex,
-    this.mezmurData,
+    this.mezmurData, this.weekMezmurList,
   }) : super(key: key);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
-  bool isFavoriteButtonPressed = false;
+
   bool isInFavoritesList = false;
   double sliderValue = 0.0;
-  // reference to our single class that manages the database
+  // reference to the class that manages the database
   final databaseHelper = DatabaseHelper.instance;
   Favorites favoritesObj;
 
@@ -45,10 +45,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   @override
   void initState() {
     super.initState();
-    // calling the function so that 'isInFavoritesList' will get its value
+
+      // calling the function so that 'isInFavoritesList' will get its value
     checkFavoritesList(
-        mezmurName:
-            widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+          mezmurName:
+          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
     initFavoritesObject();
   }
 
@@ -57,16 +58,16 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     setState(() {
       favoritesObj = Favorites(
           mezmurName:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
+          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
           weekIndex: widget.weekIndex,
           misbakChapters:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakChapters,
+          widget.mezmurData.weekMezmurList[widget.weekIndex].misbakChapters,
           misbakLine1:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine1,
+          widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine1,
           misbakLine2:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine2,
+          widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine2,
           misbakLine3:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine3);
+          widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine3);
     });
   }
 
