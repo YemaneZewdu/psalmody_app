@@ -5,6 +5,7 @@ import 'package:psalmody/models/mezmur.dart';
 import 'package:psalmody/models/favorites.dart';
 import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
+import 'package:just_audio/just_audio.dart';
 //import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class AudioPlayerScreen extends StatefulWidget {
@@ -18,17 +19,19 @@ class AudioPlayerScreen extends StatefulWidget {
   AudioPlayerScreen({
     Key key,
     this.weekIndex,
-    this.mezmurData, this.weekMezmurList,
+    this.mezmurData,
+    this.weekMezmurList,
   }) : super(key: key);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
-
   bool isInFavoritesList = false;
   double sliderValue = 0.0;
+
   // reference to the class that manages the database
   final databaseHelper = DatabaseHelper.instance;
   Favorites favoritesObj;
+  AudioPlayer _player;
 
   //double scale = 1.0;
   // double previousScale = 1.0;
@@ -45,12 +48,26 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   @override
   void initState() {
     super.initState();
-
-      // calling the function so that 'isInFavoritesList' will get its value
+    // calling the function so that 'isInFavoritesList' will get its value
     checkFavoritesList(
-          mezmurName:
-          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+        mezmurName:
+            widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
     initFavoritesObject();
+    _player = AudioPlayer();
+    _player
+        .setUrl(
+            //"https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3")
+            "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3")
+        .catchError((error) {
+      // catch audio error ex: 404 url, wrong url ...
+      print(error);
+    });
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
   }
 
   // initializes fav object with the current data, used for adding or deleting in the db
@@ -58,16 +75,16 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     setState(() {
       favoritesObj = Favorites(
           mezmurName:
-          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
+              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
           weekIndex: widget.weekIndex,
           misbakChapters:
-          widget.mezmurData.weekMezmurList[widget.weekIndex].misbakChapters,
+              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakChapters,
           misbakLine1:
-          widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine1,
+              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine1,
           misbakLine2:
-          widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine2,
+              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine2,
           misbakLine3:
-          widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine3);
+              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine3);
     });
   }
 
@@ -87,10 +104,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   }
 
   // if the favorite button is tapped, show the appropriate snack bar
-  void showSnackBar() =>  !isInFavoritesList
+  void showSnackBar() => !isInFavoritesList
       ? scaffoldKey.currentState.showSnackBar(mezmurAddedToFavorites)
       : scaffoldKey.currentState.showSnackBar(mezmurAddedRemovedFromFavorites);
-
 
   void manageFavorites() async {
     if (isInFavoritesList) {
@@ -110,25 +126,119 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
     }
   }
-  counter () async {
-    int length = await databaseHelper.queryRowCount();
-    print("******");
-    print(length);
-    print("******");
+
+  String _printPosition({Duration position}) {
+    String twoDigits(int n) {
+      if (n >= 10) return "$n";
+      return "0$n";
+    }
+
+    String twoDigitMinutes = twoDigits(position.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(position.inSeconds.remainder(60));
+    return "$twoDigitMinutes:$twoDigitSeconds";
   }
+
+  Widget sliderBuilder(var customScreenWidth) {
+    return StreamBuilder<Duration>(
+      stream: _player.durationStream,
+      builder: (context, snapshot) {
+        final duration = snapshot.data ?? Duration.zero;
+        return StreamBuilder<Duration>(
+          stream: _player.getPositionStream(),
+          builder: (context, snapshot) {
+            var position = snapshot.data ?? Duration.zero;
+            if (position > duration) {
+              position = duration;
+            }
+            return Stack(
+              children: <Widget>[
+                // position the seek bar and the texts under it appropriately
+                Positioned.fill(
+                  top: 0,
+                  bottom: 70,
+                  left: 15,
+                  right: 15,
+                  child: SeekBar(
+                    duration: duration,
+                    position: position,
+                    onChangeEnd: (newPosition) {
+                      _player.seek(newPosition);
+                    },
+                  ),
+                ),
+                Positioned(
+                  top: 27,
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: customScreenWidth * 5),
+                        child: Text(_printPosition(position: position)),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: customScreenWidth * 58),
+                        child: Text("- " +
+                            _printPosition(position: duration - position)),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  //TODO: FIX playing buttons bug when the slider is dragged back after audio playing is completed
+  Widget playerControl() {
+    return StreamBuilder<FullAudioPlaybackState>(
+      stream: _player.fullPlaybackStateStream,
+      builder: (context, snapshot) {
+        final fullState = snapshot.data;
+        final state = fullState?.state;
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+//            if (state == AudioPlaybackState.completed && _player.getPositionStream() != Duration(microseconds: 0))
+            if (state == AudioPlaybackState.playing)
+              IconButton(
+                icon: Icon(Icons.pause),
+                iconSize: 50.0,
+                onPressed: _player.pause,
+              )
+            else
+              IconButton(
+                icon: Icon(Icons.play_circle_filled),
+                iconSize: 50.0,
+                onPressed: _player.play,
+              ),
+          ],
+        );
+      },
+    );
+  }
+
+  // custom placeholder widget
+  Widget customPlaceHolder() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+//  counter() async {
+//    int length = await databaseHelper.queryRowCount();
+//    print("******");
+//    print(length);
+//    print("******");
+//  }
+
   @override
   Widget build(BuildContext context) {
     // variables for getting custom screen height and width
-    //var customScreenWidth = MediaQuery.of(context).size.width / 100;
+    var customScreenWidth = MediaQuery.of(context).size.width / 100;
     var customScreenHeight = MediaQuery.of(context).size.height / 100;
-    String errorMessage = "Error! Click Here to relod";
-    // custom placeholder widget
-    Widget customPlaceHolder() {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-
+    String errorMessage = "Error! Click Here to reload";
 
     //TODO: *********************Download image to phone or share it***************************
     return Scaffold(
@@ -146,7 +256,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             onPressed: () {
               manageFavorites();
               showSnackBar();
-              counter();
+              //counter();
             },
             iconSize: 35.0,
             color: Colors.black,
@@ -158,7 +268,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           // network image container
           Container(
             height: customScreenHeight * 60,
-            //margin: EdgeInsets.only(top: 35),
             width: MediaQuery.of(context).size.width,
             child: GestureDetector(
 //              onScaleStart: (ScaleStartDetails details) {
@@ -205,90 +314,101 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             ),
           ),
 
-          // Playing buttons container
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 110,
-              margin: EdgeInsets.all(10),
-              width: 350,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 120,
+                margin: EdgeInsets.all(10),
+                width: customScreenWidth * 100,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey[400],
+                      offset: Offset(1.0, 2.0),
+                      blurRadius: 15.0,
+                      spreadRadius: 4,
+                    ),
+                  ],
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey[300],
-                    offset: Offset(1.0, 2.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 4,
-                  ),
-                ],
-              ),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    height: 50,
-                    margin: EdgeInsets.only(top: 5),
-                    width: 300,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text("1:05"),
-                        Slider(
-                          onChanged: onSliderChanged,
-                          value: sliderValue,
-                          activeColor: Colors.grey[700],
-                          inactiveColor: Colors.grey[400],
-                        ),
-                        Text("-0:50"),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 100,
-                      margin: EdgeInsets.only(bottom: 35),
-                      //padding: EdgeInsets.all(15),
-                      alignment: Alignment.center,
-                      width: 300,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(
-                              Icons.replay_5,
-                              color: Colors.black,
-                            ),
-                            iconSize: 35,
-                            onPressed: null,
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.play_circle_filled,
-                              color: Colors.black,
-                            ),
-                            iconSize: 40,
-                            onPressed: null,
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.forward_5,
-                              color: Colors.black,
-                            ),
-                            iconSize: 35,
-                            onPressed: null,
-                          ),
-                        ],
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Stack(
+                    children: <Widget>[
+                      // seek bar and minutes and seconds text under it
+                      sliderBuilder(customScreenWidth),
+                      // play and pause controller
+                      Positioned.fill(
+                        top: 40,
+                        child: playerControl(),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class SeekBar extends StatefulWidget {
+  final Duration duration;
+  final Duration position;
+  final ValueChanged<Duration> onChanged;
+  final ValueChanged<Duration> onChangeEnd;
+
+  SeekBar({
+    @required this.duration,
+    @required this.position,
+    this.onChanged,
+    this.onChangeEnd,
+  });
+
+  @override
+  _SeekBarState createState() => _SeekBarState();
+}
+
+class _SeekBarState extends State<SeekBar> {
+  double _dragValue;
+
+  @override
+  Widget build(BuildContext context) {
+    // customizes the slider
+    return SliderTheme(
+      data: SliderTheme.of(context).copyWith(
+          activeTrackColor: Colors.grey[600],
+          inactiveTrackColor: Colors.grey[400],
+          // the circular thumb on the slider
+          thumbColor: Colors.grey[600],
+          thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6.0),
+          // the halo effect when the thumb is clicked
+          overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0)),
+      child: Slider(
+        min: 0.0,
+        max: widget.duration.inMilliseconds.toDouble(),
+        value: _dragValue ?? widget.position.inMilliseconds.toDouble(),
+        onChanged: (value) {
+          setState(() {
+            _dragValue = value;
+          });
+          if (widget.onChanged != null) {
+            widget.onChanged(Duration(milliseconds: value.round()));
+          }
+        },
+        onChangeEnd: (value) {
+          _dragValue = null;
+          if (widget.onChangeEnd != null) {
+            widget.onChangeEnd(Duration(milliseconds: value.round()));
+          }
+        },
       ),
     );
   }

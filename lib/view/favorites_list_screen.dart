@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psalmody/models/mezmur.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:psalmody/models/favorites.dart';
 import 'audio_player_screen.dart';
 
@@ -59,7 +58,6 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
             );
           } else {
             return ListView.builder(
-
               physics: BouncingScrollPhysics(),
               padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
               itemCount: snapshot.data.length,
