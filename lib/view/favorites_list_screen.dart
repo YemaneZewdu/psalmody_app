@@ -4,6 +4,7 @@ import 'package:psalmody/sqflite/database_helper.dart';
 import 'package:psalmody/models/favorites.dart';
 import 'audio_player_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:share/share.dart';
 
 class FavoritesListScreen extends StatefulWidget {
   @override
@@ -91,6 +92,21 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
         false; // In case the user dismisses the dialog by clicking away from it
   }
 
+  // lets users share or copy to clipboard
+  void share(Favorites fav) {
+    //TODO: Enter the app store link of the app in the subject field
+    Share.share(
+      "ምስባክ፥ " +
+          fav.misbakChapters +
+          "\n" +
+          fav.misbakLine1 +
+          "\n" +
+          fav.misbakLine2 +
+          "n" +
+          fav.misbakLine3,
+    );
+  }
+
   favListBuilder(BuildContext context) => FutureBuilder<List<Favorites>>(
         future: futureFavoritesList,
         builder: (context, AsyncSnapshot snapshot) {
@@ -144,7 +160,8 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                         caption: 'Share',
                         color: Colors.indigo,
                         icon: Icons.share,
-                        onTap: null, //() => _showSnackBar('More'),
+                        onTap: () => share(snapshot
+                            .data[index]), //() => _showSnackBar('More'),
                       ),
                       IconSlideAction(
                         caption: 'Delete',

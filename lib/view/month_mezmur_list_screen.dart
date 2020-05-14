@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:psalmody/models/mezmur.dart';
+import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/view/audio_player_screen.dart';
 import 'dart:convert';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:share/share.dart';
 
 class MonthMezmurListScreen extends StatelessWidget {
   final String monthName;
@@ -82,6 +84,27 @@ class MonthMezmurListScreen extends StatelessWidget {
         ],
       );
 
+  // lets users share or copy to clipboard
+  void share(WeekMezmurList list) {
+    //TODO: Enter the app store link of the app in the subject field
+    Share.share(
+      monthName +
+          "\n" +
+          list.mezmurDescription +
+          "\n" +
+          list.mezmurName +
+          "\n" +
+          "ምስባክ፥ " +
+          list.misbakChapters +
+          "\n" +
+          list.misbakLine1 +
+          "\n" +
+          list.misbakLine2 +
+          "\n" +
+          list.misbakLine3,
+    );
+  }
+
   // custom future widget returning list view
   Widget futureWidget(BuildContext context) {
     return new FutureBuilder<Mezmur>(
@@ -136,7 +159,7 @@ class MonthMezmurListScreen extends StatelessWidget {
                         caption: 'Share',
                         color: Colors.indigo,
                         icon: Icons.share,
-                        onTap: null, //() => _showSnackBar('More'),
+                        onTap: () => share(snapshot.data.weekMezmurList[index]),
                       ),
                     ],
                     child: Card(
