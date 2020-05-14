@@ -18,6 +18,8 @@ class DatabaseHelper {
   static const String MISBAK_LINE1 = 'misbakLine1';
   static const String MISBAK_LINE2 = 'misbakLine2';
   static const String MISBAK_LINE3 = 'misbakLine3';
+  static const String MISBAK_PICTURE_URL = "misbakPictureUrl";
+  static const String MISBAK_AUDIO_URL = "misbakAudioUrl";
 
   // make this a singleton class
   DatabaseHelper._privateConstructor();
@@ -48,7 +50,8 @@ class DatabaseHelper {
   Future _onCreate(Database db, int version) async {
     //$ID INTGER NOT NULL,
     await db.execute('''
-      CREATE TABLE IF NOT EXISTS $TABLE ($MEZMUR_NAME TEXT PRIMARY KEY, $WEEK_INDEX INTEGER, $MISBAK_CHAPTERS TEXT, $MISBAK_LINE1 TEXT, $MISBAK_LINE2 TEXT, $MISBAK_LINE3 TEXT)''');
+      CREATE TABLE IF NOT EXISTS $TABLE ($MEZMUR_NAME TEXT PRIMARY KEY, $WEEK_INDEX INTEGER, $MISBAK_CHAPTERS TEXT, $MISBAK_LINE1 TEXT, $MISBAK_LINE2 TEXT, $MISBAK_LINE3 TEXT, 
+       $MISBAK_AUDIO_URL TEXT, $MISBAK_PICTURE_URL TEXT)''');
   }
 
   // insert to the db
@@ -73,7 +76,7 @@ class DatabaseHelper {
     }
   }
 
-  Future<List<Favorites>> getFavorites() async {
+Future<List<Favorites>> getFavorites() async {
     // get the db
     var dbClient = await getDb;
     //getting the column data
@@ -83,7 +86,9 @@ class DatabaseHelper {
       MISBAK_CHAPTERS,
       MISBAK_LINE1,
       MISBAK_LINE2,
-      MISBAK_LINE3
+      MISBAK_LINE3,
+      MISBAK_AUDIO_URL,
+      MISBAK_PICTURE_URL,
     ]);
     // raw query
     //  List<Map> maps = await dbClient.rawQuery("SELECT * FROM $TABLE");
@@ -96,7 +101,6 @@ class DatabaseHelper {
       return favoriteList;
     }
     return null;
-
   }
 
   // raw SQL commands. This method uses a raw query to give the row count.
@@ -129,6 +133,7 @@ class DatabaseHelper {
     }
     return false;
   }
+
 //Future drop () async {
 //    var db = await getDb;
 //    db.execute("DROP TABLE IF EXISTS $TABLE");

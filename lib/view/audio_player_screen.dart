@@ -6,6 +6,10 @@ import 'package:psalmody/models/favorites.dart';
 import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:psalmody/view/favorites_list_screen.dart';
+
+import '../home_screen.dart';
+import 'month_mezmur_list_screen.dart';
 //import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class AudioPlayerScreen extends StatefulWidget {
@@ -14,13 +18,27 @@ class AudioPlayerScreen extends StatefulWidget {
 
   final int weekIndex;
   final Mezmur mezmurData;
-  WeekMezmurList weekMezmurList;
+  final String mezmurName;
+  final int monthIndex;
+  final String misbakChapters;
+  final String misbakLine1;
+  final String misbakLine2;
+  final String misbakLine3;
+  final String misbakPictureUrl;
+  final String misbakAudioUrl;
 
   AudioPlayerScreen({
     Key key,
     this.weekIndex,
     this.mezmurData,
-    this.weekMezmurList,
+    this.mezmurName,
+    this.misbakChapters,
+    this.misbakLine1,
+    this.misbakLine2,
+    this.misbakLine3,
+    this.misbakPictureUrl,
+    this.misbakAudioUrl,
+    this.monthIndex,
   }) : super(key: key);
 }
 
@@ -40,18 +58,19 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final SnackBar mezmurAddedToFavorites =
-      SnackBar(content: Text("Added to Favorites"));
+      SnackBar(content: Text("Added to Favorites List"));
 
-  final SnackBar mezmurAddedRemovedFromFavorites =
-      SnackBar(content: Text("Removed from Favorites"));
+  final SnackBar mezmurRemovedFromFavorites =
+      SnackBar(content: Text("Removed from Favorites List"));
 
   @override
   void initState() {
     super.initState();
     // calling the function so that 'isInFavoritesList' will get its value
     checkFavoritesList(
-        mezmurName:
-            widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+        mezmurName: widget.mezmurData != null
+            ? widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName
+            : widget.mezmurName);
     initFavoritesObject();
     _player = AudioPlayer();
     _player
@@ -73,18 +92,36 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   // initializes fav object with the current data, used for adding or deleting in the db
   void initFavoritesObject() {
     setState(() {
-      favoritesObj = Favorites(
-          mezmurName:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
-          weekIndex: widget.weekIndex,
-          misbakChapters:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakChapters,
-          misbakLine1:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine1,
-          misbakLine2:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine2,
-          misbakLine3:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].misbakLine3);
+      // mezmurData is null when coming from Favorite list screen
+      // so checking it is necessary to
+      widget.mezmurData != null
+          ? favoritesObj = Favorites(
+              mezmurName:
+                  widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
+              weekIndex: widget.weekIndex,
+              misbakChapters: widget
+                  .mezmurData.weekMezmurList[widget.weekIndex].misbakChapters,
+              misbakLine1: widget
+                  .mezmurData.weekMezmurList[widget.weekIndex].misbakLine1,
+              misbakLine2: widget
+                  .mezmurData.weekMezmurList[widget.weekIndex].misbakLine2,
+              misbakLine3: widget
+                  .mezmurData.weekMezmurList[widget.weekIndex].misbakLine3,
+              misbakAudioUrl: widget
+                  .mezmurData.weekMezmurList[widget.weekIndex].misbakAudioUrl,
+              misbakPictureUrl: widget
+                  .mezmurData.weekMezmurList[widget.weekIndex].misbakPictureUrl,
+            )
+          : favoritesObj = Favorites(
+              mezmurName: widget.mezmurName,
+              weekIndex: widget.weekIndex,
+              misbakChapters: widget.misbakChapters,
+              misbakLine1: widget.misbakLine1,
+              misbakLine2: widget.misbakLine2,
+              misbakLine3: widget.misbakLine3,
+              misbakAudioUrl: widget.misbakAudioUrl,
+              misbakPictureUrl: widget.misbakPictureUrl,
+            );
     });
   }
 
@@ -106,27 +143,44 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   // if the favorite button is tapped, show the appropriate snack bar
   void showSnackBar() => !isInFavoritesList
       ? scaffoldKey.currentState.showSnackBar(mezmurAddedToFavorites)
-      : scaffoldKey.currentState.showSnackBar(mezmurAddedRemovedFromFavorites);
+      : scaffoldKey.currentState.showSnackBar(mezmurRemovedFromFavorites);
 
   void manageFavorites() async {
+    // if true, the mezmur is already in favorites list. i.e remove it
     if (isInFavoritesList) {
-      // if true, the mezmur is already in favorites list. i.e remove it
-      databaseHelper.delete(
+      if (widget.mezmurData != null) {
+        databaseHelper.delete(
           mezmurName:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
-      checkFavoritesList(
+              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
+        );
+        checkFavoritesList(
           mezmurName:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
+        );
+      } else {
+        databaseHelper.delete(
+          mezmurName: widget.mezmurName,
+        );
+        checkFavoritesList(
+          mezmurName: widget.mezmurName,
+        );
+      }
     } else {
       // if false, add it to favorites list
       databaseHelper.insertToDb(favoritesObj);
       // calling the function so that it will set  'isInFavoritesList' to true
-      checkFavoritesList(
-          mezmurName:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
+      widget.mezmurData != null
+          ? checkFavoritesList(
+              mezmurName:
+                  widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
+            )
+          : checkFavoritesList(
+              mezmurName: widget.mezmurName,
+            );
     }
   }
 
+  // returns a two
   String _printPosition({Duration position}) {
     String twoDigits(int n) {
       if (n >= 10) return "$n";
@@ -138,6 +192,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     return "$twoDigitMinutes:$twoDigitSeconds";
   }
 
+  // builds the slider with a position and a duration indicator text numbers under it
   Widget sliderBuilder(var customScreenWidth) {
     return StreamBuilder<Duration>(
       stream: _player.durationStream,
@@ -190,22 +245,34 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     );
   }
 
+  Widget reloadPlayer(AudioPlaybackState state) {
+    setState(() {
+      state = AudioPlaybackState.playing;
+    });
+    return CircularProgressIndicator();
+  }
+
   //TODO: FIX playing buttons bug when the slider is dragged back after audio playing is completed
-  Widget playerControl() {
+  // controller for playing and pausing the audio
+  Widget playerButtonsController() {
     return StreamBuilder<FullAudioPlaybackState>(
       stream: _player.fullPlaybackStateStream,
       builder: (context, snapshot) {
         final fullState = snapshot.data;
-        final state = fullState?.state;
+        var state = fullState?.state;
+        final buffering = fullState?.buffering;
+        if (state == AudioPlaybackState.completed && buffering == true){
+          state = AudioPlaybackState.playing;
+          print("YEEPP\n");
+        }
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-//            if (state == AudioPlaybackState.completed && _player.getPositionStream() != Duration(microseconds: 0))
             if (state == AudioPlaybackState.playing)
               IconButton(
                 icon: Icon(Icons.pause),
                 iconSize: 50.0,
-                onPressed: _player.pause,
+                onPressed:  _player.pause,
               )
             else
               IconButton(
@@ -226,12 +293,33 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     );
   }
 
-//  counter() async {
-//    int length = await databaseHelper.queryRowCount();
-//    print("******");
-//    print(length);
-//    print("******");
-//  }
+  counter() async {
+    int length = await databaseHelper.queryRowCount();
+    print("******");
+    print(length);
+    print("******");
+  }
+
+  _onBackButtonPressed(BuildContext context) {
+    if (widget.mezmurData != null) {
+      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MonthMezmurListScreen(
+            mezmurData: widget.mezmurData,
+            monthName: widget.mezmurData.month,
+            monthIndex: widget.monthIndex,
+          ),
+        ),
+      );
+    } else {
+//      Navigator.pop(context);
+//      Navigator.pop(context);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => FavoritesListScreen()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -241,35 +329,42 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     String errorMessage = "Error! Click Here to reload";
 
     //TODO: *********************Download image to phone or share it***************************
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
-          overflow: TextOverflow.fade,
-        ),
-        actions: <Widget>[
-          // favorites icon button
-          IconButton(
-            icon: Icon(isInFavoritesList ? Icons.star : Icons.star_border),
-            onPressed: () {
-              manageFavorites();
-              showSnackBar();
-              //counter();
-            },
-            iconSize: 35.0,
-            color: Colors.black,
+    return SafeArea(
+      child: Scaffold(
+        key: scaffoldKey,
+        appBar: AppBar(
+//        leading: IconButton(
+//          icon: Icon(Icons.chevron_left),
+//          onPressed: () => _onBackButtonPressed(context),
+//        ),
+          centerTitle: true,
+          title: Text(
+            widget.mezmurData != null
+                ? widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName
+                : widget.mezmurName,
+            overflow: TextOverflow.fade,
           ),
-        ],
-      ),
-      body: Stack(
-        children: <Widget>[
-          // network image container
-          Container(
-            height: customScreenHeight * 60,
-            width: MediaQuery.of(context).size.width,
-            child: GestureDetector(
+          actions: <Widget>[
+            // favorites icon button
+            IconButton(
+              icon: Icon(isInFavoritesList ? Icons.star : Icons.star_border),
+              onPressed: () {
+                manageFavorites();
+                showSnackBar();
+                counter();
+              },
+              iconSize: 35.0,
+              color: Colors.black,
+            ),
+          ],
+        ),
+        body: Stack(
+          children: <Widget>[
+            // network image container
+            Container(
+              height: customScreenHeight * 60,
+              width: MediaQuery.of(context).size.width,
+              child: GestureDetector(
 //              onScaleStart: (ScaleStartDetails details) {
 //                previousScale = scale;
 //                setState(() {});
@@ -282,78 +377,81 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 //                // assigning it back to 1.0 to leave the image zoomed
 //                previousScale = 1.0;
 //              },
-              // allows the image to be move when zoomed
+                // allows the image to be move when zoomed
 //              child: Transform(
-              // this alignment makes it zoomed from the center
+                // this alignment makes it zoomed from the center
 //                alignment: FractionalOffset.,
 //                transform: Matrix4.diagonal3(
 //                  Vector3(scale, scale, scale),
 //                ),
 
-              child: CachedNetworkImage(
-                alignment: Alignment.center,
-                imageUrl: widget.mezmurData.weekMezmurList[widget.weekIndex]
-                    .misbakPictureUrl,
-                placeholder: (context, url) => customPlaceHolder(),
-                errorWidget: (context, url, error) => FlatButton(
-                  // used a container because the flat button is sized as the image size
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    color: Colors.red,
-                    child: Text(
-                      errorMessage,
-                      style: TextStyle(
-                        fontSize: 20,
+                child: CachedNetworkImage(
+                  alignment: Alignment.center,
+                  imageUrl: widget.mezmurData != null
+                      ? widget.mezmurData.weekMezmurList[widget.weekIndex]
+                          .misbakPictureUrl
+                      : widget.misbakPictureUrl,
+                  placeholder: (context, url) => customPlaceHolder(),
+                  errorWidget: (context, url, error) => FlatButton(
+                    // used a container because the flat button is sized as the image size
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      color: Colors.red,
+                      child: Text(
+                        errorMessage,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
+                    // makes a network call again
+                    onPressed: () => setState(() {}),
                   ),
-                  // makes a network call again
-                  onPressed: () => setState(() {}),
                 ),
               ),
             ),
-          ),
 
-          Padding(
-            padding: EdgeInsets.all(5),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 120,
-                margin: EdgeInsets.all(10),
-                width: customScreenWidth * 100,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey[400],
-                      offset: Offset(1.0, 2.0),
-                      blurRadius: 15.0,
-                      spreadRadius: 4,
+            Padding(
+              padding: EdgeInsets.only(left: 5, bottom: 20, top: 5, right: 5),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 120,
+                  margin: EdgeInsets.all(10),
+                  width: customScreenWidth * 100,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
                     ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Stack(
-                    children: <Widget>[
-                      // seek bar and minutes and seconds text under it
-                      sliderBuilder(customScreenWidth),
-                      // play and pause controller
-                      Positioned.fill(
-                        top: 40,
-                        child: playerControl(),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey[400],
+                        offset: Offset(1.0, 2.0),
+                        blurRadius: 15.0,
+                        spreadRadius: 4,
                       ),
                     ],
                   ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Stack(
+                      children: <Widget>[
+                        // seek bar and minutes and seconds text under it
+                        sliderBuilder(customScreenWidth),
+                        // play and pause controller
+                        Positioned.fill(
+                          top: 40,
+                          child: playerButtonsController(),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

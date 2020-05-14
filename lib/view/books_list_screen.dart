@@ -28,6 +28,9 @@ class BooksListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Books"),
+      ),
       backgroundColor: Colors.grey[300],
       body: new ListView.builder(
         physics: BouncingScrollPhysics(),

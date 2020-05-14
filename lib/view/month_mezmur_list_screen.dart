@@ -5,17 +5,19 @@ import 'package:psalmody/view/audio_player_screen.dart';
 import 'dart:convert';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class MonthMezmurListScreen extends StatelessWidget {
   final String monthName;
   Mezmur mezmurData;
   final int monthIndex;
+  final SlidableController slidableController = SlidableController();
 
   MonthMezmurListScreen({
     Key key,
-    @required this.monthName,
+    this.monthName,
     this.mezmurData,
-    @required this.monthIndex,
+    this.monthIndex,
   }) : super(key: key);
 
   //load JSON
@@ -32,6 +34,8 @@ class MonthMezmurListScreen extends StatelessWidget {
     return mezmurData;
   }
 
+// mezmur description might be empty so to avoid an empty line
+  // in the card, check if it is ""
   Widget mezmurNameDescription(snapshot, index) => Text(
         snapshot.data.weekMezmurList[index].mezmurDescription != ""
             ? snapshot.data.weekMezmurList[index].mezmurDescription +
@@ -96,39 +100,70 @@ class MonthMezmurListScreen extends StatelessWidget {
               itemCount: mezmurData.weekMezmurList.length,
               itemBuilder: (BuildContext context, int index) {
                 return new GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AudioPlayerScreen(
-                        mezmurData: mezmurData,
-                        weekIndex: index,
+                  onTap: () {
+//                    print(
+//                        snapshot.data.weekMezmurList[index].mezmurDescription +
+//                            "\n" +
+//                            snapshot.data.weekMezmurList[index].mezmurName +
+//                            "\n" +
+//                            "ምስባክ፥" +
+//                            snapshot.data.weekMezmurList[index].misbakChapters +
+//                            "\n" +
+//                            snapshot.data.weekMezmurList[index].misbakLine1 +
+//                            "\n" +
+//                            snapshot.data.weekMezmurList[index].misbakLine2 +
+//                            "\n" +
+//                            snapshot.data.weekMezmurList[index].misbakLine3);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AudioPlayerScreen(
+                          mezmurData: mezmurData,
+                          weekIndex: index,
+                          monthIndex: monthIndex,
+                        ),
                       ),
-                    ),
-                  ),
-                  child: Card(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        // text padding
-                        vertical: 15.0,
-                        horizontal: 10.0,
+                    );
+                  },
+                  child: Slidable(
+                    key:
+                        new Key(snapshot.data.weekMezmurList[index].mezmurName),
+                    actionPane: SlidableDrawerActionPane(),
+                    controller: slidableController,
+                    actionExtentRatio: 0.30,
+                    secondaryActions: <Widget>[
+                      IconSlideAction(
+                        caption: 'Share',
+                        color: Colors.indigo,
+                        icon: Icons.share,
+                        onTap: null, //() => _showSnackBar('More'),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          mezmurNameDescription(snapshot, index),
-                          SizedBox(height: 5.0),
-                          Divider(
-                            color: Colors.black,
-                          ),
-                          Row(
-                            children: <Widget>[
-                              misbakChapter(snapshot, index),
-                              SizedBox(width: 15),
-                              misbakLines(snapshot, index),
-                            ],
-                          ),
-                        ],
+                    ],
+                    child: Card(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          // text padding
+                          vertical: 15.0,
+                          horizontal: 10.0,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            mezmurNameDescription(snapshot, index),
+                            SizedBox(height: 5.0),
+                            Divider(
+                              color: Colors.black,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                misbakChapter(snapshot, index),
+                                SizedBox(width: 15),
+                                misbakLines(snapshot, index),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -158,13 +193,15 @@ class MonthMezmurListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(monthName),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(monthName),
+        ),
+        backgroundColor: Colors.grey[300],
+        body: futureWidget(context),
       ),
-      backgroundColor: Colors.grey[300],
-      body: futureWidget(context),
     );
   }
 }
