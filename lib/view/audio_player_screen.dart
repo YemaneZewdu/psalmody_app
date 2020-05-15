@@ -93,7 +93,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   void initFavoritesObject() {
     setState(() {
       // mezmurData is null when coming from Favorite list screen
-      // so checking it is necessary to
+      // so checking it is necessary to avoid an error
       widget.mezmurData != null
           ? favoritesObj = Favorites(
               mezmurName:
@@ -109,8 +109,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   .mezmurData.weekMezmurList[widget.weekIndex].misbakLine3,
               misbakAudioUrl: widget
                   .mezmurData.weekMezmurList[widget.weekIndex].misbakAudioUrl,
-              misbakPictureUrl: widget
-                  .mezmurData.weekMezmurList[widget.weekIndex].misbakPictureUrl,
+              misbakPictureUrl: widget.mezmurData
+                  .weekMezmurList[widget.weekIndex].misbakPictureRemoteUrl,
             )
           : favoritesObj = Favorites(
               mezmurName: widget.mezmurName,
@@ -261,7 +261,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         final fullState = snapshot.data;
         var state = fullState?.state;
         final buffering = fullState?.buffering;
-        if (state == AudioPlaybackState.completed && buffering == true){
+        if (state == AudioPlaybackState.completed && buffering == true) {
           state = AudioPlaybackState.playing;
           print("YEEPP\n");
         }
@@ -272,7 +272,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               IconButton(
                 icon: Icon(Icons.pause),
                 iconSize: 50.0,
-                onPressed:  _player.pause,
+                onPressed: _player.pause,
               )
             else
               IconButton(
@@ -384,29 +384,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 //                transform: Matrix4.diagonal3(
 //                  Vector3(scale, scale, scale),
 //                ),
-
-                child: CachedNetworkImage(
-                  alignment: Alignment.center,
-                  imageUrl: widget.mezmurData != null
+                child: Image(
+                  image: AssetImage(widget.mezmurData != null
                       ? widget.mezmurData.weekMezmurList[widget.weekIndex]
-                          .misbakPictureUrl
-                      : widget.misbakPictureUrl,
-                  placeholder: (context, url) => customPlaceHolder(),
-                  errorWidget: (context, url, error) => FlatButton(
-                    // used a container because the flat button is sized as the image size
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      color: Colors.red,
-                      child: Text(
-                        errorMessage,
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    // makes a network call again
-                    onPressed: () => setState(() {}),
-                  ),
+                          .misbakPicturelocalPath
+                      : widget.misbakPictureUrl),
                 ),
               ),
             ),

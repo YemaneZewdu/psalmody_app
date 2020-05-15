@@ -144,7 +144,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                         misbakLine1: snapshot.data[index].misbakLine1,
                         misbakLine2: snapshot.data[index].misbakLine2,
                         misbakLine3: snapshot.data[index].misbakLine3,
-                        misbakPictureUrl: snapshot.data[index].misbakPictureUrl,
+                        misbakPictureUrl: snapshot.data[index].misbakPictureRemoteUrl,
                         misbakAudioUrl: snapshot.data[index].misbakAudioUrl,
                       ),
                     ),
