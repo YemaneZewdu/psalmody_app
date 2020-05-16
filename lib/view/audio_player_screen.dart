@@ -1,15 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:psalmody/models/mezmur.dart';
-import 'package:psalmody/models/favorites.dart';
 import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:psalmody/view/favorites_list_screen.dart';
-
-import '../home_screen.dart';
-import 'month_mezmur_list_screen.dart';
 //import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class AudioPlayerScreen extends StatefulWidget {
@@ -24,8 +18,9 @@ class AudioPlayerScreen extends StatefulWidget {
   final String misbakLine1;
   final String misbakLine2;
   final String misbakLine3;
-  final String misbakPictureUrl;
+  final String misbakPictureRemoteUrl;
   final String misbakAudioUrl;
+  final String misbakPicturelocalPath;
 
   AudioPlayerScreen({
     Key key,
@@ -36,19 +31,21 @@ class AudioPlayerScreen extends StatefulWidget {
     this.misbakLine1,
     this.misbakLine2,
     this.misbakLine3,
-    this.misbakPictureUrl,
+    this.misbakPictureRemoteUrl,
     this.misbakAudioUrl,
     this.monthIndex,
+    this.misbakPicturelocalPath
   }) : super(key: key);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
+
   bool isInFavoritesList = false;
-  double sliderValue = 0.0;
+//  double sliderValue = 0.0;
 
   // reference to the class that manages the database
   final databaseHelper = DatabaseHelper.instance;
-  Favorites favoritesObj;
+  WeekMezmurList favoritesObj;
   AudioPlayer _player;
 
   //double scale = 1.0;
@@ -62,6 +59,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   final SnackBar mezmurRemovedFromFavorites =
       SnackBar(content: Text("Removed from Favorites List"));
+
 
   @override
   void initState() {
@@ -94,11 +92,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     setState(() {
       // mezmurData is null when coming from Favorite list screen
       // so checking it is necessary to avoid an error
+
       widget.mezmurData != null
-          ? favoritesObj = Favorites(
+          ? favoritesObj = WeekMezmurList(
               mezmurName:
                   widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
-              weekIndex: widget.weekIndex,
+              weekId: widget.weekIndex,
               misbakChapters: widget
                   .mezmurData.weekMezmurList[widget.weekIndex].misbakChapters,
               misbakLine1: widget
@@ -109,18 +108,21 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   .mezmurData.weekMezmurList[widget.weekIndex].misbakLine3,
               misbakAudioUrl: widget
                   .mezmurData.weekMezmurList[widget.weekIndex].misbakAudioUrl,
-              misbakPictureUrl: widget.mezmurData
+              misbakPictureRemoteUrl: widget.mezmurData
                   .weekMezmurList[widget.weekIndex].misbakPictureRemoteUrl,
+              misbakPicturelocalPath: widget.mezmurData
+                  .weekMezmurList[widget.weekIndex].misbakPicturelocalPath
             )
-          : favoritesObj = Favorites(
+          : favoritesObj = WeekMezmurList(
               mezmurName: widget.mezmurName,
-              weekIndex: widget.weekIndex,
+              weekId: widget.weekIndex,
               misbakChapters: widget.misbakChapters,
               misbakLine1: widget.misbakLine1,
               misbakLine2: widget.misbakLine2,
               misbakLine3: widget.misbakLine3,
               misbakAudioUrl: widget.misbakAudioUrl,
-              misbakPictureUrl: widget.misbakPictureUrl,
+              misbakPictureRemoteUrl: widget.misbakPictureRemoteUrl,
+              misbakPicturelocalPath: widget.misbakPicturelocalPath
             );
     });
   }
@@ -134,11 +136,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   }
 
   // slider controller
-  void onSliderChanged(double value) {
-    setState(() {
-      sliderValue = value;
-    });
-  }
+//  void onSliderChanged(double value) {
+//    setState(() {
+//      sliderValue = value;
+//    });
+//  }
 
   // if the favorite button is tapped, show the appropriate snack bar
   void showSnackBar() => !isInFavoritesList
@@ -148,6 +150,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   void manageFavorites() async {
     // if true, the mezmur is already in favorites list. i.e remove it
     if (isInFavoritesList) {
+      // mezmurData is null when coming from FavoriteList screen
       if (widget.mezmurData != null) {
         databaseHelper.delete(
           mezmurName:
@@ -180,7 +183,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     }
   }
 
-  // returns a two
+  // returns a two digit number for the audio minutes indicators
   String _printPosition({Duration position}) {
     String twoDigits(int n) {
       if (n >= 10) return "$n";
@@ -263,7 +266,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         final buffering = fullState?.buffering;
         if (state == AudioPlaybackState.completed && buffering == true) {
           state = AudioPlaybackState.playing;
-          print("YEEPP\n");
         }
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -293,40 +295,39 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     );
   }
 
-  counter() async {
-    int length = await databaseHelper.queryRowCount();
-    print("******");
-    print(length);
-    print("******");
-  }
+//  counter() async {
+//    int length = await databaseHelper.queryRowCount();
+//    print("******");
+//    print(length);
+//    print("******");
+//  }
 
-  _onBackButtonPressed(BuildContext context) {
-    if (widget.mezmurData != null) {
-      Navigator.pop(context);
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MonthMezmurListScreen(
-            mezmurData: widget.mezmurData,
-            monthName: widget.mezmurData.month,
-            monthIndex: widget.monthIndex,
-          ),
-        ),
-      );
-    } else {
+//  _onBackButtonPressed(BuildContext context) {
+//    if (widget.mezmurData != null) {
 //      Navigator.pop(context);
-//      Navigator.pop(context);
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => FavoritesListScreen()));
-    }
-  }
+//      Navigator.push(
+//        context,
+//        MaterialPageRoute(
+//          builder: (context) => MonthMezmurListScreen(
+//            mezmurData: widget.mezmurData,
+//            monthName: widget.mezmurData.month,
+//            monthIndex: widget.monthIndex,
+//          ),
+//        ),
+//      );
+//    } else {
+////      Navigator.pop(context);
+////      Navigator.pop(context);
+//      Navigator.push(context,
+//          MaterialPageRoute(builder: (context) => FavoritesListScreen()));
+//    }
+//  }
 
   @override
   Widget build(BuildContext context) {
     // variables for getting custom screen height and width
     var customScreenWidth = MediaQuery.of(context).size.width / 100;
     var customScreenHeight = MediaQuery.of(context).size.height / 100;
-    String errorMessage = "Error! Click Here to reload";
 
     //TODO: *********************Download image to phone or share it***************************
     return SafeArea(
@@ -351,7 +352,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               onPressed: () {
                 manageFavorites();
                 showSnackBar();
-                counter();
+              //  counter();
               },
               iconSize: 35.0,
               color: Colors.black,
@@ -388,7 +389,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   image: AssetImage(widget.mezmurData != null
                       ? widget.mezmurData.weekMezmurList[widget.weekIndex]
                           .misbakPicturelocalPath
-                      : widget.misbakPictureUrl),
+                      : widget.misbakPicturelocalPath),
                 ),
               ),
             ),

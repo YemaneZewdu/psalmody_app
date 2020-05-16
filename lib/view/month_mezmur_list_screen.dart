@@ -123,20 +123,7 @@ class MonthMezmurListScreen extends StatelessWidget {
               itemCount: mezmurData.weekMezmurList.length,
               itemBuilder: (BuildContext context, int index) {
                 return new GestureDetector(
-                  onTap: () {
-//                    print(
-//                        snapshot.data.weekMezmurList[index].mezmurDescription +
-//                            "\n" +
-//                            snapshot.data.weekMezmurList[index].mezmurName +
-//                            "\n" +
-//                            "ምስባክ፥" +
-//                            snapshot.data.weekMezmurList[index].misbakChapters +
-//                            "\n" +
-//                            snapshot.data.weekMezmurList[index].misbakLine1 +
-//                            "\n" +
-//                            snapshot.data.weekMezmurList[index].misbakLine2 +
-//                            "\n" +
-//                            snapshot.data.weekMezmurList[index].misbakLine3);
+                  onTap: () =>
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -146,8 +133,7 @@ class MonthMezmurListScreen extends StatelessWidget {
                           monthIndex: monthIndex,
                         ),
                       ),
-                    );
-                  },
+                    ),
                   child: Slidable(
                     key:
                         new Key(snapshot.data.weekMezmurList[index].mezmurName),

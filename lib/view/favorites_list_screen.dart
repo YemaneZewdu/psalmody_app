@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
-import 'package:psalmody/models/favorites.dart';
 import 'audio_player_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:share/share.dart';
@@ -12,14 +12,20 @@ class FavoritesListScreen extends StatefulWidget {
 }
 
 class _FavoritesListScreenState extends State<FavoritesListScreen> {
-  Future<List<Favorites>> futureFavoritesList;
+
+  // holds the favorite list
+  Future<List<WeekMezmurList>> futureFavoritesList;
+  // reference to the class that manages the database
   final databaseHelper = DatabaseHelper.instance;
+  // used for setting up a snack bar
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  // snack bar for notifying the user that the favorite was removed
   final SnackBar mezmurRemovedFromFavorites = SnackBar(
     content: Text("Removed from Favorites List"),
     behavior: SnackBarBehavior.floating,
     elevation: 6.0,
   );
+  // controls the slidable
   final SlidableController slidableController = SlidableController();
 
   @override
@@ -28,7 +34,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
     getFavListFromDatabase();
   }
 
-  // get the favorites list
+  // gets the favorites list from the sqflite db and set the returned values to the fav list variable
   getFavListFromDatabase() {
     setState(() {
       futureFavoritesList = databaseHelper.getFavorites();
@@ -38,11 +44,11 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
   void showSnackBar() =>
       scaffoldKey.currentState.showSnackBar(mezmurRemovedFromFavorites);
 
+  // deletes the specific favorite from the sqflite db
   Future<void> _swipeDelete(BuildContext context, mezmurName) async {
     try {
       databaseHelper.delete(mezmurName: mezmurName);
     } catch (e) {
-//      print("Error " + e.toString());
       CupertinoAlertDialog(
         content: Text("Something went wrong. Please try again."),
         actions: <Widget>[
@@ -57,6 +63,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
     }
   }
 
+  // displays an alert dialog box to confirm if the user really wants to delete the favorite
   Future<bool> confirmDelete(BuildContext context, String mezmurName) async {
     return await showCupertinoDialog<bool>(
           context: context,
@@ -93,7 +100,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
   }
 
   // lets users share or copy to clipboard
-  void share(Favorites fav) {
+  void share(WeekMezmurList fav) {
     //TODO: Enter the app store link of the app in the subject field
     Share.share(
       "ምስባክ፥ " +
@@ -107,7 +114,8 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
     );
   }
 
-  favListBuilder(BuildContext context) => FutureBuilder<List<Favorites>>(
+  // builds the favorites list, if there is/are any or displays an appropriate message
+  favListBuilder(BuildContext context) => FutureBuilder<List<WeekMezmurList>>(
         future: futureFavoritesList,
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -139,13 +147,14 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                     MaterialPageRoute(
                       builder: (context) => AudioPlayerScreen(
                         mezmurName: snapshot.data[index].mezmurName,
-                        weekIndex: snapshot.data[index].weekIndex,
+                        weekIndex: snapshot.data[index].weekId,
                         misbakChapters: snapshot.data[index].misbakChapters,
                         misbakLine1: snapshot.data[index].misbakLine1,
                         misbakLine2: snapshot.data[index].misbakLine2,
                         misbakLine3: snapshot.data[index].misbakLine3,
-                        misbakPictureUrl: snapshot.data[index].misbakPictureRemoteUrl,
+                        misbakPictureRemoteUrl: snapshot.data[index].misbakPictureRemoteUrl,
                         misbakAudioUrl: snapshot.data[index].misbakAudioUrl,
+                        misbakPicturelocalPath: snapshot.data[index].misbakPicturelocalPath,
                       ),
                     ),
                   ),
@@ -161,7 +170,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                         color: Colors.indigo,
                         icon: Icons.share,
                         onTap: () => share(snapshot
-                            .data[index]), //() => _showSnackBar('More'),
+                            .data[index]),
                       ),
                       IconSlideAction(
                         caption: 'Delete',
@@ -224,7 +233,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
       );
 
   // returns the 3 misbak lines
-  Widget displayFavoritesMisbakLines(Favorites favs, int index) => Flexible(
+  Widget displayFavoritesMisbakLines(WeekMezmurList favs, int index) => Flexible(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

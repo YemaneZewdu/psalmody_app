@@ -20,7 +20,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_webview_plugin: ^0.3.8
-  cached_network_image: ^2.0.0-rc
   cupertino_icons: ^0.1.2
   connectivity: ^0.4.5+6
   path_provider: ^1.6.5
@@ -58,8 +57,8 @@ flutter:
      - assets/images/Tinsae/
      - assets/images/Tir/
      - assets/images/Yekatit/
-     - assets/images/Tikimt/5.jpg
-     - assets/images/Abiy Tsom/9.jpg
+#     - assets/images/Tikimt/5.jpg
+#     - assets/images/Abiy Tsom/9.jpg
 
 
 

@@ -1,9 +1,9 @@
 import 'dart:io' as io;
 import 'dart:async';
 import 'package:path/path.dart';
+import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:psalmody/models/favorites.dart';
 
 class DatabaseHelper {
   // column names and a db name
@@ -13,12 +13,13 @@ class DatabaseHelper {
   static const String TABLE = 'Favotires';
   static const String DB_NAME = 'favorites.db';
   static const String MEZMUR_NAME = 'mezmurName';
-  static const String WEEK_INDEX = 'weekIndex';
+  static const String WEEK_ID = 'weekId';
   static const String MISBAK_CHAPTERS = 'misbakChapters';
   static const String MISBAK_LINE1 = 'misbakLine1';
   static const String MISBAK_LINE2 = 'misbakLine2';
   static const String MISBAK_LINE3 = 'misbakLine3';
-  static const String MISBAK_PICTURE_URL = "misbakPictureUrl";
+  static const String MISBAK_PICTURE_REMOTE_URL = "misbakPictureRemoteUrl";
+  static const String MISBAK_PICTURE_LOCAL_PATH = "misbakPicturelocalPath";
   static const String MISBAK_AUDIO_URL = "misbakAudioUrl";
 
   // make this a singleton class
@@ -50,12 +51,12 @@ class DatabaseHelper {
   Future _onCreate(Database db, int version) async {
     //$ID INTGER NOT NULL,
     await db.execute('''
-      CREATE TABLE IF NOT EXISTS $TABLE ($MEZMUR_NAME TEXT PRIMARY KEY, $WEEK_INDEX INTEGER, $MISBAK_CHAPTERS TEXT, $MISBAK_LINE1 TEXT, $MISBAK_LINE2 TEXT, $MISBAK_LINE3 TEXT, 
-       $MISBAK_AUDIO_URL TEXT, $MISBAK_PICTURE_URL TEXT)''');
+      CREATE TABLE IF NOT EXISTS $TABLE ($MEZMUR_NAME TEXT PRIMARY KEY, $WEEK_ID INTEGER, $MISBAK_CHAPTERS TEXT, $MISBAK_LINE1 TEXT, $MISBAK_LINE2 TEXT, $MISBAK_LINE3 TEXT, 
+       $MISBAK_AUDIO_URL TEXT, $MISBAK_PICTURE_REMOTE_URL TEXT, $MISBAK_PICTURE_LOCAL_PATH TEXT)''');
   }
 
   // insert to the db
-  Future<int> insertToDb(Favorites favorites) async {
+  Future<int> insertToDb(WeekMezmurList favorites) async {
     // get the db
     var dbClient = await getDb;
     try {
@@ -76,27 +77,28 @@ class DatabaseHelper {
     }
   }
 
-Future<List<Favorites>> getFavorites() async {
+Future<List<WeekMezmurList>> getFavorites() async {
     // get the db
     var dbClient = await getDb;
     //getting the column data
     List<Map> maps = await dbClient.query(TABLE, columns: [
       MEZMUR_NAME,
-      WEEK_INDEX,
+      WEEK_ID,
       MISBAK_CHAPTERS,
       MISBAK_LINE1,
       MISBAK_LINE2,
       MISBAK_LINE3,
       MISBAK_AUDIO_URL,
-      MISBAK_PICTURE_URL,
+      MISBAK_PICTURE_REMOTE_URL,
+      MISBAK_PICTURE_LOCAL_PATH
     ]);
     // raw query
     //  List<Map> maps = await dbClient.rawQuery("SELECT * FROM $TABLE");
-    List<Favorites> favoriteList = [];
+    List<WeekMezmurList> favoriteList = [];
     if (maps.length > 0) {
       // if true, the map has at least one value
       for (int i = 0; i < maps.length; i++) {
-        favoriteList.add(Favorites.fromMap(maps[i]));
+        favoriteList.add(WeekMezmurList.fromMap(maps[i]));
       }
       return favoriteList;
     }

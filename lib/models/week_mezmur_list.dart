@@ -1,14 +1,14 @@
 class WeekMezmurList {
-  final int weekId;
-  final String mezmurName;
-  final String mezmurDescription;
-  final String misbakChapters;
-  final String misbakLine1;
-  final String misbakLine2;
-  final String misbakLine3;
-  final String misbakPictureRemoteUrl;
-  final String misbakPicturelocalPath;
-  final String misbakAudioUrl;
+   int weekId;
+   String mezmurName;
+   String mezmurDescription;
+   String misbakChapters;
+   String misbakLine1;
+   String misbakLine2;
+   String misbakLine3;
+   String misbakPictureRemoteUrl;
+   String misbakPicturelocalPath;
+   String misbakAudioUrl;
 
   WeekMezmurList({
     this.weekId,
@@ -58,4 +58,33 @@ class WeekMezmurList {
         "misbakPicturelocalPath": misbakPicturelocalPath,
         "misbakAudioUrl": misbakAudioUrl,
       };
+
+  // changes Favorites object to map
+  Map<String, dynamic> toMap() {
+    // used for assigning the incoming values
+    var map = <String, dynamic>{
+      "weekId": weekId,
+      "mezmurName": mezmurName,
+      "misbakChapters": misbakChapters,
+      "misbakLine1": misbakLine1,
+      "misbakLine2": misbakLine2,
+      "misbakLine3": misbakLine3,
+      "misbakPictureRemoteUrl": misbakPictureRemoteUrl,
+      "misbakPicturelocalPath": misbakPicturelocalPath,
+      "misbakAudioUrl": misbakAudioUrl,
+    };
+    return map;
+  }
+  // extract the Id and the data from the map
+  WeekMezmurList.fromMap(Map<String, dynamic> map) {
+    weekId = map["weekId"];
+    mezmurName = map["mezmurName"];
+    misbakChapters = map["misbakChapters"];
+    misbakLine1 = map["misbakLine1"];
+    misbakLine2 = map["misbakLine2"];
+    misbakLine3 = map["misbakLine3"];
+    misbakPictureRemoteUrl = map["misbakPictureRemoteUrl"];
+    misbakPicturelocalPath = map["misbakPicturelocalPath"];
+    misbakAudioUrl = map["misbakAudioUrl"];
+  }
 }
