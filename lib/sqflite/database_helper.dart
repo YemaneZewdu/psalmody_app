@@ -56,7 +56,7 @@ class DatabaseHelper {
   }
 
   // insert to the db
-  Future<int> insertToDb(WeekMezmurList favorites) async {
+  Future<void> insertToDb(WeekMezmurList favorites) async {
     // get the db
     var dbClient = await getDb;
     try {
@@ -70,7 +70,7 @@ class DatabaseHelper {
       return await txn.rawInsert(query);
     });*/
 
-      return await dbClient.insert(TABLE, favorites.toMap(),
+       await dbClient.insert(TABLE, favorites.toMap(),
           conflictAlgorithm: ConflictAlgorithm.replace);
     } catch (e) {
       print("DatabaseHelper Insert method" + e.toString());
@@ -81,7 +81,7 @@ Future<List<WeekMezmurList>> getFavorites() async {
     // get the db
     var dbClient = await getDb;
     //getting the column data
-    List<Map> maps = await dbClient.query(TABLE, columns: [
+    List<Map> queryResult = await dbClient.query(TABLE, columns: [
       MEZMUR_NAME,
       WEEK_ID,
       MISBAK_CHAPTERS,
@@ -95,14 +95,9 @@ Future<List<WeekMezmurList>> getFavorites() async {
     // raw query
     //  List<Map> maps = await dbClient.rawQuery("SELECT * FROM $TABLE");
     List<WeekMezmurList> favoriteList = [];
-    if (maps.length > 0) {
-      // if true, the map has at least one value
-      for (int i = 0; i < maps.length; i++) {
-        favoriteList.add(WeekMezmurList.fromMap(maps[i]));
-      }
-      return favoriteList;
-    }
-    return null;
+  // if true, the map has at least one value
+  favoriteList = queryResult.isNotEmpty ? queryResult.map((fav)=>WeekMezmurList.fromMap(fav)).toList() : null;
+    return favoriteList;
   }
 
   // raw SQL commands. This method uses a raw query to give the row count.
@@ -113,10 +108,10 @@ Future<List<WeekMezmurList>> getFavorites() async {
   }
 
   // deleting a value from the db
-  Future<int> delete({String mezmurName}) async {
+  Future<void> delete({String mezmurName}) async {
     var dbClient = await getDb;
     try {
-      return await dbClient
+       await dbClient
           .delete(TABLE, where: '$MEZMUR_NAME = ?', whereArgs: [mezmurName]);
     } catch (e) {
       print("DatabaseHelper Delete method" + e.toString());

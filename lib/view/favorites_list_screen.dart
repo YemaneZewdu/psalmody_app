@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
+import 'package:psalmody/view/favorites_bloc.dart';
 import 'audio_player_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:share/share.dart';
@@ -13,8 +15,6 @@ class FavoritesListScreen extends StatefulWidget {
 
 class _FavoritesListScreenState extends State<FavoritesListScreen> {
 
-  // holds the favorite list
-  Future<List<WeekMezmurList>> futureFavoritesList;
   // reference to the class that manages the database
   final databaseHelper = DatabaseHelper.instance;
   // used for setting up a snack bar
@@ -28,26 +28,28 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
   // controls the slidable
   final SlidableController slidableController = SlidableController();
 
+  final favBloc = FavoritesBloc();
+
+
   @override
   void initState() {
     super.initState();
-    getFavListFromDatabase();
+   }
+
+  @override
+  void dispose(){
+    favBloc.dispose();
+    super.dispose();
   }
 
-  // gets the favorites list from the sqflite db and set the returned values to the fav list variable
-  getFavListFromDatabase() {
-    setState(() {
-      futureFavoritesList = databaseHelper.getFavorites();
-    });
-  }
 
   void showSnackBar() =>
       scaffoldKey.currentState.showSnackBar(mezmurRemovedFromFavorites);
 
   // deletes the specific favorite from the sqflite db
-  Future<void> _swipeDelete(BuildContext context, mezmurName) async {
+  Future<void> _swipeDelete(BuildContext context, String mezmurName) async {
     try {
-      databaseHelper.delete(mezmurName: mezmurName);
+      favBloc.delete(mezmurName);
     } catch (e) {
       CupertinoAlertDialog(
         content: Text("Something went wrong. Please try again."),
@@ -78,8 +80,6 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                 onPressed: () {
                   // call delete function in db class
                   _swipeDelete(context, mezmurName);
-                  // reload the list (A workaround because FutureBuilder doesn't work well with Dismiss delete)
-                  getFavListFromDatabase();
                   // show snack bar
                   showSnackBar();
                   Navigator.of(context).pop(true);
@@ -103,114 +103,114 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
   void share(WeekMezmurList fav) {
     //TODO: Enter the app store link of the app in the subject field
     Share.share(
-      "ምስባክ፥ " +
-          fav.misbakChapters +
-          "\n" +
-          fav.misbakLine1 +
-          "\n" +
-          fav.misbakLine2 +
-          "n" +
-          fav.misbakLine3,
-    );
+      "ምስባክ፥ ${fav.misbakChapters}\n${fav.misbakLine1}\n${fav.misbakLine2}\n${fav.misbakLine2}");
   }
 
   // builds the favorites list, if there is/are any or displays an appropriate message
-  favListBuilder(BuildContext context) => FutureBuilder<List<WeekMezmurList>>(
-        future: futureFavoritesList,
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: Text(
-                "Loading Favorites...",
-                style: TextStyle(fontSize: 20),
+  favListBuilder(BuildContext context) {
+    return StreamBuilder<List<WeekMezmurList>>(
+      stream: favBloc.favStream,
+      builder: (context, AsyncSnapshot<List<WeekMezmurList>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.data == null) {
+          return Center(
+            child: Text(
+              "No Favorites yet!",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-            );
-          } else if (snapshot.data == null) {
-            return Center(
-              child: Text(
-                "No Favorites yet!",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+            ),
+          );
+        } else {
+          return ListView.builder(
+            physics: BouncingScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int index) {
+              return new GestureDetector(
+                onTap: () =>
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            AudioPlayerScreen(
+                              mezmurName: snapshot.data[index].mezmurName,
+                              weekIndex: snapshot.data[index].weekId,
+                              misbakChapters: snapshot.data[index]
+                                  .misbakChapters,
+                              misbakLine1: snapshot.data[index].misbakLine1,
+                              misbakLine2: snapshot.data[index].misbakLine2,
+                              misbakLine3: snapshot.data[index].misbakLine3,
+                              misbakPictureRemoteUrl: snapshot.data[index]
+                                  .misbakPictureRemoteUrl,
+                              misbakAudioUrl: snapshot.data[index]
+                                  .misbakAudioUrl,
+                              misbakPicturelocalPath: snapshot.data[index]
+                                  .misbakPicturelocalPath,
+                              favoritesBloc: favBloc,
+                            ),
+                      ),
+                    ),
+                child: Slidable(
+                  key: new Key(snapshot.data[index].mezmurName),
+                  actionPane: SlidableDrawerActionPane(),
+                  actionExtentRatio: 0.25,
+                  // closes other active slidable if there is any
+                  controller: slidableController,
+                  secondaryActions: <Widget>[
+                    IconSlideAction(
+                      caption: 'Share',
+                      color: Colors.indigo,
+                      icon: CupertinoIcons.share,
+                      onTap: () =>
+                          share(snapshot
+                              .data[index]),
+                    ),
+                    IconSlideAction(
+                      caption: 'Delete',
+                      color: Colors.red,
+                      icon: Icons.delete,
+                      onTap: () =>
+                          confirmDelete(
+                              context, snapshot.data[index].mezmurName),
+                    ),
+                  ],
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        // text padding
+                        vertical: 15.0,
+                        horizontal: 10.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              misbakChapter(
+                                  snapshot.data[index].misbakChapters),
+                              SizedBox(width: 15),
+                              displayFavoritesMisbakLines(
+                                  snapshot.data[index], index),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            );
-          } else {
-            return ListView.builder(
-              physics: BouncingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                return new GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AudioPlayerScreen(
-                        mezmurName: snapshot.data[index].mezmurName,
-                        weekIndex: snapshot.data[index].weekId,
-                        misbakChapters: snapshot.data[index].misbakChapters,
-                        misbakLine1: snapshot.data[index].misbakLine1,
-                        misbakLine2: snapshot.data[index].misbakLine2,
-                        misbakLine3: snapshot.data[index].misbakLine3,
-                        misbakPictureRemoteUrl: snapshot.data[index].misbakPictureRemoteUrl,
-                        misbakAudioUrl: snapshot.data[index].misbakAudioUrl,
-                        misbakPicturelocalPath: snapshot.data[index].misbakPicturelocalPath,
-                      ),
-                    ),
-                  ),
-                  child: Slidable(
-                    key: new Key(snapshot.data[index].mezmurName),
-                    actionPane: SlidableDrawerActionPane(),
-                    actionExtentRatio: 0.25,
-                    // closes other active slidable if there is any
-                    controller: slidableController,
-                    secondaryActions: <Widget>[
-                      IconSlideAction(
-                        caption: 'Share',
-                        color: Colors.indigo,
-                        icon: Icons.share,
-                        onTap: () => share(snapshot
-                            .data[index]),
-                      ),
-                      IconSlideAction(
-                        caption: 'Delete',
-                        color: Colors.red,
-                        icon: Icons.delete,
-                        onTap: () => confirmDelete(
-                            context, snapshot.data[index].mezmurName),
-                      ),
-                    ],
-                    child: Card(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          // text padding
-                          vertical: 15.0,
-                          horizontal: 10.0,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                misbakChapter(
-                                    snapshot.data[index].misbakChapters),
-                                SizedBox(width: 15),
-                                displayFavoritesMisbakLines(
-                                    snapshot.data[index], index),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            );
-          }
-        },
-      );
+              );
+            },
+          );
+        }
+      },
+    );
+  }
 
   // returns misbak chapters numbers
   Widget misbakChapter(String chapters) => Column(

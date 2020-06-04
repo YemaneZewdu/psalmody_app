@@ -5,7 +5,7 @@
       {
         "weekId":1,
         "mezmurName" : "መዝሙር ዮሐንስ አኅድዐ።",
-        "mezmurDescription" : "ከመስከረም 1 እስከ ፰ ዮሐንስ ይባላል።",
+        "mezmurDescription" : "ከመስከረም ፩ እስከ ፰ ዮሐንስ ይባላል።",
         "misbakChapters":"መዝ. ፹፬ ቊ. ፲ - ፲፩",
         "misbakLine1":"ሣህል ወርትዕ ተራከባ።",
         "misbakLine2" : "ጽድቅ ወሰላም ተሰዓማ።",
@@ -474,7 +474,7 @@
         "misbakLine2" : "ወተሐሠዩ ሎቱ ረዓድ።",
         "misbakLine3" : "አጽንዕዋ ለጥበብ ከመ ኢይትመዐዕ እግዚአብሔር።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F1.jpg?alt=media&token=dfcaf1b2-de49-4bef-93a1-f524902051ed",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/1.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/1.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -486,7 +486,7 @@
         "misbakLine2" : "አሚን ወሠናይት ቅድሜሁ።",
         "misbakLine3" : "ቅድሳት ወዕበየ ስብሐት ውስተ መቅደሱ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F2.jpg?alt=media&token=05421539-6250-44fe-a436-db5564910762",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/2.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/2.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -498,7 +498,7 @@
         "misbakLine2" : "ትዕይርቶሙ ለእለ ይትዔየሩከ ወድቀ ላዕሌየ።",
         "misbakLine3" : "ወቀፃዕክዋ በጾም ለነፍስየ ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F3.jpg?alt=media&token=a2c2d0f9-a401-4244-999f-9af017b7c32e",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/3.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/3.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -510,7 +510,7 @@
         "misbakLine2" : "ወይመይጥ ሎቱ ኵሎ ምስካቢሁ እምደዌሁ",
         "misbakLine3" : "አንሰ እቤ እግዚኦ ተሣሃለኒ ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F4.jpg?alt=media&token=f40b4eb0-c77d-4260-9c26-43bbdc76d99b",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/4.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/4.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -522,7 +522,7 @@
         "misbakLine2" : "ወአምላክነሂ ኢያረምም።",
         "misbakLine3" : "እሳት ይነድድ ቅድሜሁ፡፡",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F5.jpg?alt=media&token=a8d32087-f1ba-4f3e-ae3a-0c309216e845",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/5.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/5.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -534,7 +534,7 @@
         "misbakLine2" : "ወሕግከኒ በማዕከለ ከርሥየ ።",
         "misbakLine3" : "ዜኖኩ ጽድቀከ በማኅበር ዐቢይ ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F6.jpg?alt=media&token=9a1d8896-b5b0-428b-9cff-7fdadca893aa",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/6.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/6.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -546,7 +546,7 @@
         "misbakLine2" : "አመከርከኒ ወኢተረክበ ዓመፃ በላዕሌየ።",
         "misbakLine3" : "ከመ ኢይንብብ አፉየ ግብረ እጓለ እመሕያው።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F7.jpg?alt=media&token=676d95f6-4d4b-445e-acf1-2cb05d46042a",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/7.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/7.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -558,7 +558,7 @@
         "misbakLine2" : "በእምርት ዕለት በዓልነ።",
         "misbakLine3" : "እስመ ሥርዓቱ ለእስራኤል ውእቱ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F8.jpg?alt=media&token=2151e06a-8464-4ec8-8570-a39fd0a58222",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/8.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/8.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -570,7 +570,7 @@
         "misbakLine2" : "ባረክናክሙ እምቤተ እግዚአብሔር።",
         "misbakLine3" : "እግዚአብሔር እግዚእ አስተርአየ ለነ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F9.JPG?alt=media&token=0eb309f9-8b3d-4cfc-a1f4-a23d460a782f",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/9.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/9.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -582,7 +582,7 @@
         "misbakLine2" : "ወቆማ እገሪነ ውስተ አዕፃድኪ ኢየሩሳሌም።",
         "misbakLine3" : "ኢየሩሳሌምሰ ሕንፅት ከመ ሀገር።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F10.jpg?alt=media&token=902d5caf-87ad-4509-8808-bf00f30548ba",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/10.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/10.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -594,7 +594,7 @@
         "misbakLine2" : "ወሰብሒዮ ለአምላክኪ ጽዮን ።",
         "misbakLine3" : "እስመ አጽንዐ መናስግተ ኆኃትኪ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F11.jpg?alt=media&token=c290c5ba-de71-420f-8ce6-25bccce4f535",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/11.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/11.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -606,7 +606,7 @@
         "misbakLine2" : "እስከ አቅርንቲሁ ለምሥዋዕ ።",
         "misbakLine3" : "አምላኪየ አንተ እገኒ ለከ ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F12.jpg?alt=media&token=21ffb2c2-5efc-4746-96c5-868bbb970b41",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/12.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/12.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -618,7 +618,7 @@
         "misbakLine2" : "ላዕለ እስራኤል ዐቢይ ስብሐቲሁ ።",
         "misbakLine3" : "ወኃይሉሂ እስከ ደመናት ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F13.jpg?alt=media&token=b446ebee-a336-453f-8a5d-dafa1c8ce845",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/13.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/13.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -630,7 +630,7 @@
         "misbakLine2" : "ወንግርዎሙ ለአሕዛብ ምግባሮ ።",
         "misbakLine3" : "እስመ ተዘከረ ዘይትኅሠሥ ደሞሙ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F14.jpg?alt=media&token=40adcff3-c6dd-474f-9baf-9d59fd518a5f",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/14.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/14.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -642,7 +642,7 @@
         "misbakLine2" : "በእንተ ጸላዒ ።",
         "misbakLine3" : "ከመ ትንሥቶ ለጸላዒ ወለገፋዒ ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F15.jpg?alt=media&token=1b83b815-3ff7-428d-b68d-0564dfa7db80",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/15.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/15.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -654,7 +654,7 @@
         "misbakLine2" : "ወእምጽዮን ሥነ ስብሐቲሁ ።",
         "misbakLine3" : "እግዚአብሔርሰ ገሃደ ይመጽእ ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F16.jpg?alt=media&token=06c5223a-c1a3-42ab-99f9-de3d21859ff3",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/16.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/16.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -666,7 +666,7 @@
         "misbakLine2" : "በእምርት ዕለት በዓልነ ።",
         "misbakLine3" : "እስመ ሥርዓቱ ለእስራኤል ውእቱ ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F17.jpg?alt=media&token=e3b8174b-afbf-446c-9f0a-dd344504a79a",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/17.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/17.jpg",
         "misbakAudioUrl":""
       },
       {
@@ -678,7 +678,7 @@
         "misbakLine2" : "በእንተ ጸላዒ ።",
         "misbakLine3" : "ከመ ትንሥቶ ለጸላዒ ወለገፋዒ ።",
         "misbakPictureRemoteUrl":"https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/Abiy%20Tsom%2F18.jpg?alt=media&token=ebf7a012-de67-43cf-859a-86ccb93f8c0f",
-        "misbakPicturelocalPath": "assets/images/Abiy Tsom/18.jpg",
+        "misbakPicturelocalPath": "assets/images/abiy_tsom/18.jpg",
         "misbakAudioUrl":""
       }
 

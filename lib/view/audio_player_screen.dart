@@ -4,6 +4,7 @@ import 'package:psalmody/models/mezmur.dart';
 import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
 import 'package:just_audio/just_audio.dart';
+import 'favorites_bloc.dart';
 //import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class AudioPlayerScreen extends StatefulWidget {
@@ -21,26 +22,28 @@ class AudioPlayerScreen extends StatefulWidget {
   final String misbakPictureRemoteUrl;
   final String misbakAudioUrl;
   final String misbakPicturelocalPath;
+  FavoritesBloc favoritesBloc;
 
-  AudioPlayerScreen({
-    Key key,
-    this.weekIndex,
-    this.mezmurData,
-    this.mezmurName,
-    this.misbakChapters,
-    this.misbakLine1,
-    this.misbakLine2,
-    this.misbakLine3,
-    this.misbakPictureRemoteUrl,
-    this.misbakAudioUrl,
-    this.monthIndex,
-    this.misbakPicturelocalPath
-  }) : super(key: key);
+  AudioPlayerScreen(
+      {Key key,
+      this.weekIndex,
+      this.mezmurData,
+      this.mezmurName,
+      this.misbakChapters,
+      this.misbakLine1,
+      this.misbakLine2,
+      this.misbakLine3,
+      this.misbakPictureRemoteUrl,
+      this.misbakAudioUrl,
+      this.monthIndex,
+      this.misbakPicturelocalPath,
+      this.favoritesBloc})
+      : super(key: key);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
-
   bool isInFavoritesList = false;
+
 //  double sliderValue = 0.0;
 
   // reference to the class that manages the database
@@ -60,7 +63,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   final SnackBar mezmurRemovedFromFavorites =
       SnackBar(content: Text("Removed from Favorites List"));
 
-
   @override
   void initState() {
     super.initState();
@@ -79,20 +81,23 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       // catch audio error ex: 404 url, wrong url ...
       print(error);
     });
+
+    // when coming from month_mezmur_list class, the favBloc is not initialized
+    // so, this will give it a general initialization
+    // but when coming from Favorites_list screen, it is passed as an argument
+    // so, initialization is not needed
+    if (widget.mezmurData != null) {
+      widget.favoritesBloc = FavoritesBloc();
+    }
   }
 
-  @override
-  void dispose() {
-    _player.dispose();
-    super.dispose();
-  }
+
 
   // initializes fav object with the current data, used for adding or deleting in the db
   void initFavoritesObject() {
     setState(() {
       // mezmurData is null when coming from Favorite list screen
       // so checking it is necessary to avoid an error
-
       widget.mezmurData != null
           ? favoritesObj = WeekMezmurList(
               mezmurName:
@@ -111,8 +116,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               misbakPictureRemoteUrl: widget.mezmurData
                   .weekMezmurList[widget.weekIndex].misbakPictureRemoteUrl,
               misbakPicturelocalPath: widget.mezmurData
-                  .weekMezmurList[widget.weekIndex].misbakPicturelocalPath
-            )
+                  .weekMezmurList[widget.weekIndex].misbakPicturelocalPath)
           : favoritesObj = WeekMezmurList(
               mezmurName: widget.mezmurName,
               weekId: widget.weekIndex,
@@ -122,8 +126,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               misbakLine3: widget.misbakLine3,
               misbakAudioUrl: widget.misbakAudioUrl,
               misbakPictureRemoteUrl: widget.misbakPictureRemoteUrl,
-              misbakPicturelocalPath: widget.misbakPicturelocalPath
-            );
+              misbakPicturelocalPath: widget.misbakPicturelocalPath);
     });
   }
 
@@ -152,25 +155,26 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     if (isInFavoritesList) {
       // mezmurData is null when coming from FavoriteList screen
       if (widget.mezmurData != null) {
-        databaseHelper.delete(
-          mezmurName:
-              widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
-        );
+          // delete using FavBloc class
+        widget.favoritesBloc.delete(
+            widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
         checkFavoritesList(
           mezmurName:
               widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
         );
       } else {
-        databaseHelper.delete(
-          mezmurName: widget.mezmurName,
-        );
+        widget.favoritesBloc.delete(widget.mezmurName);
         checkFavoritesList(
           mezmurName: widget.mezmurName,
         );
       }
     } else {
       // if false, add it to favorites list
-      databaseHelper.insertToDb(favoritesObj);
+      try {
+        widget.favoritesBloc.insert(favoritesObj);
+      } catch (e){
+        print("Insert Error: ${e.toString()}");
+      }
       // calling the function so that it will set  'isInFavoritesList' to true
       widget.mezmurData != null
           ? checkFavoritesList(
@@ -181,6 +185,13 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               mezmurName: widget.mezmurName,
             );
     }
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    widget.favoritesBloc.dispose();
+    super.dispose();
   }
 
   // returns a two digit number for the audio minutes indicators
@@ -233,7 +244,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                         child: Text(_printPosition(position: position)),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: customScreenWidth * 58),
+                        padding: EdgeInsets.only(left: customScreenWidth * 50),
                         child: Text("- " +
                             _printPosition(position: duration - position)),
                       ),
@@ -285,13 +296,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           ],
         );
       },
-    );
-  }
-
-  // custom placeholder widget
-  Widget customPlaceHolder() {
-    return Center(
-      child: CircularProgressIndicator(),
     );
   }
 
@@ -352,7 +356,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               onPressed: () {
                 manageFavorites();
                 showSnackBar();
-              //  counter();
+                //counter();
               },
               iconSize: 35.0,
               color: Colors.black,
@@ -385,11 +389,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 //                transform: Matrix4.diagonal3(
 //                  Vector3(scale, scale, scale),
 //                ),
-                child: Image(
-                  image: AssetImage(widget.mezmurData != null
+                child: Image.asset(
+                  widget.mezmurData != null
                       ? widget.mezmurData.weekMezmurList[widget.weekIndex]
                           .misbakPicturelocalPath
-                      : widget.misbakPicturelocalPath),
+                      : widget.misbakPicturelocalPath,
                 ),
               ),
             ),

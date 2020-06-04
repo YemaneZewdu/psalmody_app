@@ -85,24 +85,11 @@ class MonthMezmurListScreen extends StatelessWidget {
       );
 
   // lets users share or copy to clipboard
-  void share(WeekMezmurList list) {
+  void share(WeekMezmurList list, int weekIndex) {
     //TODO: Enter the app store link of the app in the subject field
     Share.share(
-      monthName +
-          "\n" +
-          list.mezmurDescription +
-          "\n" +
-          list.mezmurName +
-          "\n" +
-          "ምስባክ፥ " +
-          list.misbakChapters +
-          "\n" +
-          list.misbakLine1 +
-          "\n" +
-          list.misbakLine2 +
-          "\n" +
-          list.misbakLine3,
-    );
+        "የ$monthName $weekIndexኛ ሳምንት\n${list.mezmurDescription}\n${list.mezmurName}\nምስባክ፥ ${list.misbakChapters}\n${list.misbakLine1}"
+        "\n${list.misbakLine2}\n${list.misbakLine3}");
   }
 
   // custom future widget returning list view
@@ -123,17 +110,16 @@ class MonthMezmurListScreen extends StatelessWidget {
               itemCount: mezmurData.weekMezmurList.length,
               itemBuilder: (BuildContext context, int index) {
                 return new GestureDetector(
-                  onTap: () =>
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AudioPlayerScreen(
-                          mezmurData: mezmurData,
-                          weekIndex: index,
-                          monthIndex: monthIndex,
-                        ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AudioPlayerScreen(
+                        mezmurData: mezmurData,
+                        weekIndex: index,
+                        monthIndex: monthIndex,
                       ),
                     ),
+                  ),
                   child: Slidable(
                     key:
                         new Key(snapshot.data.weekMezmurList[index].mezmurName),
@@ -144,8 +130,8 @@ class MonthMezmurListScreen extends StatelessWidget {
                       IconSlideAction(
                         caption: 'Share',
                         color: Colors.indigo,
-                        icon: Icons.share,
-                        onTap: () => share(snapshot.data.weekMezmurList[index]),
+                        icon: CupertinoIcons.share,
+                        onTap: () => share(snapshot.data.weekMezmurList[index], index+1),
                       ),
                     ],
                     child: Card(
@@ -181,20 +167,12 @@ class MonthMezmurListScreen extends StatelessWidget {
             );
           }
         } else if (snapshot.hasError) {
-          print("Error!!" + snapshot.error.toString());
-          return Container(
-            child: Center(
-              child: Text("Please try again!"),
-            ),
+          return Center(
+            child: Text("Please try again!"),
           );
         }
-        return Container(
-          child: Center(
-            child: Text(
-              "Loading $monthName list...",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
+        return Center(
+          child: CircularProgressIndicator(),
         );
       },
     );

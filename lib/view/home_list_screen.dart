@@ -3,15 +3,15 @@ import 'package:psalmody/view/month_mezmur_list_screen.dart';
 
 class HomeListScreen extends StatelessWidget {
   final _months = [
-    "Meskerem",
-    "Tikimt",
-    "Hidar",
-    "Tahisas",
-    "Tir",
-    "Yekatit",
-    "Abiy Tsom",
-    "Tinsae",
-    "Kiremt"
+    "መስከረም",
+    "ጥቅምት",
+    "ኅዳር",
+    "ታኅሣሥ",
+    "ጥር",
+    "የካቲት",
+    "ዐቢይ ጾም",
+    "ትንሣኤ",
+    "ክረምት"
   ];
 
   @override
@@ -49,8 +49,7 @@ class HomeListScreen extends StatelessWidget {
                 child: Text(
                   _months[index],
                   style: TextStyle(
-                    fontSize: 20.0,
-                    height: 1.6,
+                    fontSize: 18.0,
                   ),
                 ),
               ),
