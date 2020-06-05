@@ -91,8 +91,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     }
   }
 
-
-
   // initializes fav object with the current data, used for adding or deleting in the db
   void initFavoritesObject() {
     setState(() {
@@ -155,7 +153,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     if (isInFavoritesList) {
       // mezmurData is null when coming from FavoriteList screen
       if (widget.mezmurData != null) {
-          // delete using FavBloc class
+        // delete using FavBloc class
         widget.favoritesBloc.delete(
             widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName);
         checkFavoritesList(
@@ -172,7 +170,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       // if false, add it to favorites list
       try {
         widget.favoritesBloc.insert(favoritesObj);
-      } catch (e){
+      } catch (e) {
         print("Insert Error: ${e.toString()}");
       }
       // calling the function so that it will set  'isInFavoritesList' to true
@@ -196,13 +194,19 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   // returns a two digit number for the audio minutes indicators
   String _printPosition({Duration position}) {
-    String twoDigits(int n) {
-      if (n >= 10) return "$n";
-      return "0$n";
+    String twoDigitsSec(int n) {
+      if (n >= 10)  return "$n";
+        return "0$n";
     }
 
-    String twoDigitMinutes = twoDigits(position.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(position.inSeconds.remainder(60));
+    String twoDigitsMin(int n){
+      if (n >= 10)  return "$n";
+      return "$n";
+    }
+
+
+    String twoDigitMinutes = twoDigitsMin(position.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigitsSec(position.inSeconds.remainder(60));
     return "$twoDigitMinutes:$twoDigitSeconds";
   }
 
@@ -219,40 +223,54 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             if (position > duration) {
               position = duration;
             }
-            return Stack(
-              children: <Widget>[
-                // position the seek bar and the texts under it appropriately
-                Positioned.fill(
-                  top: 0,
-                  bottom: 70,
-                  left: 15,
-                  right: 15,
-                  child: SeekBar(
-                    duration: duration,
-                    position: position,
-                    onChangeEnd: (newPosition) {
-                      _player.seek(newPosition);
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 27,
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(left: customScreenWidth * 5),
-                        child: Text(_printPosition(position: position)),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: customScreenWidth * 50),
-                        child: Text("- " +
-                            _printPosition(position: duration - position)),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            );
+            return Row(children: <Widget>[
+              SeekBar(
+                duration: duration,
+                position: position,
+                onChangeEnd: (newPosition) {
+                  _player.seek(newPosition);
+                },
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text("${_printPosition(position: position)} / ${_printPosition(position: duration)}")
+            ]);
+
+//              Stack(
+//              children: <Widget>[
+//                // position the seek bar and the texts under it appropriately
+//                Positioned.fill(
+//                  top: 0,
+//                  bottom: 70,
+//                  left: 15,
+//                  right: 15,
+//                  child: SeekBar(
+//                    duration: duration,
+//                    position: position,
+//                    onChangeEnd: (newPosition) {
+//                      _player.seek(newPosition);
+//                    },
+//                  ),
+//                ),
+//                Positioned(
+//                  top: 27,
+//                  child: Row(
+//                    children: <Widget>[
+//                      Padding(
+//                        padding: EdgeInsets.only(left: customScreenWidth * 5),
+//                        child: Text(_printPosition(position: position)),
+//                      ),
+//                      Padding(
+//                        padding: EdgeInsets.only(left: customScreenWidth * 50),
+//                        child: Text("- " +
+//                            _printPosition(position: duration - position)),
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//              ],
+//            );
           },
         );
       },
@@ -279,18 +297,27 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           state = AudioPlaybackState.playing;
         }
         return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            if (state == AudioPlaybackState.playing)
+//            if (state == AudioPlaybackState.connecting ||
+//                buffering == true)
+//              Container(
+//                margin: EdgeInsets.all(6.0),
+//                width: 30.0,
+//                height: 30.0,
+//                child: CircularProgressIndicator(),
+//              )
+
+             if (state == AudioPlaybackState.playing)
               IconButton(
                 icon: Icon(Icons.pause),
-                iconSize: 50.0,
+                iconSize: 40.0,
                 onPressed: _player.pause,
               )
             else
               IconButton(
                 icon: Icon(Icons.play_circle_filled),
-                iconSize: 50.0,
+                iconSize: 40.0,
                 onPressed: _player.play,
               ),
           ],
@@ -306,27 +333,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 //    print("******");
 //  }
 
-//  _onBackButtonPressed(BuildContext context) {
-//    if (widget.mezmurData != null) {
-//      Navigator.pop(context);
-//      Navigator.push(
-//        context,
-//        MaterialPageRoute(
-//          builder: (context) => MonthMezmurListScreen(
-//            mezmurData: widget.mezmurData,
-//            monthName: widget.mezmurData.month,
-//            monthIndex: widget.monthIndex,
-//          ),
-//        ),
-//      );
-//    } else {
-////      Navigator.pop(context);
-////      Navigator.pop(context);
-//      Navigator.push(context,
-//          MaterialPageRoute(builder: (context) => FavoritesListScreen()));
-//    }
-//  }
-
   @override
   Widget build(BuildContext context) {
     // variables for getting custom screen height and width
@@ -338,10 +344,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-//        leading: IconButton(
-//          icon: Icon(Icons.chevron_left),
-//          onPressed: () => _onBackButtonPressed(context),
-//        ),
           centerTitle: true,
           title: Text(
             widget.mezmurData != null
@@ -399,11 +401,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             ),
 
             Padding(
-              padding: EdgeInsets.only(left: 5, bottom: 20, top: 5, right: 5),
+              padding: EdgeInsets.only(left: 5, bottom: 25, top: 5, right: 5),
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  height: 120,
+                  height: 80,
                   margin: EdgeInsets.all(10),
                   width: customScreenWidth * 100,
                   decoration: BoxDecoration(
@@ -421,18 +423,29 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Stack(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      // crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
-                        // seek bar and minutes and seconds text under it
-                        sliderBuilder(customScreenWidth),
-                        // play and pause controller
-                        Positioned.fill(
-                          top: 40,
-                          child: playerButtonsController(),
+                        playerButtonsController(),
+                        SizedBox(
+                          width: 15,
                         ),
+                        sliderBuilder(customScreenWidth),
                       ],
                     ),
+//                    child: Stack(
+//                      children: <Widget>[
+//                        // seek bar and minutes and seconds text under it
+//                        sliderBuilder(customScreenWidth),
+//                        // play and pause controller
+//                        Positioned.fill(
+//                          top: 40,
+//                          child: playerButtonsController(),
+//                        ),
+//                      ],
+//                    ),
                   ),
                 ),
               ),

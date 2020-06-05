@@ -110,9 +110,8 @@ class MonthMezmurListScreen extends StatelessWidget {
               itemCount: mezmurData.weekMezmurList.length,
               itemBuilder: (BuildContext context, int index) {
                 return new GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
+                  onTap: () => Navigator.of(context, rootNavigator: true).push(
+                    CupertinoPageRoute(
                       builder: (context) => AudioPlayerScreen(
                         mezmurData: mezmurData,
                         weekIndex: index,

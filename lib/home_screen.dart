@@ -4,6 +4,9 @@ import './view/books_list_screen.dart';
 import './view/favorites_list_screen.dart';
 import './view/more_list_screen.dart';
 
+
+// changed to Cupertino Bottom nav
+// unused class
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

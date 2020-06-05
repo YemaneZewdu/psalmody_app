@@ -70,55 +70,57 @@ class BooksListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Books"),
-      ),
-      backgroundColor: Colors.grey[300],
-      body: new ListView.builder(
-        physics: BouncingScrollPhysics(),
-        padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-        itemCount: _books.length,
-        itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () async {
-              var file = await getAssetByName(_books[index]['localPath']);
-              // opens the pdf with the default phone app
-              OpenFile.open(file.path, type: "application/pdf");
-            },
-            child: Slidable(
-              key: new Key(_books[index]['title']),
-              actionPane: SlidableDrawerActionPane(),
-              actionExtentRatio: 0.25,
-              // closes other active slidable if there is any
-              controller: slidableController,
-              secondaryActions: <Widget>[
-                IconSlideAction(
-                  caption: 'Share',
-                  color: Colors.indigo,
-                  icon: CupertinoIcons.share,
-                  onTap: () =>
-                      share(_books[index]['title'], _books[index]['remoteUrl']),
-                ),
-              ],
-              child: Card(
-                color: Colors.white,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 20.0,
-                    horizontal: 15.0,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Books"),
+        ),
+        backgroundColor: Colors.grey[300],
+        body: new ListView.builder(
+          physics: BouncingScrollPhysics(),
+          padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+          itemCount: _books.length,
+          itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
+              onTap: () async {
+                var file = await getAssetByName(_books[index]['localPath']);
+                // opens the pdf with the default phone app
+                OpenFile.open(file.path, type: "application/pdf");
+              },
+              child: Slidable(
+                key: new Key(_books[index]['title']),
+                actionPane: SlidableDrawerActionPane(),
+                actionExtentRatio: 0.25,
+                // closes other active slidable if there is any
+                controller: slidableController,
+                secondaryActions: <Widget>[
+                  IconSlideAction(
+                    caption: 'Share',
+                    color: Colors.indigo,
+                    icon: CupertinoIcons.share,
+                    onTap: () =>
+                        share(_books[index]['title'], _books[index]['remoteUrl']),
                   ),
-                  child: Text(
-                    _books[index]['title'],
-                    style: TextStyle(
-                      fontSize: 18.0,
+                ],
+                child: Card(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 20.0,
+                      horizontal: 15.0,
+                    ),
+                    child: Text(
+                      _books[index]['title'],
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

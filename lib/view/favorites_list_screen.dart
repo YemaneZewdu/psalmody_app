@@ -133,9 +133,9 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
             itemBuilder: (BuildContext context, int index) {
               return new GestureDetector(
                 onTap: () =>
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
+                // rootNavigator will make the bottom nav disappear
+                    Navigator.of(context, rootNavigator: true).push(
+                      CupertinoPageRoute(
                         builder: (context) =>
                             AudioPlayerScreen(
                               mezmurName: snapshot.data[index].mezmurName,
@@ -252,14 +252,16 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text("Favorites"),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text("Favorites"),
+        ),
+        key: scaffoldKey,
+        backgroundColor: Colors.grey[300],
+        body: favListBuilder(context),
       ),
-      key: scaffoldKey,
-      backgroundColor: Colors.grey[300],
-      body: favListBuilder(context),
     );
   }
 }
