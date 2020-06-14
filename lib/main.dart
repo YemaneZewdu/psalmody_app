@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home/home_page.dart';
+import 'package:psalmody/home/home_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: HomePage(),
+      home: HomeScreen(),
     );
   }
 }

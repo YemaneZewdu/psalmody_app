@@ -38,6 +38,8 @@ class WeekMezmurList {
         misbakAudioUrl: parsedJson["misbakAudioUrl"],
       );
 
+
+
   @override
   String toString() =>
       "weekId: $weekId, mezmurName: $mezmurName, mezmurDescription: $mezmurDescription, "
@@ -87,4 +89,5 @@ class WeekMezmurList {
     misbakPicturelocalPath = map["misbakPicturelocalPath"];
     misbakAudioUrl = map["misbakAudioUrl"];
   }
+
 }

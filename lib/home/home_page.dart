@@ -6,6 +6,8 @@ import 'package:psalmody/view/favorites_list_screen.dart';
 import 'package:psalmody/view/home_list_screen.dart';
 import 'package:psalmody/view/more_list_screen.dart';
 
+// changed back to using the default bottom nav bar
+// unused class
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();

@@ -32,6 +32,26 @@ class Mezmur {
     return Mezmur(month: monthValue, weekMezmurList: weeklyList);
   }
 
+  factory Mezmur.filterList(List<dynamic> parsedJson){
+    List<WeekMezmurList> weeklyList = new List<WeekMezmurList>();
+
+    for (var i=0; i<parsedJson.length; i++) {
+
+      // going through the week list
+      if (parsedJson[i]["weekMezmurList"] != null) {
+        parsedJson[i]["weekMezmurList"].forEach(
+              (v) {
+            weeklyList.add(
+              WeekMezmurList.fromJson(v),
+            );
+          },
+        );
+      }
+    }
+    return Mezmur(weekMezmurList: weeklyList);
+
+  }
+
 // convert to JSON, not used in the project
   Map<String, dynamic> toJson() => {
         "month": month,

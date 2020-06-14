@@ -9,6 +9,8 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:share/share.dart';
 
+import 'favorites_bloc.dart';
+
 class MonthMezmurListScreen extends StatelessWidget {
   final String monthName;
   Mezmur mezmurData;
@@ -102,7 +104,7 @@ class MonthMezmurListScreen extends StatelessWidget {
 //            for(var i = 0; i < mezmurData.weekMezmurList.length; i++) {
 //              print("****" + mezmurData.toString() + "\n");
 //              print(mezmurData.month + "\n");
-//             print(mezmurData.weekMezmurList);
+//             print(mezmurData.weekMezmurList[i].mezmurDescription.co);
 //            }
             return ListView.builder(
               physics: BouncingScrollPhysics(),
@@ -115,7 +117,7 @@ class MonthMezmurListScreen extends StatelessWidget {
                       builder: (context) => AudioPlayerScreen(
                         mezmurData: mezmurData,
                         weekIndex: index,
-                        monthIndex: monthIndex,
+                        favoritesBloc: FavoritesBloc(),
                       ),
                     ),
                   ),
@@ -130,7 +132,8 @@ class MonthMezmurListScreen extends StatelessWidget {
                         caption: 'Share',
                         color: Colors.indigo,
                         icon: CupertinoIcons.share,
-                        onTap: () => share(snapshot.data.weekMezmurList[index], index+1),
+                        onTap: () => share(
+                            snapshot.data.weekMezmurList[index], index + 1),
                       ),
                     ],
                     child: Card(

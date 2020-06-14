@@ -13,30 +13,30 @@ class AudioPlayerScreen extends StatefulWidget {
 
   final int weekIndex;
   final Mezmur mezmurData;
-  final String mezmurName;
-  final int monthIndex;
-  final String misbakChapters;
-  final String misbakLine1;
-  final String misbakLine2;
-  final String misbakLine3;
-  final String misbakPictureRemoteUrl;
-  final String misbakAudioUrl;
-  final String misbakPicturelocalPath;
+  final WeekMezmurList weeklyList;
+//  final String mezmurName;
+//  final String misbakChapters;
+//  final String misbakLine1;
+//  final String misbakLine2;
+//  final String misbakLine3;
+//  final String misbakPictureRemoteUrl;
+//  final String misbakAudioUrl;
+//  final String misbakPicturelocalPath;
   FavoritesBloc favoritesBloc;
 
   AudioPlayerScreen(
       {Key key,
       this.weekIndex,
       this.mezmurData,
-      this.mezmurName,
-      this.misbakChapters,
-      this.misbakLine1,
-      this.misbakLine2,
-      this.misbakLine3,
-      this.misbakPictureRemoteUrl,
-      this.misbakAudioUrl,
-      this.monthIndex,
-      this.misbakPicturelocalPath,
+      this.weeklyList,
+//      this.mezmurName,
+//      this.misbakChapters,
+//      this.misbakLine1,
+//      this.misbakLine2,
+//      this.misbakLine3,
+//      this.misbakPictureRemoteUrl,
+//      this.misbakAudioUrl,
+//      this.misbakPicturelocalPath,
       this.favoritesBloc})
       : super(key: key);
 }
@@ -70,7 +70,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     checkFavoritesList(
         mezmurName: widget.mezmurData != null
             ? widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName
-            : widget.mezmurName);
+            : widget.weeklyList.mezmurName);
     initFavoritesObject();
     _player = AudioPlayer();
     _player
@@ -82,13 +82,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       print(error);
     });
 
-    // when coming from month_mezmur_list class, the favBloc is not initialized
-    // so, this will give it a general initialization
-    // but when coming from Favorites_list screen, it is passed as an argument
-    // so, initialization is not needed
-    if (widget.mezmurData != null) {
-      widget.favoritesBloc = FavoritesBloc();
-    }
   }
 
   // initializes fav object with the current data, used for adding or deleting in the db
@@ -116,15 +109,15 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               misbakPicturelocalPath: widget.mezmurData
                   .weekMezmurList[widget.weekIndex].misbakPicturelocalPath)
           : favoritesObj = WeekMezmurList(
-              mezmurName: widget.mezmurName,
+              mezmurName: widget.weeklyList.mezmurName,
               weekId: widget.weekIndex,
-              misbakChapters: widget.misbakChapters,
-              misbakLine1: widget.misbakLine1,
-              misbakLine2: widget.misbakLine2,
-              misbakLine3: widget.misbakLine3,
-              misbakAudioUrl: widget.misbakAudioUrl,
-              misbakPictureRemoteUrl: widget.misbakPictureRemoteUrl,
-              misbakPicturelocalPath: widget.misbakPicturelocalPath);
+              misbakChapters: widget.weeklyList.misbakChapters,
+              misbakLine1: widget.weeklyList.misbakLine1,
+              misbakLine2: widget.weeklyList.misbakLine2,
+              misbakLine3: widget.weeklyList.misbakLine3,
+              misbakAudioUrl: widget.weeklyList.misbakAudioUrl,
+              misbakPictureRemoteUrl: widget.weeklyList.misbakPictureRemoteUrl,
+              misbakPicturelocalPath: widget.weeklyList.misbakPicturelocalPath);
     });
   }
 
@@ -135,13 +128,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       isInFavoritesList = newVal;
     });
   }
-
-  // slider controller
-//  void onSliderChanged(double value) {
-//    setState(() {
-//      sliderValue = value;
-//    });
-//  }
 
   // if the favorite button is tapped, show the appropriate snack bar
   void showSnackBar() => !isInFavoritesList
@@ -161,9 +147,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
         );
       } else {
-        widget.favoritesBloc.delete(widget.mezmurName);
+        widget.favoritesBloc.delete(widget.weeklyList.mezmurName);
         checkFavoritesList(
-          mezmurName: widget.mezmurName,
+          mezmurName: widget.weeklyList.mezmurName,
         );
       }
     } else {
@@ -180,7 +166,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName,
             )
           : checkFavoritesList(
-              mezmurName: widget.mezmurName,
+              mezmurName: widget.weeklyList.mezmurName,
             );
     }
   }
@@ -188,22 +174,21 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   @override
   void dispose() {
     _player.dispose();
-    widget.favoritesBloc.dispose();
+    // widget.favoritesBloc.dispose();
     super.dispose();
   }
 
   // returns a two digit number for the audio minutes indicators
   String _printPosition({Duration position}) {
     String twoDigitsSec(int n) {
-      if (n >= 10)  return "$n";
-        return "0$n";
+      if (n >= 10) return "$n";
+      return "0$n";
     }
 
-    String twoDigitsMin(int n){
-      if (n >= 10)  return "$n";
+    String twoDigitsMin(int n) {
+      if (n >= 10) return "$n";
       return "$n";
     }
-
 
     String twoDigitMinutes = twoDigitsMin(position.inMinutes.remainder(60));
     String twoDigitSeconds = twoDigitsSec(position.inSeconds.remainder(60));
@@ -234,7 +219,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               SizedBox(
                 width: 10,
               ),
-              Text("${_printPosition(position: position)} / ${_printPosition(position: duration)}")
+              Text(
+                  "${_printPosition(position: position)} / ${_printPosition(position: duration)}")
             ]);
 
 //              Stack(
@@ -308,7 +294,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 //                child: CircularProgressIndicator(),
 //              )
 
-             if (state == AudioPlaybackState.playing)
+            if (state == AudioPlaybackState.playing)
               IconButton(
                 icon: Icon(Icons.pause),
                 iconSize: 40.0,
@@ -348,7 +334,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           title: Text(
             widget.mezmurData != null
                 ? widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName
-                : widget.mezmurName,
+                : widget.weeklyList.mezmurName,
             overflow: TextOverflow.fade,
           ),
           actions: <Widget>[
@@ -395,7 +381,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   widget.mezmurData != null
                       ? widget.mezmurData.weekMezmurList[widget.weekIndex]
                           .misbakPicturelocalPath
-                      : widget.misbakPicturelocalPath,
+                      : widget.weeklyList.misbakPicturelocalPath,
                 ),
               ),
             ),

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import './view/home_list_screen.dart';
-import './view/books_list_screen.dart';
-import './view/favorites_list_screen.dart';
-import './view/more_list_screen.dart';
+import '../view/home_list_screen.dart';
+import '../view/books_list_screen.dart';
+import '../view/favorites_list_screen.dart';
+import '../view/more_list_screen.dart';
 
 
-// changed to Cupertino Bottom nav
-// unused class
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -21,7 +19,7 @@ class HomeScreenState extends State<HomeScreen> {
   PageController _pageController = PageController();
 
   void _onPageSelected(int index) {
-    _pageController.animateToPage(index, duration: _duration, curve: _curve);
+   // _pageController.animateToPage(index, duration: _duration, curve: _curve);
     setState(
       () {
         _selectedPageIndex = index;
@@ -48,21 +46,23 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          child: PageView.builder(
-            onPageChanged: (index) {
-              pageChanged(index);
-            },
-            itemBuilder: (BuildContext context, int index) {
-              return _pages[index];
-            },
-            itemCount: _pages.length,
-            controller: _pageController,
-          ),
-        ),
+        body: _pages[_selectedPageIndex],
+
+//        Container(
+//          child: PageView.builder(
+//            onPageChanged: (index) {
+//              pageChanged(index);
+//            },
+//            itemBuilder: (BuildContext context, int index) {
+//              return _pages[index];
+//            },
+//            itemCount: _pages.length,
+//            controller: _pageController,
+//          ),
+//        ),
 
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.blue[700],
+          selectedItemColor: Colors.indigo,
           backgroundColor: Colors.grey[200],
           onTap: _onPageSelected,
           type: BottomNavigationBarType.fixed,
@@ -86,7 +86,6 @@ class HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }
