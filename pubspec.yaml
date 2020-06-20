@@ -29,6 +29,7 @@ dependencies:
   open_file: ^3.0.1
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -64,12 +65,12 @@ flutter:
      - assets/images/Kiremt/17.jpg
      - assets/images/Kiremt/13.jpg
      - assets/PDFs/
-#     - assets/PDFs/Megabit_GinbotGitsawe.pdf
-#     - assets/PDFs/MezmurGitsawe.pdf
-#     - assets/PDFs/Meskerem_HidarGitsawe.pdf
-#     - assets/PDFs/Tahisas_Yekatit.pdf
-#     - assets/PDFs/Sene_PuagmeGitsawe.pdf
-#     - assets/PDFs/TewsakGitsawe.pdf
+     - assets/PDFs/መጋቢት_ግንቦት_ግጻዌ.pdf
+     - assets/PDFs/የመዝሙራት_ግጻዌ.pdf
+     - assets/PDFs/መስከረም_ህዳር_ግጻዌ.pdf
+     - assets/PDFs/ታህሳስ_የካቲት_ግጻዌ.pdf
+     - assets/PDFs/ሰኔ_ጷግሜን_ግጻዌ.pdf
+     - assets/PDFs/የተውሳክ_ግጻዌ.pdf
 
 
 

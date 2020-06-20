@@ -4,6 +4,7 @@ import 'package:psalmody/models/mezmur.dart';
 import 'package:psalmody/models/week_mezmur_list.dart';
 import 'package:psalmody/sqflite/database_helper.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:share/share.dart';
 import 'favorites_bloc.dart';
 //import 'package:vector_math/vector_math_64.dart' show Vector3;
 
@@ -14,14 +15,6 @@ class AudioPlayerScreen extends StatefulWidget {
   final int weekIndex;
   final Mezmur mezmurData;
   final WeekMezmurList weeklyList;
-//  final String mezmurName;
-//  final String misbakChapters;
-//  final String misbakLine1;
-//  final String misbakLine2;
-//  final String misbakLine3;
-//  final String misbakPictureRemoteUrl;
-//  final String misbakAudioUrl;
-//  final String misbakPicturelocalPath;
   FavoritesBloc favoritesBloc;
 
   AudioPlayerScreen(
@@ -29,14 +22,6 @@ class AudioPlayerScreen extends StatefulWidget {
       this.weekIndex,
       this.mezmurData,
       this.weeklyList,
-//      this.mezmurName,
-//      this.misbakChapters,
-//      this.misbakLine1,
-//      this.misbakLine2,
-//      this.misbakLine3,
-//      this.misbakPictureRemoteUrl,
-//      this.misbakAudioUrl,
-//      this.misbakPicturelocalPath,
       this.favoritesBloc})
       : super(key: key);
 }
@@ -81,7 +66,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       // catch audio error ex: 404 url, wrong url ...
       print(error);
     });
-
   }
 
   // initializes fav object with the current data, used for adding or deleting in the db
@@ -220,7 +204,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 width: 10,
               ),
               Text(
-                  "${_printPosition(position: position)} / ${_printPosition(position: duration)}")
+                "${_printPosition(position: position)} / ${_printPosition(position: duration)}",
+                overflow: TextOverflow.fade,
+              )
             ]);
 
 //              Stack(
@@ -319,18 +305,98 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 //    print("******");
 //  }
 
+  void share({String imageUrl, String audioUrl}) {
+    String misbakChapeters = widget.mezmurData != null
+        ? "ምስባክ፥ ${widget.mezmurData.weekMezmurList[widget.weekIndex].misbakChapters}"
+        : "ምስባክ፥ ${widget.weeklyList.misbakChapters}";
+    if (imageUrl != null && audioUrl == null) {
+      Share.share('$misbakChapeters\n$imageUrl');
+    } else if (audioUrl != null && imageUrl == null) {
+      Share.share('Listen to $misbakChapeters\n$audioUrl');
+    } else {
+      Share.share('Check $misbakChapeters\n$imageUrl\n$audioUrl');
+    }
+  }
+
+  Widget buildShareDialogActions(BuildContext context) => Column(
+        children: <Widget>[
+          CupertinoDialogAction(
+            child: Text('Share the image'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              share(
+                imageUrl: widget.mezmurData != null
+                    ? widget.mezmurData.weekMezmurList[widget.weekIndex]
+                        .misbakPictureRemoteUrl
+                    : widget.weeklyList.misbakPictureRemoteUrl,
+              );
+            },
+          ),
+          CupertinoDialogAction(
+            child: Text('Share the audio'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              share(
+                audioUrl: widget.mezmurData != null
+                    ? widget.mezmurData.weekMezmurList[widget.weekIndex]
+                        .misbakAudioUrl
+                    : widget.weeklyList.misbakAudioUrl,
+              );
+            },
+          ),
+          CupertinoDialogAction(
+            child: Text('Share both'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              share(
+                imageUrl: widget.mezmurData != null
+                    ? widget.mezmurData.weekMezmurList[widget.weekIndex]
+                        .misbakPictureRemoteUrl
+                    : widget.weeklyList.misbakPictureRemoteUrl,
+                audioUrl: widget.mezmurData != null
+                    ? widget.mezmurData.weekMezmurList[widget.weekIndex]
+                        .misbakAudioUrl
+                    : widget.weeklyList.misbakAudioUrl,
+              );
+            },
+          ),
+          Divider(
+            color: Colors.black,
+          ),
+          CupertinoDialogAction(
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Colors.red),
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      );
+
+  Future<void> shareDialog(BuildContext context) async {
+    return await showCupertinoDialog(
+      context: context,
+      builder: (context) => CupertinoAlertDialog(
+        content: Text(
+          'Sharing is Caring!',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        actions: <Widget>[buildShareDialogActions(context)],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // variables for getting custom screen height and width
     var customScreenWidth = MediaQuery.of(context).size.width / 100;
     var customScreenHeight = MediaQuery.of(context).size.height / 100;
 
-    //TODO: *********************Download image to phone or share it***************************
     return SafeArea(
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-          centerTitle: true,
+          centerTitle: false,
           title: Text(
             widget.mezmurData != null
                 ? widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName
@@ -338,6 +404,14 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             overflow: TextOverflow.fade,
           ),
           actions: <Widget>[
+            IconButton(
+              icon: Icon(CupertinoIcons.share),
+              onPressed: () {
+                shareDialog(context);
+              },
+              iconSize: 35.0,
+              color: Colors.black,
+            ),
             // favorites icon button
             IconButton(
               icon: Icon(isInFavoritesList ? Icons.star : Icons.star_border),
@@ -354,10 +428,13 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         body: Stack(
           children: <Widget>[
             // network image container
-            Container(
-              height: customScreenHeight * 60,
-              width: MediaQuery.of(context).size.width,
-              child: GestureDetector(
+            Padding(
+              padding: EdgeInsets.only(left: 5, right: 5),
+              child: Container(
+                //color: Colors.red,
+                height: customScreenHeight * 60,
+                width: MediaQuery.of(context).size.width,
+                child: GestureDetector(
 //              onScaleStart: (ScaleStartDetails details) {
 //                previousScale = scale;
 //                setState(() {});
@@ -370,18 +447,19 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 //                // assigning it back to 1.0 to leave the image zoomed
 //                previousScale = 1.0;
 //              },
-                // allows the image to be move when zoomed
+                  // allows the image to be move when zoomed
 //              child: Transform(
-                // this alignment makes it zoomed from the center
+                  // this alignment makes it zoomed from the center
 //                alignment: FractionalOffset.,
 //                transform: Matrix4.diagonal3(
 //                  Vector3(scale, scale, scale),
 //                ),
-                child: Image.asset(
-                  widget.mezmurData != null
-                      ? widget.mezmurData.weekMezmurList[widget.weekIndex]
-                          .misbakPicturelocalPath
-                      : widget.weeklyList.misbakPicturelocalPath,
+                  child: Image.asset(
+                    widget.mezmurData != null
+                        ? widget.mezmurData.weekMezmurList[widget.weekIndex]
+                            .misbakPicturelocalPath
+                        : widget.weeklyList.misbakPicturelocalPath,
+                  ),
                 ),
               ),
             ),

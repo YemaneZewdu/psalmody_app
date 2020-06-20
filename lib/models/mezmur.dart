@@ -32,6 +32,7 @@ class Mezmur {
     return Mezmur(month: monthValue, weekMezmurList: weeklyList);
   }
 
+  // used for searching
   factory Mezmur.filterList(List<dynamic> parsedJson){
     List<WeekMezmurList> weeklyList = new List<WeekMezmurList>();
 

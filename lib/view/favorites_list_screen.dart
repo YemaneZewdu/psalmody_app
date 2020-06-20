@@ -139,19 +139,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                         builder: (context) =>
                             AudioPlayerScreen(
                               weeklyList: snapshot.data[index],
-//                              mezmurName: snapshot.data[index].mezmurName,
                               weekIndex: snapshot.data[index].weekId,
-//                              misbakChapters: snapshot.data[index]
-//                                  .misbakChapters,
-//                              misbakLine1: snapshot.data[index].misbakLine1,
-//                              misbakLine2: snapshot.data[index].misbakLine2,
-//                              misbakLine3: snapshot.data[index].misbakLine3,
-//                              misbakPictureRemoteUrl: snapshot.data[index]
-//                                  .misbakPictureRemoteUrl,
-//                              misbakAudioUrl: snapshot.data[index]
-//                                  .misbakAudioUrl,
-//                              misbakPicturelocalPath: snapshot.data[index]
-//                                  .misbakPicturelocalPath,
                               favoritesBloc: favBloc,
                             ),
                       ),

@@ -14,37 +14,37 @@ class BooksListScreen extends StatelessWidget {
   final _books = [
     {
       'title': 'የሰንበት ቅዳሴ ማውጫ',
-      'localPath': 'MezmurGitsawe.pdf',
+      'localPath': 'የመዝሙራት_ግጻዌ.pdf',
       'remoteUrl':
           'https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/PDF%20Books%2F%E1%88%98%E1%8B%9D%E1%88%99%E1%88%AD.pdf?alt=media&token=4384342e-add8-466c-bf81-ca3138e3b96e'
     },
     {
       'title': 'መስከረም - ኅዳር ግጻዌ',
-      'localPath': 'Meskerem_HidarGitsawe.pdf',
+      'localPath': 'መስከረም_ህዳር_ግጻዌ.pdf',
       'remoteUrl':
           'https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/PDF%20Books%2F%E1%88%98%E1%88%B5%E1%8A%A8%E1%88%A8%E1%88%9D%20_%20%E1%88%85%E1%8B%B3%E1%88%AD.pdf?alt=media&token=c3dadbc3-7460-4179-a98b-6f87992d3d5d'
     },
     {
       'title': 'ታኅሣሥ - የካቲት ግጻዌ',
-      'localPath': 'Tahisas_Yekatit.pdf',
+      'localPath': 'ታህሳስ_የካቲት_ግጻዌ.pdf',
       'remoteUrl':
           'https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/PDF%20Books%2F%E1%89%B3%E1%88%85%E1%88%B3%E1%88%B5%20_%20%E1%8B%A8%E1%8A%AB%E1%89%B2%E1%89%B5.pdf?alt=media&token=4a550fdc-0570-4cd9-8f7e-f614c47c85d4'
     },
     {
       'title': 'መጋቢት  - ግንቦት ግጻዌ',
-      'localPath': 'Megabit_GinbotGitsawe.pdf',
+      'localPath': 'መጋቢት_ግንቦት_ግጻዌ.pdf',
       'remoteUrl':
           'https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/PDF%20Books%2F%E1%88%98%E1%8C%8B%E1%89%A2%E1%89%B5_%20%E1%8C%8D%E1%8A%95%E1%89%A6%E1%89%B5.pdf?alt=media&token=cb0989ec-e52f-420b-858b-bf1c851bbd8b'
     },
     {
       'title': 'ሰኔ - ጳጉሜን ግጻዌ',
-      'localPath': 'Sene_PuagmeGitsawe.pdf',
+      'localPath': 'ሰኔ_ጷግሜን_ግጻዌ.pdf',
       'remoteUrl':
           'https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/PDF%20Books%2F%E1%88%B0%E1%8A%94%20-%20%E1%8C%B7%E1%8C%8D%E1%88%9C.pdf?alt=media&token=ad31c90e-3dab-4187-a436-f443d4b48ac0'
     },
     {
       'title': 'በተውሳክ ለሚወጡ ለሚወርዱ በዓላትና አጽዋማት ቅዳሴ ማውጫ',
-      'localPath': 'TewsakGitsawe.pdf',
+      'localPath': 'የተውሳክ_ግጻዌ.pdf',
       'remoteUrl':
           'https://firebasestorage.googleapis.com/v0/b/psalmody-flutter.appspot.com/o/PDF%20Books%2F%E1%89%B0%E1%8B%8D%E1%88%B3%E1%8A%AD.pdf?alt=media&token=0f3182dc-c8ca-473a-a563-a770e9cd426a'
     }
