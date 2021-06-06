@@ -170,7 +170,7 @@ class Search extends SearchDelegate<WeekMezmurList> {
                   results[index].misbakLine2 +
                   "\n" +
                   results[index].misbakLine3,
-              overflow: TextOverflow.fade,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

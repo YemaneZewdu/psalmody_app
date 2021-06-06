@@ -401,7 +401,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             widget.mezmurData != null
                 ? widget.mezmurData.weekMezmurList[widget.weekIndex].mezmurName
                 : widget.weeklyList.mezmurName,
-            overflow: TextOverflow.fade,
+            overflow: TextOverflow.ellipsis,
           ),
           actions: <Widget>[
             IconButton(

@@ -61,7 +61,7 @@ class MonthMezmurListScreen extends StatelessWidget {
                   snapshot.data.weekMezmurList[index].misbakLine2 +
                   "\n" +
                   snapshot.data.weekMezmurList[index].misbakLine3,
-              overflow: TextOverflow.fade,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

@@ -233,7 +233,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                   favs.misbakLine2 +
                   "\n" +
                   favs.misbakLine3,
-              overflow: TextOverflow.fade,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
