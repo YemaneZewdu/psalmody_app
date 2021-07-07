@@ -55,7 +55,7 @@ class HomeListScreen extends StatelessWidget {
                   CupertinoPageRoute(
                     builder: (context) => MonthMezmurListScreen(
                       monthName: _months[index],
-                      monthIndex: index,
+                      monthIndex: index, mezmurData: Mezmur(weekMezmurList: [], month: ''),
                     ),
                   ),
                 );
@@ -85,7 +85,7 @@ class HomeListScreen extends StatelessWidget {
 }
 
 class Search extends SearchDelegate<WeekMezmurList> {
-  Mezmur mezmur;
+  late Mezmur mezmur;
   final SlidableController slidableController = SlidableController();
 
   // search field label
@@ -128,7 +128,7 @@ class Search extends SearchDelegate<WeekMezmurList> {
         color: Colors.black,
       ),
       onPressed: () {
-        close(context, null);
+        close(context, WeekMezmurList());
       },
     );
   }
@@ -150,11 +150,11 @@ class Search extends SearchDelegate<WeekMezmurList> {
   // mezmur description might be empty so to avoid an empty line
   // in the card, check if it is ""
   Widget mezmurNameDescription(List<WeekMezmurList> results, index) => Text(
-        results[index].mezmurDescription != ""
-            ? results[index].mezmurDescription +
+        results[index].mezmurDescription! != ""
+            ? results[index].mezmurDescription! +
                 "\n" +
-                results[index].mezmurName
-            : results[index].mezmurName,
+                results[index].mezmurName!
+            : results[index].mezmurName!,
         textAlign: TextAlign.center,
       );
 
@@ -165,11 +165,11 @@ class Search extends SearchDelegate<WeekMezmurList> {
           children: <Widget>[
             // check if not null, else return mezmur name only
             Text(
-              results[index].misbakLine1 +
+              results[index].misbakLine1! +
                   "\n" +
-                  results[index].misbakLine2 +
+                  results[index].misbakLine2! +
                   "\n" +
-                  results[index].misbakLine3,
+                  results[index].misbakLine3!,
               overflow: TextOverflow.fade,
             ),
           ],
@@ -189,7 +189,7 @@ class Search extends SearchDelegate<WeekMezmurList> {
           ),
           Row(
             children: <Widget>[
-              Text(results[index].misbakChapters),
+              Text(results[index].misbakChapters!),
             ],
           )
         ],
@@ -227,14 +227,14 @@ class Search extends SearchDelegate<WeekMezmurList> {
             return informUser("Type to search");
           }
 
-          List<WeekMezmurList> results = new List<WeekMezmurList>();
+          List<WeekMezmurList> results = <WeekMezmurList>[];
           for (var i = 0; i < mezmur.weekMezmurList.length; i++) {
-            if (((mezmur.weekMezmurList[i].mezmurName.contains(query)) ||
+            if (((mezmur.weekMezmurList[i].mezmurName!.contains(query)) ||
                     (mezmur.weekMezmurList[i].mezmurDescription
-                        .contains(query)) ||
-                    (mezmur.weekMezmurList[i].misbakLine1.contains(query)) ||
-                    (mezmur.weekMezmurList[i].misbakLine2.contains(query)) ||
-                    (mezmur.weekMezmurList[i].misbakLine3.contains(query))) &&
+                        !.contains(query)) ||
+                    (mezmur.weekMezmurList[i].misbakLine1!.contains(query)) ||
+                    (mezmur.weekMezmurList[i].misbakLine2!.contains(query)) ||
+                    (mezmur.weekMezmurList[i].misbakLine3!.contains(query))) &&
                 query.isNotEmpty) {
               results.add(mezmur.weekMezmurList[i]);
             }
@@ -267,7 +267,7 @@ class Search extends SearchDelegate<WeekMezmurList> {
                     ),
                   ),
                   child: Slidable(
-                    key: new Key(results[index].mezmurName),
+                    key: new Key(results[index].mezmurName!),
                     actionPane: SlidableDrawerActionPane(),
                     controller: slidableController,
                     actionExtentRatio: 0.30,

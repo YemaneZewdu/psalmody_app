@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
   // column names and a db name
-  static Database _database;
+  static Database? _database ;
 
   // static const String ID = 'id';
   static const String TABLE = 'Favotires';
@@ -28,7 +28,7 @@ class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
   // get the database
-  Future<Database> get getDb async {
+  Future<Database?> get getDb async {
     if (_database != null) {
       return _database;
     }
@@ -70,7 +70,7 @@ class DatabaseHelper {
       return await txn.rawInsert(query);
     });*/
 
-       await dbClient.insert(TABLE, favorites.toMap(),
+       await dbClient!.insert(TABLE, favorites.toMap(),
           conflictAlgorithm: ConflictAlgorithm.replace);
     } catch (e) {
       print("DatabaseHelper Insert method" + e.toString());
@@ -81,7 +81,7 @@ Future<List<WeekMezmurList>> getFavorites() async {
     // get the db
     var dbClient = await getDb;
     //getting the column data
-    List<Map> queryResult = await dbClient.query(TABLE, columns: [
+    List<Map> queryResult = await dbClient!.query(TABLE, columns: [
       MEZMUR_NAME,
       WEEK_ID,
       MISBAK_CHAPTERS,
@@ -96,22 +96,23 @@ Future<List<WeekMezmurList>> getFavorites() async {
     //  List<Map> maps = await dbClient.rawQuery("SELECT * FROM $TABLE");
     List<WeekMezmurList> favoriteList = [];
   // if true, the map has at least one value
-  favoriteList = queryResult.isNotEmpty ? queryResult.map((fav)=>WeekMezmurList.fromMap(fav)).toList() : null;
+ // favoriteList = (queryResult.isNotEmpty ? queryResult.map((fav)=>WeekMezmurList.fromMap(fav)).toList() : null)!;
+    favoriteList = queryResult.map((fav)=>WeekMezmurList.fromMap(fav)).toList();
     return favoriteList;
   }
 
   // raw SQL commands. This method uses a raw query to give the row count.
-  Future<int> queryRowCount() async {
-    Database db = await getDb;
+  Future<int?> queryRowCount() async {
+    Database? db = await getDb;
     return Sqflite.firstIntValue(
-        await db.rawQuery('SELECT COUNT(*) FROM $TABLE'));
+        await db!.rawQuery('SELECT COUNT(*) FROM $TABLE'));
   }
 
   // deleting a value from the db
-  Future<void> delete({String mezmurName}) async {
+  Future<void> delete({String? mezmurName}) async {
     var dbClient = await getDb;
     try {
-       await dbClient
+       await dbClient!
           .delete(TABLE, where: '$MEZMUR_NAME = ?', whereArgs: [mezmurName]);
     } catch (e) {
       print("DatabaseHelper Delete method" + e.toString());
@@ -119,10 +120,10 @@ Future<List<WeekMezmurList>> getFavorites() async {
   }
 
   // check if in favorites
-  Future<bool> inFavorites({String mezmurName}) async {
+  Future<bool> inFavorites({String? mezmurName}) async {
     var dbClient = await getDb;
     try {
-      List<Map> maps = await dbClient
+      List<Map> maps = await dbClient!
           .query(TABLE, where: '$MEZMUR_NAME = ?', whereArgs: [mezmurName]);
       return maps.length == 1 ? true : false;
     } catch (e) {
@@ -138,6 +139,6 @@ Future<List<WeekMezmurList>> getFavorites() async {
   // close the db
   Future closeDb() async {
     var dbClient = await getDb;
-    dbClient.close();
+    dbClient!.close();
   }
 }

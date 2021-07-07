@@ -6,11 +6,11 @@ import 'package:psalmody/home/tab_item.dart';
 // this class creates a CupertinoHomeScaffold that knows what tabs to present
 class CupertinoHomeScaffold extends StatelessWidget {
   const CupertinoHomeScaffold({
-    Key key,
-    @required this.currentTab,
-    @required this.onSelectTab,
-    @required this.widgetBuilders,
-    @required this.navigatorKeys
+     Key? key,
+    required this.currentTab,
+    required this.onSelectTab,
+    required this.widgetBuilders,
+    required this.navigatorKeys
   }) : super(key: key);
 
   final TabItem currentTab;
@@ -39,7 +39,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
         final item = TabItem.values[index];
         return CupertinoTabView(
           navigatorKey: navigatorKeys[item],
-          builder: (context) => widgetBuilders[item](context),
+          builder: (context) => widgetBuilders[item]!(context),
         );
       },
     );
@@ -48,17 +48,17 @@ class CupertinoHomeScaffold extends StatelessWidget {
   // returns a bottom nav bar
   BottomNavigationBarItem _buildItem(TabItem tabItem) {
     final itemData = TabItemData.allTabs[tabItem];
+
     // checking if the tab is currently selected to give it a color
     final color = currentTab == tabItem ? Colors.indigo : Colors.grey;
     return BottomNavigationBarItem(
       icon: Icon(
-        itemData.icon,
+        itemData!.icon,
         color: color,
       ),
-      title: Text(
-        itemData.title,
-        style: TextStyle(color: color),
-      ),
+      label: itemData.title,
+      backgroundColor: color,
+
     );
   }
 }

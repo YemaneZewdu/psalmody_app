@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     // the starting page
     if (tabItem == _currentTab) {
       //pop to first route
-      navigatorKeys[tabItem].currentState.popUntil((route) => route.isFirst);
+      navigatorKeys[tabItem]!.currentState!.popUntil((route) => route.isFirst);
     } else {
       setState(() => _currentTab = tabItem);
     }
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       // route in the navigation stack, if not it will return false,
       // therefore we negated it with '!' so that the user can exit the app
       onWillPop: () async =>
-          !await navigatorKeys[_currentTab].currentState.maybePop(),
+          !await navigatorKeys[_currentTab]!.currentState!.maybePop(),
       child: CupertinoHomeScaffold(
         currentTab: _currentTab,
         onSelectTab: _select,

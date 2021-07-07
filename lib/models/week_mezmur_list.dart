@@ -1,30 +1,30 @@
 class WeekMezmurList {
-   int weekId;
-   String mezmurName;
-   String mezmurDescription;
-   String misbakChapters;
-   String misbakLine1;
-   String misbakLine2;
-   String misbakLine3;
-   String misbakPictureRemoteUrl;
-   String misbakPicturelocalPath;
-   String misbakAudioUrl;
+   int? weekId;
+   String? mezmurName;
+   String? mezmurDescription;
+   String? misbakChapters;
+   String? misbakLine1;
+   String? misbakLine2;
+   String? misbakLine3;
+   String? misbakPictureRemoteUrl;
+   String? misbakPicturelocalPath;
+   String? misbakAudioUrl;
 
   WeekMezmurList({
-    this.weekId,
-    this.mezmurName,
-    this.mezmurDescription,
-    this.misbakChapters,
-    this.misbakLine1,
-    this.misbakLine2,
-    this.misbakLine3,
-    this.misbakPictureRemoteUrl,
-    this.misbakPicturelocalPath,
-    this.misbakAudioUrl,
+     this.weekId,
+     this.mezmurName,
+     this.mezmurDescription,
+     this.misbakChapters,
+     this.misbakLine1,
+     this.misbakLine2,
+     this.misbakLine3,
+     this.misbakPictureRemoteUrl,
+     this.misbakPicturelocalPath,
+     this.misbakAudioUrl,
   });
 
   // Serializing the JSON
-  factory WeekMezmurList.fromJson(Map<String, dynamic> parsedJson) =>
+  factory WeekMezmurList.fromJson(Map<String?, dynamic> parsedJson) =>
       WeekMezmurList(
         weekId: parsedJson["weekId"],
         mezmurName: parsedJson["mezmurName"],
@@ -48,7 +48,7 @@ class WeekMezmurList {
       "misbakPicturelocalPath: $misbakPicturelocalPath, misbakAudioUrl: $misbakAudioUrl";
 
 // changes to JSON, not used in the project
-  Map<String, dynamic> toJson() => {
+  Map<String?, dynamic> toJson() => {
         "weekId": weekId,
         "mezmurName": mezmurName,
         "mezmurDescription": mezmurDescription,
@@ -62,9 +62,9 @@ class WeekMezmurList {
       };
 
   // changes Favorites object to map
-  Map<String, dynamic> toMap() {
+  Map<String, Object?> toMap() {
     // used for assigning the incoming values
-    var map = <String, dynamic>{
+    var map = <String, Object?>{
       "weekId": weekId,
       "mezmurName": mezmurName,
       "misbakChapters": misbakChapters,
@@ -78,7 +78,7 @@ class WeekMezmurList {
     return map;
   }
   // extract the Id and the data from the map
-  WeekMezmurList.fromMap(Map<String, dynamic> map) {
+  WeekMezmurList.fromMap(Map<dynamic, dynamic> map) {
     weekId = map["weekId"];
     mezmurName = map["mezmurName"];
     misbakChapters = map["misbakChapters"];

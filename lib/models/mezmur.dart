@@ -4,8 +4,8 @@ class Mezmur {
   final List<WeekMezmurList> weekMezmurList;
 
   Mezmur({
-    this.month,
-    this.weekMezmurList,
+     required this.month,
+    required this.weekMezmurList,
   });
 
   @override
@@ -15,7 +15,7 @@ class Mezmur {
   factory Mezmur.fromJson(List<dynamic> parsedJson, int monthIndex) {
     //solution to avoid type error:  'List<dynamic>' is not a subtype of type 'Map<String, dynamic>'
 
-    List<WeekMezmurList> weeklyList = new List<WeekMezmurList>();
+    List<WeekMezmurList> weeklyList = <WeekMezmurList>[];
     String monthValue = parsedJson[monthIndex]["month"];
 
     // going through the week list
@@ -33,7 +33,7 @@ class Mezmur {
   }
 
   factory Mezmur.filterList(List<dynamic> parsedJson){
-    List<WeekMezmurList> weeklyList = new List<WeekMezmurList>();
+    List<WeekMezmurList> weeklyList = <WeekMezmurList>[];
 
     for (var i=0; i<parsedJson.length; i++) {
 
@@ -48,7 +48,7 @@ class Mezmur {
         );
       }
     }
-    return Mezmur(weekMezmurList: weeklyList);
+    return Mezmur(weekMezmurList: weeklyList, month: '');
 
   }
 

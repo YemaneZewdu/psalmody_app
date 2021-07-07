@@ -18,10 +18,10 @@ class MonthMezmurListScreen extends StatelessWidget {
   final SlidableController slidableController = SlidableController();
 
   MonthMezmurListScreen({
-    Key key,
-    this.monthName,
-    this.mezmurData,
-    this.monthIndex,
+    Key? key,
+    required this.monthName,
+   required this.mezmurData,
+    required this.monthIndex,
   }) : super(key: key);
 
   //load JSON
@@ -30,10 +30,10 @@ class MonthMezmurListScreen extends StatelessWidget {
   }
 
   // load mezmur by the given month index
-  Future<Mezmur> loadMezmur({int monthIndex}) async {
+  Future<Mezmur> loadMezmur({int? monthIndex}) async {
     String jsonString = await loadJson();
     final jsonResponse = json.decode(jsonString);
-    mezmurData = new Mezmur.fromJson(jsonResponse, monthIndex);
+    mezmurData = new Mezmur.fromJson(jsonResponse, monthIndex!);
 
     return mezmurData;
   }

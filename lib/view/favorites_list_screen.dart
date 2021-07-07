@@ -16,7 +16,7 @@ class FavoritesListScreen extends StatefulWidget {
 class _FavoritesListScreenState extends State<FavoritesListScreen> {
 
   // reference to the class that manages the database
-  final databaseHelper = DatabaseHelper.instance;
+   final databaseHelper = DatabaseHelper.instance;
   // used for setting up a snack bar
   final scaffoldKey = GlobalKey<ScaffoldState>();
   // snack bar for notifying the user that the favorite was removed
@@ -44,7 +44,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
 
 
   void showSnackBar() =>
-      scaffoldKey.currentState.showSnackBar(mezmurRemovedFromFavorites);
+      ScaffoldMessenger.of(context).showSnackBar(mezmurRemovedFromFavorites);
 
   // deletes the specific favorite from the sqflite db
   Future<void> _swipeDelete(BuildContext context, String mezmurName) async {
@@ -115,7 +115,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (snapshot.data == null) {
+        } else if (snapshot.data!.isEmpty) {
           return Center(
             child: Text(
               "No Favorites yet!",
@@ -129,7 +129,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
           return ListView.builder(
             physics: BouncingScrollPhysics(),
             padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-            itemCount: snapshot.data.length,
+            itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
               return new GestureDetector(
                 onTap: () =>
@@ -138,26 +138,26 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                       CupertinoPageRoute(
                         builder: (context) =>
                             AudioPlayerScreen(
-                              weeklyList: snapshot.data[index],
-//                              mezmurName: snapshot.data[index].mezmurName,
-                              weekIndex: snapshot.data[index].weekId,
-//                              misbakChapters: snapshot.data[index]
+                              weeklyList: snapshot.data![index],
+//                              mezmurName: snapshot.data![index].mezmurName,
+                              weekIndex: snapshot.data![index].weekId!,
+//                              misbakChapters: snapshot.data![index]
 //                                  .misbakChapters,
-//                              misbakLine1: snapshot.data[index].misbakLine1,
-//                              misbakLine2: snapshot.data[index].misbakLine2,
-//                              misbakLine3: snapshot.data[index].misbakLine3,
-//                              misbakPictureRemoteUrl: snapshot.data[index]
+//                              misbakLine1: snapshot.data![index].misbakLine1,
+//                              misbakLine2: snapshot.data![index].misbakLine2,
+//                              misbakLine3: snapshot.data![index].misbakLine3,
+//                              misbakPictureRemoteUrl: snapshot.data![index]
 //                                  .misbakPictureRemoteUrl,
-//                              misbakAudioUrl: snapshot.data[index]
+//                              misbakAudioUrl: snapshot.data![index]
 //                                  .misbakAudioUrl,
-//                              misbakPicturelocalPath: snapshot.data[index]
+//                              misbakPicturelocalPath: snapshot.data![index]
 //                                  .misbakPicturelocalPath,
                               favoritesBloc: favBloc,
                             ),
                       ),
                     ),
                 child: Slidable(
-                  key: new Key(snapshot.data[index].mezmurName),
+                  key: new Key(snapshot.data![index].mezmurName!),
                   actionPane: SlidableDrawerActionPane(),
                   actionExtentRatio: 0.25,
                   // closes other active slidable if there is any
@@ -169,7 +169,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                       icon: CupertinoIcons.share,
                       onTap: () =>
                           share(snapshot
-                              .data[index]),
+                              .data![index]),
                     ),
                     IconSlideAction(
                       caption: 'Delete',
@@ -177,7 +177,7 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                       icon: Icons.delete,
                       onTap: () =>
                           confirmDelete(
-                              context, snapshot.data[index].mezmurName),
+                              context, snapshot.data![index].mezmurName!),
                     ),
                   ],
                   child: Card(
@@ -194,10 +194,10 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
                           Row(
                             children: <Widget>[
                               misbakChapter(
-                                  snapshot.data[index].misbakChapters),
+                                  snapshot.data![index].misbakChapters!),
                               SizedBox(width: 15),
                               displayFavoritesMisbakLines(
-                                  snapshot.data[index], index),
+                                  snapshot.data![index], index),
                             ],
                           )
                         ],
@@ -240,11 +240,11 @@ class _FavoritesListScreenState extends State<FavoritesListScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              favs.misbakLine1 +
+              favs.misbakLine1! +
                   "\n" +
-                  favs.misbakLine2 +
+                  favs.misbakLine2! +
                   "\n" +
-                  favs.misbakLine3,
+                  favs.misbakLine3!,
               overflow: TextOverflow.fade,
             ),
           ],
